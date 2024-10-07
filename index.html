@@ -1,72 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- 
-      This is an HTML comment
-      You can write text in a comment and the content won't be visible in the page
-    -->
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
-
-    <!--
-      This is the page head - it contains info the browser uses
-      Like the title, which appears on the browser tab but not inside the page
-      Further down you'll see the content that displays in the page
-    -->
-    <title>Hello World!</title>
-
-    <!-- The website stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
-
-    <!-- The website JavaScript file -->
-    <script src="/script.js" defer></script>
-  </head>
-  <body>
-    <!--
-      The body includes the content you see in the page
-      Each element is defined using tags, like this <div></div>
-      The attributes like class="wrapper" let us style elements in the CSS
-    -->
-    <div class="wrapper">
-      <div class="content" role="main">
-        <h1 class="title">Hello World!</h1>
-        <img
-          src="https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2Fillustration.svg?v=1618177344016"
-          class="illustration"
-          alt="Editor illustration"
-          title="Click the image!"
-        />
-        <div class="instructions">
-          <h2>Using this project</h2>
-          <p>
-            This is the Glitch <strong>Hello Website</strong> project. You can
-            use it to build your own site. Check out the code in the editor and open
-            the <span class="fileopener" data-file="TODO.md" data-line="0"
-              >TODO</span> for next steps!
-          </p>
-          <!--  🚧 TODO: ADD BUTTON HERE -->
-
-          <!-- Once you've added the button from TODO.md, click it in the page -->
-          <!-- Check out the function in script.js to see how it works -->
-        </div>
-      </div>
-    </div>
-    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
-    <footer class="footer">
-      <div class="links"></div>
-      <a
-        class="btn--remix"
-        target="_top"
-        href="https://glitch.com/edit/#!/remix/glitch-hello-website"
-      >
-        <img
-          src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
-          alt=""
-        />
-        Remix on Glitch
-      </a>
-    </footer>
+<link
+  rel="icon"
+  href="data:image/png;base64,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"
+/>
+<title>Clever | Portal</title>
+<h1>Susland Arcade</h1>
+<body>
+<title>Clever | Portal</title>
+<style>
+          body {
+            background-image: url(https://wallpapers.com/images/featured-full/tropical-island-firxdiyy6k75uxlc.jpg);
+            background-repeat: no-repeat ;
+            background-position: center;
+            background-size: cover;
+            font-family: "Syne", sans-serif;
+          }
+    </html>
+  </style>
   </body>
-</html>
+  </div>
