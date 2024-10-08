@@ -55,22 +55,30 @@
   <title>Navigate to URL on Panic Key Press</title>
 </head>
 <body>
-  <h1>Choose your panic key which goes to canvas:</h1>
+  <h1>Choose your panic key and destination:</h1>
   <input type="text" id="panicKey" placeholder="Enter a key">
-  <button onclick="setPanicKey()">Set Panic Key</button>
+  <input type="text" id="destinationUrl" placeholder="Enter a URL">
+  <button onclick="setPanicKey()">Set Panic Key and Destination</button>
 
   <script>
     let panicKey = null;
+    let destinationUrl = null;
 
     function setPanicKey() {
       panicKey = document.getElementById('panicKey').value.toLowerCase();
-      alert(`Panic key set to '${panicKey}'`);
-      document.addEventListener('keydown', handlePanicKey);
+      destinationUrl = document.getElementById('destinationUrl').value;
+
+      if (panicKey && destinationUrl) {
+        alert(`Panic key set to '${panicKey}' and destination set to '${destinationUrl}'`);
+        document.addEventListener('keydown', handlePanicKey);
+      } else {
+        alert('Please enter both a panic key and a destination URL.');
+      }
     }
 
     function handlePanicKey(event) {
       if (event.key.toLowerCase() === panicKey) {
-        window.location.href = 'https://capousd.instructure.com/';
+        window.location.href = destinationUrl;
       }
     }
   </script>
