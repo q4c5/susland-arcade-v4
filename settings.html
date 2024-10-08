@@ -49,6 +49,30 @@
         }
   </html>
 </style>
-<h3>
-  
-</h3>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Navigate to URL on Panic Key Press</title>
+</head>
+<body>
+  <h1>Choose your panic key which goes to canvas:</h1>
+  <input type="text" id="panicKey" placeholder="Enter a key">
+  <button onclick="setPanicKey()">Set Panic Key</button>
+
+  <script>
+    let panicKey = null;
+
+    function setPanicKey() {
+      panicKey = document.getElementById('panicKey').value.toLowerCase();
+      alert(`Panic key set to '${panicKey}'`);
+      document.addEventListener('keydown', handlePanicKey);
+    }
+
+    function handlePanicKey(event) {
+      if (event.key.toLowerCase() === panicKey) {
+        window.location.href = 'https://capousd.instructure.com/';
+      }
+    }
+  </script>
+</body>
+</html>
