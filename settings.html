@@ -84,3 +84,69 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloak Disguise</title>
+    <link id="favicon" rel="icon" href="" type="image/x-icon" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #cloak {
+        width: 200px;
+        height: 100px;
+        border: 2px solid #000;
+        border-radius: 10px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 20px auto;
+      }
+      #cloak img {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cloak Disguise</h1>
+    <button id="disguiseButton">Disguise the Cloak</button>
+
+    <div id="cloak"></div>
+
+    <script>
+      document
+        .getElementById("disguiseButton")
+        .addEventListener("click", function () {
+          const faviconUrl = prompt("Enter the URL of the favicon:");
+          const title = prompt("Enter the title:");
+
+          if (faviconUrl && title) {
+            const cloak = document.getElementById("cloak");
+            cloak.innerHTML = `<img src="${faviconUrl}" alt="Favicon"><h2>${title}</h2>`;
+            cloak.style.display = "flex";
+
+            // Update the favicon in the tab with a query string to prevent caching
+            const faviconLink = document.getElementById("favicon");
+            faviconLink.href = faviconUrl + "?v=" + new Date().getTime();
+
+            // Update the document title
+            document.title = title;
+          } else {
+            alert("Please provide both a favicon URL and a title.");
+          }
+        });
+    </script>
+  </body>
+</html>
+<h1>
+  Remember to use https:// before the link of the favicon :) AND THE SITE URL
+  FOR PANIC KEY USE https:// OR ELSE IT WONT WORK LMAO
+</h1>
