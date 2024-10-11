@@ -143,7 +143,7 @@
                     const cloak = document.getElementById("cloak");
                     cloak.innerHTML = `<img src="${faviconUrl}" alt="Favicon"><h2>${title}</h2>`;
                     cloak.style.display = "flex";
-
+                  
                     // Update the favicon in the tab with a query string to prevent caching
                     const faviconLink = document.getElementById("favicon");
                     faviconLink.href = faviconUrl + "?v=" + new Date().getTime();
