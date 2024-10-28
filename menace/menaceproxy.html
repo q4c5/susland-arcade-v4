@@ -31,8 +31,43 @@ div {text-align: center;}
 
 </body>
 </html>
-    <form method="POST">
-      <input class="searchbar" tag="searchbar" id="searchbar" placeholder="Search The Unblocked Web"/>
-    </form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <form method="POST" class="neon-form" id="search-form">
+        <input class="searchbar" tag="searchbar" id="searchbar" placeholder="Search The Unblocked Web" />
+        <button type="submit">Go</button>
+      </form>
     </div>
   </div>
+</div>
+
+<script>
+document.getElementById("search-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const searchValue = document.getElementById("searchbar").value;
+  if (searchValue.startsWith("http://") || searchValue.startsWith("https://")) {
+    window.location.href = searchValue;
+  } else {
+    window.location.href = `https://${searchValue}`;
+  }
+});
+</script>
+
+<style>
+  .neon-form {
+    background-color: #000000;
+    display: inline-block;
+    padding: 10px;
+    border: 3px solid #00FFFF;
+    border-radius: 5px;
+  }
+
+  .searchbar {
+    width: 300px;
+    padding: 5px;
+    border: none;
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+</style>
