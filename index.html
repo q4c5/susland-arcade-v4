@@ -63,8 +63,6 @@ body {
       <a href="/stuff/coolmusic.html">Cool Music</a>
 </div>
   
- <h1 style="font-family:'Mojangles', sans-serif;">Susland Arcade 🎮</h1>
-  <h2 style="font-family:'Mojangles', sans-serif;">v.1.20.22</h2>
 <div id="particles-js">
   <script rel="preload" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
           <h1 id="random-text"><center>hi</center></h1>
@@ -187,7 +185,36 @@ body {
 
     randomText.textContent = getRandomText();
 </script>
+  <style>
+.title {
+	position: relative;
+	top: -10vh;
+	font-size: 9vh;
+	color: tomato;
+	font-family: "Inter", sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	border-radius: 0px 0px 5px 5px;
+}
+    </style>
+      <h2 class="title">Susland Arcade</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+</head>
+<body>
 
+<h1>v1.20.22</h1>
+
+</body>
+</html>
+
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,11 +251,7 @@ body {
   
 </body>
 </html>
-<p style="color:green">
-  <h4>
-    <strong>last updated by Gyatt and Meta_Z on 8/22/2024 at 10:40 AM</strong>
-</h4>
-</p>
+
 <h2>
   Thanks to our sponsors, they help keep Susland Arcade free to use!
 </h2>
@@ -247,85 +270,4 @@ body {
             </a>
         </div>
 
-<!--footer -->
 
-   <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ioicons@1.0.4/dist/css/ioicons.min.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #16181C; /* Adjusted background color */
-/* All text is black */
-        }
-
-        .header {
-            background-color: #12161D; /* Change the color of the rectangle box here */
-            color: #fff; /* Text color inside the rectangle box is white */
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header-icons {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start; /* Align icons to the left */
-            margin-left: 10px; /* Add some margin for better spacing */
-        }
-
-        .header-icons i {
-            font-size: 40px; /* Adjust icon size as needed */
-            margin-bottom: 10px; /* Spacing between icons */
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .header-icons i:hover {
-            transform: rotate(360deg);
-        }
-
-        #plexile-arcade {
-            font-size: 28px; /* Made PLEXILE ARCADE text a bit longer */
-            font-weight: bold;
-            color: #b03232; /* Color of PLEXILE ARCADE text */
-        }
-
-        #copyright {
-            font-size: 14px;
-            margin-top: 10px;
-            font-weight: bold; /* Increased font weight */
-            color: #b03232; /* Color of C Copyright PLEXILE ARCADE text */
-            cursor: pointer;
-            transition: color 0.2s, transform 0.2s;
-        }
-
-        #copyright:hover {
-            animation: shake 0.5s;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(5px); }
-        }
-    </style>
-</head>
-
-
-</html>
