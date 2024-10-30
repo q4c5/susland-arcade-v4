@@ -64,33 +64,95 @@ body {
   </style>
   </body>
   </div>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Button Example</title>
     <style>
-        .blue-button {
-            background-color: blue; /* Button color */
-            color: white; /* Text color */
-            padding: 15px 30px; /* Padding for the button */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor on hover */
-            text-decoration: none; /* No underline */
-            font-size: 17.5px; /* Font size */
-            transition: transform 0.2s; /* Smooth transition for the hover effect */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
         }
 
-        .blue-button:hover {
-            transform: scale(1.7); /* Scale the button to 110% of its size */
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 20px auto;
+            flex-wrap: wrap;
         }
-    </style>
+
+        .box {
+            width: calc(14.2857% - 20px); /* Adjusted width for 7 boxes in a row with margin */
+            height: 150px;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, border-radius 0.3s;
+            border-radius: 15px;
+            background-color: #clear; /* Added background color for better visibility */
+        }
+
+        .box:hover {
+            transform: scale(1.1);
+            border-radius: 0;
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .box .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 15px;
+        }
+
+        .box:hover .overlay {
+            opacity: 1;
+        }
+
+  </style>
 </head>
 <body>
-
-<a href="/tools/calculator.html" class="blue-button">Calculator</a>
-<a href="/tools/timer.html" class="bluebutton">Timer</a>
-</body>
-</html>
+  <h5>ㅤ</h5>
+  <b style="color: #fff;"><h1><span><b style="color: #b03232;"></span></h1><center><h1>Apps</h1></center>
+    <div class="box-container">
+      <!-- place apps here-->
+        <div class="box" onclick="location.href='/tools/calculator.html';">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSShXH7Zs5YbngCPO3m7MdPebtbLeFdfPJjcQ&s" alt="Image 3">
+            <div class="overlay">
+              <p>Calculator</p>
+            </div>
+        </div>
+            <div class="box" onclick="location.href='/tools/timer.html';">
+            <img src="https://play-lh.googleusercontent.com/DSKDcSklyWlPfiayJmYO_VEy4FrX8_3QqMwft15LkckAtc2udGqH8YyeBdCGYMFDVA" alt="Image 3">
+            <div class="overlay">
+              <p>Timer</p>
+            </div>
+        </div>
+            <div class="box" onclick="location.href='/tools/clock.html';">
+            <img src="https://www.ikea.com/us/en/images/products/pluttis-wall-clock-black__1013114_pe829054_s5.jpg?f=s" alt="Image 3">
+            <div class="overlay">
+              <p>Clock</p>
+            </div>
+        </div>
+      
