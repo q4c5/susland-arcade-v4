@@ -1,5 +1,5 @@
 //for the sake of susland arcade i had to add this
-//THIS IS THE EDITORS CHAT//
+//THIS IS THE EDITORS CHAT// IDC
 //
 //
 //
