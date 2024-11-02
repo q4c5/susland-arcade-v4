@@ -6,36 +6,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
 </head>
 <body>
 
@@ -49,35 +20,11 @@ body {
       <a href="/stuff/coolmusic.html">Cool Music</a>
         <a href="/apps/index.html">Apps 📱</a>
 </div>
-  
+      <link rel="stylesheet" href="/style.css" />
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        /* Reset default margins and make the canvas full-screen */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #00ccff; /* White background - change this to match your site */
-            z-index: -1; /* This puts particles behind other content */
-        }
-        
-        /* Add this to make content appear above particles */
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-        }
-    </style>
+ 
 </head>
 <body>
     <!-- Particles container -->
@@ -91,64 +38,8 @@ body {
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <!-- Particles configuration -->
-    <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: '#000000' // Particle color
-                },
-                shape: {
-                    type: 'circle'
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false
-                },
-                size: {
-                    value: 3,
-                    random: true
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#000000',
-                              opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'grab'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-    </script>
+      <script src="/script.js" defer></script>
+  
 </body>
 </html>
   <h1>
