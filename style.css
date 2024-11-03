@@ -49,4 +49,45 @@ body {
             z-index: 1;
             padding: 20px;
         }
-    
+
+
+    .tab-bar {
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Center vertically */
+  background-color: #262626;
+  padding: 5px 0;
+}
+
+.tab-bar p {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.tab {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 14px;
+  width: 210px;
+}
+
+.tab:hover {
+  color: yellow;
+}
+
+.tab-content {
+  display: none;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.tab-content.active {
+  display: block;
+}
