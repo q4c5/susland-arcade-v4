@@ -118,6 +118,36 @@ body {
         }
   </html>
 </style>
+     <body>
+<button class="cloaker-button">About Blank Cloaker</button>
+<script>
+var urlObj = new window.URL(window.location.href);
+var url = "https://suslqnd-arkqde.glitch.me/";
+if (url) {
+    var win;
+
+    document.querySelector("button").onclick = function () {
+        if (win) {
+            win.focus();
+        } else {
+            win = window.open();
+            win.document.body.style.margin = "0";
+            win.document.body.style.height = "100vh";
+            var iframe = win.document.createElement("iframe");
+            iframe.style.border = "none";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.margin = "0";
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+        }
+        // Fixed the typo in 'background' and removed the color change on click to maintain the blue color
+        document.querySelector("button").innerHTML = "About Blank Cloaker";
+    };
+}
+</script>
+</body>
+</html>
 <!DOCTYPE html>
 <html>
 <head>
@@ -258,36 +288,7 @@ alert("");\n\
 </script>
 </body>
 </html>
-  <body>
-<button class="cloaker-button">About Blank Cloaker</button>
-<script>
-var urlObj = new window.URL(window.location.href);
-var url = "https://suslqnd-arkqde.glitch.me/";
-if (url) {
-    var win;
-
-    document.querySelector("button").onclick = function () {
-        if (win) {
-            win.focus();
-        } else {
-            win = window.open();
-            win.document.body.style.margin = "0";
-            win.document.body.style.height = "100vh";
-            var iframe = win.document.createElement("iframe");
-            iframe.style.border = "none";
-            iframe.style.width = "100%";
-            iframe.style.height = "100%";
-            iframe.style.margin = "0";
-            iframe.src = url;
-            win.document.body.appendChild(iframe);
-        }
-        // Fixed the typo in 'background' and removed the color change on click to maintain the blue color
-        document.querySelector("button").innerHTML = "About Blank Cloaker";
-    };
-}
-</script>
-</body>
-</html>
+ 
 <h1>
   Remember to use https:// before the link of the favicon :) AND THE SITE URL
   FOR PANIC KEY USE https:// OR ELSE IT WONT WORK LMAO
