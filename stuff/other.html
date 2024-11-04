@@ -7,48 +7,121 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+    .tab-bar {
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Center vertically */
+  background-color: #262626;
+  padding: 5px 0;
 }
 
-.topnav {
-  overflow: hidden;
-  background-color: #333;
+.tab-bar p {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
 }
 
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
+.tab {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 17px;
+  transition: color 0.3s;
+  font-size: 14px;
+  width: 210px;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+.tab:hover {
+  color: blue;
 }
 
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+.tab-content {
+  display: none;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.tab-content.active {
+  display: block;
 }
 </style>
+  <body>
+  <div class="tab-bar">
+    <div class="container">
+          <img src="https://seeklogo.com/images/A/among-us-logo-315EB5A5DA-seeklogo.com.png" style="
+            border-radius: 25px;
+            padding: 20px;
+            width: 50px;
+            height: px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            ">
+    </div>
+                  <p><strong>v2</strong></p>
+      <a href="/" class="tab" data-tab="home"><i class="fas fa-home"></i> Home</a>
+          <a href="/tools" class="tab" data-tab="home"><i class="fas fa-home"></i> Tools</a>
+      <a href="/games" class="tab" data-tab="google"><i class="fas fa-gamepad"></i> Games</a>
+           <a href="/apps" class="tab" data-tab="win11"><i class="fab fa-app-store-ios"></i> Apps</a>
+      <a href="/stuff/settings.html" class="tab" data-tab="brave"><i class="fas fa-cog"></i> Settings</a>
+      <a href="/menace/menaceproxy.html" class="tab" data-tab="win11"><i class="fas fa-globe"></i> Proxy</a>
+  </div>
+      <link rel="stylesheet" href="/style.css" />
+<!DOCTYPE html>
+<html>
+<head>
+ 
 </head>
+<body>
+  <style>  
+    body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #87B0F8; /* White background - change this to match your site */
+            z-index: -1; /* This puts particles behind other content */
+        }
+        
+        /* Add this to make content appear above particles */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
 
-<div class="topnav">
-  <a href="/"><strong><button>
-    Susland Arcade 🎮
-    </button></strong></a>
-    <a href="/games/index.html">Games 🎮</a>
-      <a href="/stuff/contactus.html">Contact Us 📞</a>
-        <a href="/tools/index.html">Tools 🔨</a>
-    <a href="/stuff/settings.html">Settings ⚙️</a>
-      <a class="active" href="/stuff/other.html">Other 🥱</a>
-      <a href="/stuff/coolmusic.html">Cool Music</a>
-</div>
+</style>
+    <!-- Particles container -->
+    <div id="particles-js"></div>
+    
+    <!-- Your website content goes here -->
+    <div class="content">   
+    </div>
+
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Particles configuration -->
+      <script src="/script.js" defer></script>
+  
+</body>
+</html>
+<style>
+  h1 {
+    font-size: 3em; /* Increase the font size */
+    text-align: center; /* Center the text using CSS */
+  }
+</style>
  <h2>
    Other Stuff
 </h2>
