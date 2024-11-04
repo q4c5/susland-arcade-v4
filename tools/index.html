@@ -7,51 +7,75 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+    .tab-bar {
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Center vertically */
+  background-color: #262626;
+  padding: 5px 0;
 }
 
-.topnav {
-  overflow: hidden;
-  background-color: #333;
+.tab-bar p {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
 }
 
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
+.tab {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 17px;
+  transition: color 0.3s;
+  font-size: 14px;
+  width: 210px;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+.tab:hover {
+  color: blue;
 }
 
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+.tab-content {
+  display: none;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.tab-content.active {
+  display: block;
 }
 </style>
-</head>
-<body>
-
-<div class="topnav">
-  <a href="/"><strong>Susland Arcade 🎮</strong></a>
-    <a href="/games/index.html">Games 🎮</a>
-      <a href="/stuff/contactus.html">Contact Us 📞</a>
-        <a class="active" href="/tools/index.html">Tools 🔨</a>
-    <a href="/stuff/settings.html">Settings ⚙️</a>
-      <a href="/stuff/other.html">Other 🥱</a>
-      <a href="/stuff/coolmusic.html">Cool Music</a>
-</div>
-  
+  <body>
+  <div class="tab-bar">
+    <div class="container">
+          <img src="https://seeklogo.com/images/A/among-us-logo-315EB5A5DA-seeklogo.com.png" style="
+            border-radius: 25px;
+            padding: 20px;
+            width: 50px;
+            height: px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            ">
+    </div>
+                  <p><strong>v2</strong></p>
+      <a href="/" class="tab" data-tab="home"><i class="fas fa-home"></i> Home</a>
+          <a href="/tools" class="tab" data-tab="home"><i class="fas fa-home"></i> Tools</a>
+      <a href="/games" class="tab" data-tab="google"><i class="fas fa-gamepad"></i> Games</a>
+           <a href="/apps" class="tab" data-tab="win11"><i class="fab fa-app-store-ios"></i> Apps</a>
+      <a href="/stuff/settings.html" class="tab" data-tab="brave"><i class="fas fa-cog"></i> Settings</a>
+      <a href="/menace/menaceproxy.html" class="tab" data-tab="win11"><i class="fas fa-globe"></i> Proxy</a>
+    <a href="/stuff/other.html" class="tab" data-tab="win11"><i class="fas fa-globe"></i> Other</a>
+  </div>
+  </div>
+  <center>
 <h1>
   Browse through our wide selection of Tools!
 </h1>
+  </center>
 <style>
           body {
             background-image: url(https://wallpapers.com/images/featured-full/tropical-island-firxdiyy6k75uxlc.jpg);
