@@ -81,28 +81,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snowflake Particles</title>
+    <title>Snowflakes, Santa Hats, and Christmas Trees</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-color: #e8e8e3; /* Dark background for contrast */
+            background-color: 	#e6e6e6; /* Dark background for contrast */
         }
 
-        .snowflakes {
+        .particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Prevent mouse events on snowflakes */
+            pointer-events: none; /* Prevent mouse events on particles */
         }
 
-        .snowflake {
+        .particle {
             position: absolute;
             top: -10%;
-            color: white; /* Snowflake color */
-            font-size: 1em; /* Base size */
             opacity: 0.8;
             animation: fall linear infinite;
         }
@@ -115,36 +113,43 @@
     </style>
 </head>
 <body>
-    <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
-        <div class="snowflake">❄️</div>
+    <div class="particles">
+        <div class="particle">❄️</div>
+        <div class="particle">❄️</div>
+        <div class="particle">❄️</div>
+        <div class="particle">❄️</div>
+        <div class="particle">❄️</div>
+        <div class="particle">🎅</div>
+        <div class="particle">🎅</div>
+        <div class="particle">🎅</div>
+        <div class="particle">🎄</div>
+        <div class="particle">🎄</div>
+        <div class="particle">🎄</div>
+        <div class="particle">☃️</div>
+        <div class="particle">☃️</div>
+        <div class="particle">☃️</div>
+        <div class="particle">🎁</div>
+        <div class="particle">🎁</div>
+        <div class="particle">🎁</div>
     </div>
     <script>
-        const snowflakes = document.querySelectorAll('.snowflake');
+        const particles = document.querySelectorAll('.particle');
 
-        snowflakes.forEach(snowflake => {
+        particles.forEach(particle => {
             const randomX = Math.random() * 100; // Random horizontal position
             const randomDuration = Math.random() * 5 + 3; // Random duration between 3s and 8s
-            const randomSize = Math.random() * 0.5 + 0.5; // Random size between 0.5em and 1em
+            const randomSize = Math.random() * 1 + 4; // Random size between 1em and 2em
 
-            snowflake.style.left = `${randomX}vw`;
-            snowflake.style.animationDuration = `${randomDuration}s`;
-            snowflake.style.fontSize = `${randomSize}em`;
+            particle.style.left = `${randomX}vw`;
+            particle.style.animationDuration = `${randomDuration}s`;
+            particle.style.fontSize = `${randomSize}em`;
 
             // Reset the animation after it completes
-            snowflake.addEventListener('animationend', () => {
-                snowflake.style.top = '-10%'; // Reset to the top
-                snowflake.style.animationDuration = `${Math.random() * 5 + 3}s`; // Randomize duration again
-                snowflake.style.left = `${Math.random() * 100}vw`; // Randomize position again
-                snowflake.style.animationPlayState = 'running'; // Restart animation
+            particle.addEventListener('animationend', () => {
+                particle.style.top = '-10%'; // Reset to the top
+                particle.style.animationDuration = `${Math.random() * 5 + 3}s`; // Randomize duration again
+                particle.style.left = `${Math.random() * 100}vw`; // Randomize position again
+                particle.style.animationPlayState = 'running'; // Restart animation
             });
         });
     </script>
