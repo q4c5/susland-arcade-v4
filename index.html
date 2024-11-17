@@ -65,7 +65,7 @@
             display: block;
             ">
     </div>
-                  <p><strong>v3</strong></p>
+                  <p><strong>Xmas Edition</strong></p>
       <a href="/" class="tab" data-tab="home"><i class="fas fa-home"></i> Home</a>
           <a href="/tools" class="tab" data-tab="home"><i class="fas fa-home"></i> Tools</a>
       <a href="/games" class="tab" data-tab="google"><i class="fas fa-gamepad"></i> Games</a>
@@ -77,49 +77,77 @@
   </div>
       <link rel="stylesheet" href="/style.css" />
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
- 
-</head>
-<body>
-  <style>  
-    body, html {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowflake Particles</title>
+    <style>
+        body {
             margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100`12z%;
             overflow: hidden;
+            background-color: #e8e8e3; /* Dark background for contrast */
         }
-        
-        #particles-js {
+
+        .snowflakes {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: #87B0F8; /* White background - change this to match your site */
-            z-index: -1; /* This puts particles behind other content */
-        }
-        
-        /* Add this to make content appear above particles */
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
+            pointer-events: none; /* Prevent mouse events on snowflakes */
         }
 
-</style>
-    <!-- Particles container -->
-    <div id="particles-js"></div>
-    
-    <!-- Your website content goes here -->
-    <div class="content">   
+        .snowflake {
+            position: absolute;
+            top: -10%;
+            color: white; /* Snowflake color */
+            font-size: 1em; /* Base size */
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
+        <div class="snowflake">❄️</div>
     </div>
+    <script>
+        const snowflakes = document.querySelectorAll('.snowflake');
 
-    <!-- Particles.js library -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- Particles configuration -->
-      <script src="/script.js" defer></script>
-  
+        snowflakes.forEach(snowflake => {
+            const randomX = Math.random() * 100; // Random horizontal position
+            const randomDuration = Math.random() * 5 + 3; // Random duration between 3s and 8s
+            const randomSize = Math.random() * 0.5 + 0.5; // Random size between 0.5em and 1em
+
+            snowflake.style.left = `${randomX}vw`;
+            snowflake.style.animationDuration = `${randomDuration}s`;
+            snowflake.style.fontSize = `${randomSize}em`;
+
+            // Reset the animation after it completes
+            snowflake.addEventListener('animationend', () => {
+                snowflake.style.top = '-10%'; // Reset to the top
+                snowflake.style.animationDuration = `${Math.random() * 5 + 3}s`; // Randomize duration again
+                snowflake.style.left = `${Math.random() * 100}vw`; // Randomize position again
+                snowflake.style.animationPlayState = 'running'; // Restart animation
+            });
+        });
+    </script>
 </body>
 </html>
 <style>
@@ -137,74 +165,13 @@
           <h1 id="random-text"><center>hi</center></h1>
 <script style="font-family: 'Trebuchet MS', sans-serif;">
     const randomTexts = [
-      "You are a person...",
-      "Hi there!",
-      "Made by Elon Musk...",
-      "EA Sports. It's in the game!",
-      "My life is pain.",
-      "Using Susland Arcade = Sigma.",
-      "I'm not real...",
-      "Baller.",
-      "Fortnite is okay.",
-      "Minecraft is okay.",
-      "This text has been removed.",
-      "Deleted text.",
-      "Giant cookie monster?",
-      "The best game website in the world!",
-      "Can I please have just one Taki?!",
-      "Takis are great!",
-      "I'm so canceled.",
-      "3 + 3 = 6",
-      "Gulp, gulp, gulp, gulp...",
-      "LOL means laughing out loud.",
-      "I am under FBI watch...",
-      "Is a fish a fish if it is a fish?",
-      "W Site? RIGHT?",
-      "EEE!? AAA!?",
-      "My phone password is 113527.",
-      "Goo goo gaga.",
-      "I love susland arkqde.",
-      "I eat Takis, okay?",
-      "Written on 10/08/24 - this is an original text.",
-      "Hey, just wanna tell you you're pretty (short).",
-      "NOOOOOOOOOOOOOOOOOO!",
-      "I don't know what to say right now.",
-      "E E E E E E A A A A A A",
-      "Error.",
-      "^!$^#!9&!",
-      "This song is two seconds long.",
-      "Its been 2 years since I last saw my lizard.",
-      "I just love the smell of fear.",
-      "Michael Mitchell Musela is special.",
-      "I'm unbanned from stores!",
-      "Junkook is a character.",
-      "Angle loves about:blank.",
-      "Zooper Cooper.",
-      "Susland is best.",
-      "GTA 6 is out!!!",
-      "No way!",
-      "Fortnite games just for you.",
-      "I love Christmas.",
-      "Giant candy.",
-      "Greyson loves soccer.",
-      "Life is more than Fortnite.",
-      "EAAAAAAAAAA.",
-      "Fortnite skins are okay.",
-      "Join the Discord.",
-      "You are a banana.",
-      "Louis Alberto Figueroa.",
-      "Nicholas Alexander Edwards Bolano.",
-      "Korey Scott Walters.",
-      "Elon Mosquito",
-      "School is school",
-      "This is random text.",
-      "I miss OG Fortnite.",
-      "My PS4 is broken.",
-      "I will continue to update maybe...",
-      "mmmmhhhhmhmmhmhmh",
-      "OG Fortnite is gone.",
-      "Trick or treat, smell my feet give me something good to eat, not to big, not to small, just the size of Montreal.",
-      "If you're reading this, you will not die.",
+      "Santa will give you coal 100%",
+      "Christmas is here!",
+      "You are on the naughty list, sorry",
+      "Let it snow, Let it snow...",
+      "Jingle Bells, Batman Smells",
+        "Ho, Ho, Ho, Merry Christmas",
+      "Santa is coming after you",
     ];
 
     const randomText = document.getElementById('random-text');
