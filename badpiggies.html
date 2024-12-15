@@ -1,6 +1,5 @@
 
-<!DOCTYPE html>
-<html manifest="offline.appcache"><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
+<html><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
 0<b&&d>=b&&(c.tick("_wtsrt",void 0,b),c.tick("wtsrt_","_wtsrt",d),c.tick("tbsd_","wtsrt_"))}try{var k=window.top!=window.self,l=window.location.href;a=null;window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),c&&0<b&&(c.tick("_tbnd",void 0,window.chrome.csi().startE),c.tick("tbnd_","_tbnd",b)));null==a&&window.gtbExternal&&(a=k?window.gtbExternal.frameT(l):window.gtbExternal.pageT());null==a&&window.external&&(k?a=window.external.frameT(l):(a=window.external.pageT,c&&0<b&&(c.tick("_tbnd",
 void 0,window.external.startE),c.tick("tbnd_","_tbnd",b))));a&&(window.jstiming.pt=a)}catch(g){}})();}).call(this);
 window["__csi"]={a:false,b:false,c:"default",v:"default",g:null,d:false};if(window.jstiming){window.jstiming.beaconImageReferences_={};window.jstiming.reportCounter_=1;var getTick=function(a,b,c){var d=a.t[b],e=a.t.start;if(d&&(e||c))return d=a.t[b][0],e=void 0!=c?c:e[0],a=d-e,Math.round(a)},getReportUri=function(a,b,c){var d="";window.jstiming.srt&&(d+="&srt="+window.jstiming.srt,delete window.jstiming.srt);window.jstiming.pt&&(d+="&tbsrt="+window.jstiming.pt,delete window.jstiming.pt);try{window.external&&window.external.tran?d+="&tran="+window.external.tran:window.gtbExternal&&
@@ -42,11 +41,12 @@ goog.createTrustedTypesPolicy=function(a){var b=null,c=goog.global.trustedTypes;
 google.csi=function(){function a(h){var m=g?g:document.location.href;return(h=m.match(new RegExp("[?&]"+h+"=([^&#]+)")))?h[1]:null}function b(h){window.jstiming.load.tick(h);f[h]=(new Date).getTime()}function c(){if(!l){var h=a("url")||"default",m=window.__csi||{},r=m.c||"default",v=m.v||"default",p=window.encodeURIComponent?encodeURIComponent:escape;p={gadget:p(h),container:p(r),view:p(v)};var t=window.__dflags||{},u=[];m.g&&u.push(m.g);if(m.d)for(var n in t)"control"!==t[n]&&(p[n]=t[n],"true"===
 t[n]&&u.push(n));p.e=u.join(",");n=k?k:document.location.protocol;n=e[n];window.jstiming.load.name=[r,"_",v].join("");window.jstiming.report(window.jstiming.load,p,n);(r=window.gadgets)&&r.rpc&&m.b&&(f.url=h,f.id=a("mid"),r.rpc.call(null,"time_iframe",void 0,f));l=!0}}function d(h){window.addEventListener?window.addEventListener("load",h,!1):window.attachEvent&&window.attachEvent("onload",h)}var e={"http:":"http://csi.gstatic.com/csi","https:":"https://gg.google.com/csi"},f={},g,k,l=!1,q=window.__csi||
 {};q.a?(d(function(){b("prt")}),window.onbeforeunload=function(){c()}):d(function(){b("ol");b("prt");c()});return{reset_:function(){l=!1},mockHref_:function(h){g=h},mockProtocol_:function(h){k=h},report_:c,tickPrtAndReport:function(){b("prt");c()},tickDl:function(){b("dl")}}}();
-</script><script>
+</script><script>__dflags={"RefererProxy":"control","DynamicHeightGadgetRewriter":"true","CacheErrorThrottleCountLimit":"control","AnalyticsGadgetRewriter":"true","StyleAdjacencyGadgetRewriter":"true","CsiSample":"true","UseETags":"false","StyleTagExtractorGadgetRewriter":"true","LogResources":"false","ContentDivGadgetRewriter":"false","TimeSecsSinceEpochEnvGadgetRewriter":"true","AdsUrlGadgetRewriter":"true","ErrorCodesToLog":"control","YtVideoUrlGadgetRewriter":"true","ProxyingGadgetRewriter":"true","UseCajaSerializer":"false","CorpDomainSuffixes":"control","DflagsJsDebugGadgetRewriter":"true","GadgetBlacklist":"control","MiniMessageGadgetRewriter":"true","EnableJsErrorTracking":"true","TrackResources":"false","ClickTrackGadgetRewriter":"false","InjectClientId":"false","DisableLoggingJs":"false","UseBrowserSpecificJson":"false","HtmlParser":"control","UseUrlGadgetWhitelist":"false","ResourceUsageJsDebugGadgetRewriter":"true","UrlTranslations":"control","EnableContextCache":"false","UseNoVarGlobals":"false","Monkeypatch":"control","ValidateTypeUrl":"true","UseJsPipelineForRendering":"false"};
+
 /* mp-start */
 window['___jsl']=window['___jsl']||{};
 /* mp-end */
-</script><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
+</script><style type="text/css">body,td,div,span,p{font-family:arial,sans-serif;}a {color:#0000cc;}a:visited {color:#551a8b;}a:active {color:#ff0000;}body{margin: 0px;padding: 0px;background-color:white;}</style><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
 var tamings___=window.tamings___||[];
 var bridge___;
 var caja___=window.caja___;
@@ -771,165 +771,8 @@ typeof window&&window.document?window.document.createElement("textarea"):l,$=/\0
 a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.sanitize=function(a,b,c,e){return L(a,g(b,c,e))};o.sa=o.sanitizeAttribs=s;o.ta=o.sanitizeWithPolicy=L;o.ua=o.unescapeEntities=u;return o}(M),ba=Q.sanitize;"undefined"!==typeof window&&(window.html=Q,window.html_sanitize=ba);})();
 ;
 gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
-</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><style>
-        body,html{margin:0 auto;padding:0 auto;width:100%;height:100%;overflow:hidden}#adsbox{position:fixed;top:0;right:0;bottom:0;left:0;z-index:999;display:none;}
-    </style><style type="text/css">
-    * {
-      padding: 0;
-      margin: 0;
-    }
-    html, body {
-      background: #000;
-      color: #fff;
-      overflow: hidden;
-      touch-action: none;
-      -ms-touch-action: none;
-    }
-    canvas {
-      touch-action-delay: none;
-      touch-action: none;
-      -ms-touch-action: none;
-    }
-    @font-face {
-        font-family: Oswald Regular;
-        src: url(https://174620846-1408264916283502371.preview.editmysite.com/uploads/b/139890129-853193733110235683/files/oswald_regular.ttf);
-    }
-    html, body {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-
-  background: #000000;
-}
-
-html, body, canvas {
-  touch-action: none;
-  touch-action-delay: none;
-}
-
-    </style>
-    <meta charset="UTF-8">
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <title>Snake</title>
-  <meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" name="viewport">
-
-  <!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
-  <meta content="true" name="HandheldFriendly">
-
-  <!-- Chrome for Android web app tags -->
-  <meta content="yes" name="mobile-web-app-capable">
-
-
-
-
-    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
-
-
-</head><body dir="ltr"> 
-  <div id="fb-root"></div>
-
-  <script>
-
- function On_GameLoaded()
-  {
-    isGameLoaded = true;
-  }
-
-    function Show_Ads()
-  {
-    c2_callFunction("On_GameResumed");
-    showad1();
-
-  }
-
-  // Issue a warning if trying to preview an exported project on disk.
-  (function(){
-    // Check for running exported on file protocol
-    if (window.location.protocol.substr(0, 4) ==="file")
-    {
-      alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
-    }
-  })();
-  </script>
-
-  <!-- The canvas must be inside a div called c2canvasdiv -->
-  <div id="c2canvasdiv">
-
-    <!-- The canvas the project will render to.  If you change its ID, don't forget to change the
-    ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
-    <canvas height="960" id="c2canvas" width="1280">
-      <!-- This text is displayed if the visitor's browser does not support HTML5.
-      You can change it, but it is a good idea to link to a description of a browser
-      and provide some links to download some popular HTML5-compatible browsers. -->
-      <h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
-      <br><br><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br>
-      <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br>
-      <a href="http://www.google.com/chrome/">Google Chrome</a><br>
-      <a href="http://www.apple.com/safari/download/">Apple Safari</a></h1>
-    </canvas>
-
-  </div>
-
-  <!-- Pages load faster with scripts at the bottom -->
-
-  <!-- Construct 2 exported games require jQuery. -->
-  <script src="https://174620846-1408264916283502371.preview.editmysite.com/uploads/b/139890129-853193733110235683/files/jquery-2.1.1.min.js"></script>
-
-
-
-    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
-    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
-  <script src="https://174620846-1408264916283502371.preview.editmysite.com/uploads/b/139890129-853193733110235683/files/c2runtime.js"></script>
-
-    <script>
-    // Start the Construct 2 project running on window load.
-    jQuery(document).ready(function ()
-    {			
-      // Create new runtime using the c2canvas
-      cr_createRuntime("c2canvas");
-    });
-
-    // Pause and resume on page becoming visible/invisible
-    function onVisibilityChanged() {
-      if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
-        cr_setSuspended(true);
-      else
-        cr_setSuspended(false);
-    };
-
-    document.addEventListener("visibilitychange", onVisibilityChanged, false);
-    document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
-    document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
-    document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
-
-    function OnRegisterSWError(e)
-    {
-      console.warn("Failed to register service worker: ", e);
-    };
-
-    // Runtime calls this global method when ready to start caching (i.e. after startup).
-    // This registers the service worker which caches resources for offline support.
-    window.C2_RegisterSW = function C2_RegisterSW()
-    {
-      if (!navigator.serviceWorker)
-        return;		// no SW support, ignore call
-
-      try {
-        navigator.serviceWorker.register("sw.js", { scope: "./" })
-        .then(function (reg)
-        {
-          console.log("Registered service worker on " + reg.scope);
-        })
-        .catch(OnRegisterSWError);
-      }
-      catch (e)
-      {
-        OnRegisterSWError(e);
-      }
-    };
-    </script>
-  <script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
-
+</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script></head><body dir="ltr"><object data="https://cdn.jsdelivr.net/gh/Basegames/banana@49ea8a6af7a82e202f8233b3e36b25cb052aad73/lbannana-assets/flash/swf/bad-piggies.swf" height="100%" type="application/x-shockwave-flash" width="100%" xmlns="http://www.w3.org/1999/xhtml"><param name="movie" value="">
+</object><script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.1.0-nightly.2023.11.1/ruffle.js"></script>
 
 <script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
 </script></body></html>

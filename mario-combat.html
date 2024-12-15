@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html manifest="offline.appcache"><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
+<html lang="en"><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
 0<b&&d>=b&&(c.tick("_wtsrt",void 0,b),c.tick("wtsrt_","_wtsrt",d),c.tick("tbsd_","wtsrt_"))}try{var k=window.top!=window.self,l=window.location.href;a=null;window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),c&&0<b&&(c.tick("_tbnd",void 0,window.chrome.csi().startE),c.tick("tbnd_","_tbnd",b)));null==a&&window.gtbExternal&&(a=k?window.gtbExternal.frameT(l):window.gtbExternal.pageT());null==a&&window.external&&(k?a=window.external.frameT(l):(a=window.external.pageT,c&&0<b&&(c.tick("_tbnd",
 void 0,window.external.startE),c.tick("tbnd_","_tbnd",b))));a&&(window.jstiming.pt=a)}catch(g){}})();}).call(this);
 window["__csi"]={a:false,b:false,c:"default",v:"default",g:null,d:false};if(window.jstiming){window.jstiming.beaconImageReferences_={};window.jstiming.reportCounter_=1;var getTick=function(a,b,c){var d=a.t[b],e=a.t.start;if(d&&(e||c))return d=a.t[b][0],e=void 0!=c?c:e[0],a=d-e,Math.round(a)},getReportUri=function(a,b,c){var d="";window.jstiming.srt&&(d+="&srt="+window.jstiming.srt,delete window.jstiming.srt);window.jstiming.pt&&(d+="&tbsrt="+window.jstiming.pt,delete window.jstiming.pt);try{window.external&&window.external.tran?d+="&tran="+window.external.tran:window.gtbExternal&&
@@ -14,13 +14,13 @@ g,!1))}};document.addEventListener(e,g,!1);return""}return sendReport_(a,b,c)}};
 */
 var goog=goog||{};goog.global=this||self;goog.exportPath_=function(a,b,c,d){a=a.split(".");d=d||goog.global;a[0]in d||"undefined"==typeof d.execScript||d.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)if(a.length||void 0===b)d=d[e]&&d[e]!==Object.prototype[e]?d[e]:d[e]={};else if(!c&&goog.isObject(b)&&goog.isObject(d[e]))for(var f in b)b.hasOwnProperty(f)&&(d[e][f]=b[f]);else d[e]=b};goog.define=function(a,b){return a=b};goog.FEATURESET_YEAR=2012;goog.DEBUG=!0;goog.LOCALE="en";
 goog.TRUSTED_SITE=!0;goog.DISALLOW_TEST_ONLY_CODE=!goog.DEBUG;goog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING=!1;goog.readFlagInternalDoNotUseOrElse=function(a,b){var c=goog.getObjectByName(goog.FLAGS_OBJECT_);a=c&&c[a];return null!=a?a:b};goog.FLAGS_OBJECT_="CLOSURE_FLAGS";goog.FLAGS_STAGING_DEFAULT=!0;
-goog.readToggleInternalDoNotCallDirectly=function(a){var b="object"===typeof CLOSURE_TOGGLE_ORDINALS?CLOSURE_TOGGLE_ORDINALS:void 0;a=b&&b[a];return"number"!==typeof a?!!a:!!(goog.TOGGLES_[Math.floor(a/30)]&1<<a%30)};goog.TOGGLE_VAR_="_F_toggles";goog.TOGGLES_=goog.global[goog.TOGGLE_VAR_]||[];goog.LEGACY_NAMESPACE_OBJECT_=goog.global;goog.provide=function(a){if(goog.isInModuleLoader_())throw Error("goog.provide cannot be used within a module.");goog.constructNamespace_(a)};
-goog.constructNamespace_=function(a,b,c){goog.exportPath_(a,b,c,goog.LEGACY_NAMESPACE_OBJECT_)};goog.NONCE_PATTERN_=/^[\w+/_-]+[=]{0,2}$/;goog.getScriptNonce_=function(a){a=(a||goog.global).document;return(a=a.querySelector&&a.querySelector("script[nonce]"))&&(a=a.nonce||a.getAttribute("nonce"))&&goog.NONCE_PATTERN_.test(a)?a:""};goog.VALID_MODULE_RE_=/^[a-zA-Z_$][a-zA-Z0-9._$]*$/;
-goog.module=function(a){if("string"!==typeof a||!a||-1==a.search(goog.VALID_MODULE_RE_))throw Error("Invalid module identifier");if(!goog.isInGoogModuleLoader_())throw Error("Module "+a+" has been loaded incorrectly. Note, modules cannot be loaded as normal scripts. They require some kind of pre-processing step. You're likely trying to load a module via a script tag or as a part of a concatenated bundle without rewriting the module. For more info see: https://github.com/google/closure-library/wiki/goog.module:-an-ES6-module-like-alternative-to-goog.provide.");
-if(goog.moduleLoaderState_.moduleName)throw Error("goog.module may only be called once per module.");goog.moduleLoaderState_.moduleName=a};goog.module.get=function(){return null};goog.module.getInternal_=function(){return null};goog.requireDynamic=function(){return null};goog.importHandler_=null;goog.uncompiledChunkIdHandler_=null;goog.setImportHandlerInternalDoNotCallOrElse=function(a){goog.importHandler_=a};
-goog.setUncompiledChunkIdHandlerInternalDoNotCallOrElse=function(a){goog.uncompiledChunkIdHandler_=a};goog.maybeRequireFrameworkInternalOnlyDoNotCallOrElse=function(){};goog.ModuleType={ES6:"es6",GOOG:"goog"};goog.moduleLoaderState_=null;goog.isInModuleLoader_=function(){return goog.isInGoogModuleLoader_()||goog.isInEs6ModuleLoader_()};goog.isInGoogModuleLoader_=function(){return!!goog.moduleLoaderState_&&goog.moduleLoaderState_.type==goog.ModuleType.GOOG};
-goog.isInEs6ModuleLoader_=function(){var a=!!goog.moduleLoaderState_&&goog.moduleLoaderState_.type==goog.ModuleType.ES6;return a?!0:(a=goog.LEGACY_NAMESPACE_OBJECT_.$jscomp)?"function"!=typeof a.getCurrentModulePath?!1:!!a.getCurrentModulePath():!1};goog.module.declareLegacyNamespace=function(){goog.moduleLoaderState_.declareLegacyNamespace=!0};
-goog.declareModuleId=function(a){if(goog.moduleLoaderState_)goog.moduleLoaderState_.moduleName=a;else{var b=goog.LEGACY_NAMESPACE_OBJECT_.$jscomp;if(!b||"function"!=typeof b.getCurrentModulePath)throw Error('Module with namespace "'+a+'" has been loaded incorrectly.');b=b.require(b.getCurrentModulePath());goog.loadedModules_[a]={exports:b,type:goog.ModuleType.ES6,moduleId:a}}};
+goog.readToggleInternalDoNotCallDirectly=function(a){var b="object"===typeof CLOSURE_TOGGLE_ORDINALS?CLOSURE_TOGGLE_ORDINALS:void 0;a=b&&b[a];return"number"!==typeof a?!!a:!!(goog.TOGGLES_[Math.floor(a/30)]&1<<a%30)};goog.TOGGLE_VAR_="_F_toggles";goog.TOGGLES_=goog.global[goog.TOGGLE_VAR_]||[];goog.provide=function(a){if(goog.isInModuleLoader_())throw Error("goog.provide cannot be used within a module.");goog.constructNamespace_(a)};goog.constructNamespace_=function(a,b,c){goog.exportPath_(a,b,c)};
+goog.NONCE_PATTERN_=/^[\w+/_-]+[=]{0,2}$/;goog.getScriptNonce_=function(a){a=(a||goog.global).document;return(a=a.querySelector&&a.querySelector("script[nonce]"))&&(a=a.nonce||a.getAttribute("nonce"))&&goog.NONCE_PATTERN_.test(a)?a:""};goog.VALID_MODULE_RE_=/^[a-zA-Z_$][a-zA-Z0-9._$]*$/;
+goog.module=function(a){if("string"!==typeof a||!a||-1==a.search(goog.VALID_MODULE_RE_))throw Error("Invalid module identifier");if(!goog.isInGoogModuleLoader_())throw Error("Module "+a+" has been loaded incorrectly. Note, modules cannot be loaded as normal scripts. They require some kind of pre-processing step. You're likely trying to load a module via a script tag or as a part of a concatenated bundle without rewriting the module. For more info see: https://github.com/google/closure-library/wiki/goog.module:-an-ES6-module-like-alternative-to-goog.provide.");if(goog.moduleLoaderState_.moduleName)throw Error("goog.module may only be called once per module.");
+goog.moduleLoaderState_.moduleName=a};goog.module.get=function(){return null};goog.module.getInternal_=function(){return null};goog.requireDynamic=function(){return null};goog.importHandler_=null;goog.uncompiledChunkIdHandler_=null;goog.setImportHandlerInternalDoNotCallOrElse=function(a){goog.importHandler_=a};goog.setUncompiledChunkIdHandlerInternalDoNotCallOrElse=function(a){goog.uncompiledChunkIdHandler_=a};goog.maybeRequireFrameworkInternalOnlyDoNotCallOrElse=function(){};
+goog.ModuleType={ES6:"es6",GOOG:"goog"};goog.moduleLoaderState_=null;goog.isInModuleLoader_=function(){return goog.isInGoogModuleLoader_()||goog.isInEs6ModuleLoader_()};goog.isInGoogModuleLoader_=function(){return!!goog.moduleLoaderState_&&goog.moduleLoaderState_.type==goog.ModuleType.GOOG};
+goog.isInEs6ModuleLoader_=function(){var a=!!goog.moduleLoaderState_&&goog.moduleLoaderState_.type==goog.ModuleType.ES6;return a?!0:(a=goog.global.$jscomp)?"function"!=typeof a.getCurrentModulePath?!1:!!a.getCurrentModulePath():!1};goog.module.declareLegacyNamespace=function(){goog.moduleLoaderState_.declareLegacyNamespace=!0};
+goog.declareModuleId=function(a){if(goog.moduleLoaderState_)goog.moduleLoaderState_.moduleName=a;else{var b=goog.global.$jscomp;if(!b||"function"!=typeof b.getCurrentModulePath)throw Error('Module with namespace "'+a+'" has been loaded incorrectly.');b=b.require(b.getCurrentModulePath());goog.loadedModules_[a]={exports:b,type:goog.ModuleType.ES6,moduleId:a}}};
 goog.setTestOnly=function(a){if(goog.DISALLOW_TEST_ONLY_CODE)throw a=a||"",Error("Importing test-only code into non-debug environment"+(a?": "+a:"."));};goog.forwardDeclare=function(){};goog.getObjectByName=function(a,b){a=a.split(".");b=b||goog.global;for(var c=0;c<a.length;c++)if(b=b[a[c]],null==b)return null;return b};goog.addDependency=function(){};goog.ENABLE_DEBUG_LOADER=!1;goog.logToConsole_=function(a){goog.global.console&&goog.global.console.error(a)};goog.require=function(){};
 goog.requireType=function(){return{}};goog.basePath="";goog.abstractMethod=function(){throw Error("unimplemented abstract method");};goog.addSingletonGetter=function(a){a.instance_=void 0;a.getInstance=function(){if(a.instance_)return a.instance_;goog.DEBUG&&(goog.instantiatedSingletons_[goog.instantiatedSingletons_.length]=a);return a.instance_=new a}};goog.instantiatedSingletons_=[];goog.LOAD_MODULE_USING_EVAL=!0;goog.SEAL_MODULE_EXPORTS=goog.DEBUG;goog.loadedModules_={};
 goog.DEPENDENCIES_ENABLED=!1;goog.TRANSPILE="detect";goog.ASSUME_ES_MODULES_TRANSPILED=!1;goog.TRUSTED_TYPES_POLICY_NAME="goog";goog.hasBadLetScoping=null;
@@ -771,165 +771,77 @@ typeof window&&window.document?window.document.createElement("textarea"):l,$=/\0
 a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.sanitize=function(a,b,c,e){return L(a,g(b,c,e))};o.sa=o.sanitizeAttribs=s;o.ta=o.sanitizeWithPolicy=L;o.ua=o.unescapeEntities=u;return o}(M),ba=Q.sanitize;"undefined"!==typeof window&&(window.html=Q,window.html_sanitize=ba);})();
 ;
 gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
-</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><style>
-        body,html{margin:0 auto;padding:0 auto;width:100%;height:100%;overflow:hidden}#adsbox{position:fixed;top:0;right:0;bottom:0;left:0;z-index:999;display:none;}
-    </style><style type="text/css">
-    * {
-      padding: 0;
-      margin: 0;
+</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><link href="https://cdn.jsdelivr.net/gh/dgubz/3kh0-Assets@5cb61b353cff0365c082c9309e82bb561c027201/Run%202/waflash/waflash-style.css" rel="stylesheet" type="text/css">
+<title>WAFLASH</title>
+
+
+</head><body dir="ltr"><script>
+    var gameConfig = {
+      swfUrl: "https://cdn.jsdelivr.net/gh/supaub/interstellar-3@8a13c735e7df6d86602b354e45c090405f21f45a/play/flash/swf/mariocombat.swf"		
     }
-    html, body {
-      background: #000;
-      color: #fff;
-      overflow: hidden;
-      touch-action: none;
-      -ms-touch-action: none;
+</script>
+<div id="waflashContainer">
+<canvas class="waflashCanvas" id="canvas" tabindex="1"></canvas>
+<div id="waflashStatus" style="display: none;">Playing...</div>
+<script>
+    var ua = navigator.userAgent.toLowerCase();
+    if ( (navigator.appName =='Netscape' && ua.indexOf('trident') != -1) || (ua.indexOf("msie") != -1)) {
+        var waf = document.getElementById('waflashStatus');
+      waf.style.display ='block';
+      waf.innerText ='??? ?????(IE) ??? ??? ???? ???? !\n??, ???? ?? ????? ??????.';
+      gtag('event', 'connect_from_ie', {'event_category': 'error', 'event_label': ua });
     }
-    canvas {
-      touch-action-delay: none;
-      touch-action: none;
-      -ms-touch-action: none;
-    }
-    @font-face {
-        font-family: Oswald Regular;
-        src: url(https://174620846-1408264916283502371.preview.editmysite.com/uploads/b/139890129-853193733110235683/files/oswald_regular.ttf);
-    }
-    html, body {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-
-  background: #000000;
-}
-
-html, body, canvas {
-  touch-action: none;
-  touch-action-delay: none;
-}
-
-    </style>
-    <meta charset="UTF-8">
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <title>Snake</title>
-  <meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" name="viewport">
-
-  <!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
-  <meta content="true" name="HandheldFriendly">
-
-  <!-- Chrome for Android web app tags -->
-  <meta content="yes" name="mobile-web-app-capable">
-
-
-
-
-    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
-
-
-</head><body dir="ltr"> 
-  <div id="fb-root"></div>
-
-  <script>
-
- function On_GameLoaded()
-  {
-    isGameLoaded = true;
-  }
-
-    function Show_Ads()
-  {
-    c2_callFunction("On_GameResumed");
-    showad1();
-
-  }
-
-  // Issue a warning if trying to preview an exported project on disk.
-  (function(){
-    // Check for running exported on file protocol
-    if (window.location.protocol.substr(0, 4) ==="file")
-    {
-      alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
-    }
-  })();
   </script>
-
-  <!-- The canvas must be inside a div called c2canvasdiv -->
-  <div id="c2canvasdiv">
-
-    <!-- The canvas the project will render to.  If you change its ID, don't forget to change the
-    ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
-    <canvas height="960" id="c2canvas" width="1280">
-      <!-- This text is displayed if the visitor's browser does not support HTML5.
-      You can change it, but it is a good idea to link to a description of a browser
-      and provide some links to download some popular HTML5-compatible browsers. -->
-      <h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
-      <br><br><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br>
-      <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br>
-      <a href="http://www.google.com/chrome/">Google Chrome</a><br>
-      <a href="http://www.apple.com/safari/download/">Apple Safari</a></h1>
-    </canvas>
-
-  </div>
-
-  <!-- Pages load faster with scripts at the bottom -->
-
-  <!-- Construct 2 exported games require jQuery. -->
-  <script src="https://174620846-1408264916283502371.preview.editmysite.com/uploads/b/139890129-853193733110235683/files/jquery-2.1.1.min.js"></script>
-
-
-
-    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
-    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
-  <script src="https://174620846-1408264916283502371.preview.editmysite.com/uploads/b/139890129-853193733110235683/files/c2runtime.js"></script>
-
-    <script>
-    // Start the Construct 2 project running on window load.
-    jQuery(document).ready(function ()
-    {			
-      // Create new runtime using the c2canvas
-      cr_createRuntime("c2canvas");
+<script crossorigin="anonymous" type="module">
+    let is_mobile = /Mobi/i.test(window.navigator.userAgent);
+    if (is_mobile) {
+      function scrollToSubject() {
+        try {
+          window.scrollTo({
+            top: 100,
+            left: 0,
+            behavior: 'smooth'
+          });
+        } catch (e) {}
+      }
+      scrollToSubject();
+      window.addEventListener("orientationchange", function() {
+        setTimeout(scrollToSubject, 100);
+      });
+    } else {
+      document.getElementById('canvas').focus();
+    }
+    document.getElementById('canvas').addEventListener("keydown", function(ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
     });
-
-    // Pause and resume on page becoming visible/invisible
-    function onVisibilityChanged() {
-      if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
-        cr_setSuspended(true);
-      else
-        cr_setSuspended(false);
-    };
-
-    document.addEventListener("visibilitychange", onVisibilityChanged, false);
-    document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
-    document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
-    document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
-
-    function OnRegisterSWError(e)
-    {
-      console.warn("Failed to register service worker: ", e);
-    };
-
-    // Runtime calls this global method when ready to start caching (i.e. after startup).
-    // This registers the service worker which caches resources for offline support.
-    window.C2_RegisterSW = function C2_RegisterSW()
-    {
-      if (!navigator.serviceWorker)
-        return;		// no SW support, ignore call
-
-      try {
-        navigator.serviceWorker.register("sw.js", { scope: "./" })
-        .then(function (reg)
-        {
-          console.log("Registered service worker on " + reg.scope);
-        })
-        .catch(OnRegisterSWError);
+    document.getElementById('canvas').addEventListener("click", function() {
+      document.getElementById('canvas').focus();
+    });
+    document.addEventListener("mousedown", (function() {
+      const canvasElement = document.getElementById('canvas');
+      let focused = false;
+      return function(ev) {
+        if (ev.target == canvasElement) {
+          if (!focused) {
+            canvasElement.focus();
+            focused = true;
+          }
+        } else {
+          if (focused) {
+            focused = false;
+          }
+        }
+        return true;
       }
-      catch (e)
-      {
-        OnRegisterSWError(e);
-      }
-    };
-    </script>
-  <script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
-
+    })());
+    import {
+      createWaflash
+    } from 'https://cdn.jsdelivr.net/gh/zhit73/wafedit@62869163029f5ccf7690917c93e60db55378a17b/wasm/waflash-player.min.js';
+    createWaflash(gameConfig.swfUrl, window.wafOptions || {});
+  </script>
+</div>
+<script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
 
 <script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
 </script></body></html>
