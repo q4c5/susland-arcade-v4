@@ -1,5 +1,6 @@
 
-<html><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
+<!DOCTYPE html>
+<html lang="en-us"><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
 0<b&&d>=b&&(c.tick("_wtsrt",void 0,b),c.tick("wtsrt_","_wtsrt",d),c.tick("tbsd_","wtsrt_"))}try{var k=window.top!=window.self,l=window.location.href;a=null;window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),c&&0<b&&(c.tick("_tbnd",void 0,window.chrome.csi().startE),c.tick("tbnd_","_tbnd",b)));null==a&&window.gtbExternal&&(a=k?window.gtbExternal.frameT(l):window.gtbExternal.pageT());null==a&&window.external&&(k?a=window.external.frameT(l):(a=window.external.pageT,c&&0<b&&(c.tick("_tbnd",
 void 0,window.external.startE),c.tick("tbnd_","_tbnd",b))));a&&(window.jstiming.pt=a)}catch(g){}})();}).call(this);
 window["__csi"]={a:false,b:false,c:"default",v:"default",g:null,d:false};if(window.jstiming){window.jstiming.beaconImageReferences_={};window.jstiming.reportCounter_=1;var getTick=function(a,b,c){var d=a.t[b],e=a.t.start;if(d&&(e||c))return d=a.t[b][0],e=void 0!=c?c:e[0],a=d-e,Math.round(a)},getReportUri=function(a,b,c){var d="";window.jstiming.srt&&(d+="&srt="+window.jstiming.srt,delete window.jstiming.srt);window.jstiming.pt&&(d+="&tbsrt="+window.jstiming.pt,delete window.jstiming.pt);try{window.external&&window.external.tran?d+="&tran="+window.external.tran:window.gtbExternal&&
@@ -41,12 +42,11 @@ goog.createTrustedTypesPolicy=function(a){var b=null,c=goog.global.trustedTypes;
 google.csi=function(){function a(h){var m=g?g:document.location.href;return(h=m.match(new RegExp("[?&]"+h+"=([^&#]+)")))?h[1]:null}function b(h){window.jstiming.load.tick(h);f[h]=(new Date).getTime()}function c(){if(!l){var h=a("url")||"default",m=window.__csi||{},r=m.c||"default",v=m.v||"default",p=window.encodeURIComponent?encodeURIComponent:escape;p={gadget:p(h),container:p(r),view:p(v)};var t=window.__dflags||{},u=[];m.g&&u.push(m.g);if(m.d)for(var n in t)"control"!==t[n]&&(p[n]=t[n],"true"===
 t[n]&&u.push(n));p.e=u.join(",");n=k?k:document.location.protocol;n=e[n];window.jstiming.load.name=[r,"_",v].join("");window.jstiming.report(window.jstiming.load,p,n);(r=window.gadgets)&&r.rpc&&m.b&&(f.url=h,f.id=a("mid"),r.rpc.call(null,"time_iframe",void 0,f));l=!0}}function d(h){window.addEventListener?window.addEventListener("load",h,!1):window.attachEvent&&window.attachEvent("onload",h)}var e={"http:":"http://csi.gstatic.com/csi","https:":"https://gg.google.com/csi"},f={},g,k,l=!1,q=window.__csi||
 {};q.a?(d(function(){b("prt")}),window.onbeforeunload=function(){c()}):d(function(){b("ol");b("prt");c()});return{reset_:function(){l=!1},mockHref_:function(h){g=h},mockProtocol_:function(h){k=h},report_:c,tickPrtAndReport:function(){b("prt");c()},tickDl:function(){b("dl")}}}();
-</script><script>__dflags={"RefererProxy":"control","DynamicHeightGadgetRewriter":"true","CacheErrorThrottleCountLimit":"control","AnalyticsGadgetRewriter":"true","StyleAdjacencyGadgetRewriter":"true","CsiSample":"true","UseETags":"false","StyleTagExtractorGadgetRewriter":"true","LogResources":"false","ContentDivGadgetRewriter":"false","TimeSecsSinceEpochEnvGadgetRewriter":"true","AdsUrlGadgetRewriter":"true","ErrorCodesToLog":"control","YtVideoUrlGadgetRewriter":"true","ProxyingGadgetRewriter":"true","UseCajaSerializer":"false","CorpDomainSuffixes":"control","DflagsJsDebugGadgetRewriter":"true","GadgetBlacklist":"control","MiniMessageGadgetRewriter":"true","EnableJsErrorTracking":"true","TrackResources":"false","ClickTrackGadgetRewriter":"false","InjectClientId":"false","DisableLoggingJs":"false","UseBrowserSpecificJson":"false","HtmlParser":"control","UseUrlGadgetWhitelist":"false","ResourceUsageJsDebugGadgetRewriter":"true","UrlTranslations":"control","EnableContextCache":"false","UseNoVarGlobals":"false","Monkeypatch":"control","ValidateTypeUrl":"true","UseJsPipelineForRendering":"false"};
-
+</script><script>
 /* mp-start */
 window['___jsl']=window['___jsl']||{};
 /* mp-end */
-</script><style type="text/css">body,td,div,span,p{font-family:arial,sans-serif;}a {color:#0000cc;}a:visited {color:#551a8b;}a:active {color:#ff0000;}body{margin: 0px;padding: 0px;background-color:white;}</style><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
+</script><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
 var tamings___=window.tamings___||[];
 var bridge___;
 var caja___=window.caja___;
@@ -771,100 +771,348 @@ typeof window&&window.document?window.document.createElement("textarea"):l,$=/\0
 a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.sanitize=function(a,b,c,e){return L(a,g(b,c,e))};o.sa=o.sanitizeAttribs=s;o.ta=o.sanitizeWithPolicy=L;o.ua=o.unescapeEntities=u;return o}(M),ba=Q.sanitize;"undefined"!==typeof window&&(window.html=Q,window.html_sanitize=ba);})();
 ;
 gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
-</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><style>
-html, body {
- height: 100%;
- width: 100%;
- margin: 0px;
-}
+</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><link href="https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
 
-body {
- background: #111 url(https://cdn.jsdelivr.net/gh/nurimoores/clawapps@c256f90f297143497e6f61dba4571701658e07a1/classic/bg_main.png);
-}
+  </head><body class="dark" dir="ltr">
+    <div class="unity-desktop" id="unity-container">
+      <canvas id="unity-canvas"></canvas>
+    </div>
+    <div id="loading-cover" style="display:none;">
+      <div id="unity-loading-bar">
+        <div id="unity-logo"><img src="https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/logo.png"></div>
+        <div id="unity-progress-bar-empty" style="display: none;">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div id="unity-fullscreen-button" style="display: none;"></div>
+    <script>
+      const hideFullScreenButton = "1";
+      const buildUrl = "Build";
+      const loaderUrl ="https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/FunnyShooter2_Yandex.loader.js";
+      const config = {
+        dataUrl:"https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/FunnyShooter2_Yandex.data.unityweb",
+        frameworkUrl:"https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/FunnyShooter2_Yandex.framework.js.unityweb",
+        codeUrl:"https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/FunnyShooter2_Yandex.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "GoGoMan",
+        productName: "Funny Shooter 2",
+        productVersion: "1.0.1",
+      };
 
-canvas {
-  height: 100vh; 
-  width: 100vw; 
- background: #000;
- display: block;
- box-shadow: 0 3px 5px rgba(0,0,0,.4);
- border-radius: 4px;
- margin: auto;
- position: absolute;
- top: 0;
- bottom: 0;
- left: 0;
- right: 0;
-}
+      const container = document.querySelector("#unity-container");
+      const canvas = document.querySelector("#unity-canvas");
+      const loadingCover = document.querySelector("#loading-cover");
+      const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+      const progressBarFull = document.querySelector("#unity-progress-bar-full");
+      const fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      const spinner = document.querySelector('.spinner');
 
-span {
- font: Bold 18px Calibri;
- color: #F67;
- text-shadow: 1px 1px 5px rgba(0,0,0,.5);
- position: absolute;
- left: 10px;
- bottom: 10px;
-}
+      const canFullscreen = (function() {
+        for (const key of [
+            'exitFullscreen',
+            'webkitExitFullscreen',
+            'webkitCancelFullScreen',
+            'mozCancelFullScreen',
+            'msExitFullscreen',
+          ]) {
+          if (key in document) {
+            return true;
+          }
+        }
+        return false;
+      }());
 
-@media only screen and (min-width: 1078px) {
- canvas {
-  width: 100vw;
-  height: 100vh;
- }
-}
-  </style>
-  <meta charset="utf-8">
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        config.devicePixelRatio = 1;
+      }
+      canvas.style.background = "url('https://rawcdn.githack.com/hilfig3r/lolshooter2/97a7b3542843419db52216522a84a4f68a65a904/FunnyShooter2_Yandex.jpg') center / cover";
+      loadingCover.style.display = "";
 
- </head><body dir="ltr">
-  <script async="" src="https://cdn.jsdelivr.net/gh/nurimoores/clawapps@c256f90f297143497e6f61dba4571701658e07a1/classic/uinitwasm.js"></script>
-  <script>
-var add_ele = (node_name, parent, attributes) => Object.assign(parent.appendChild(document.createElement(node_name)), attributes),
- canvas = add_ele('canvas', document.body, {
-  width: 1300,
-  height: 740,
- }),
- log = add_ele('span', document.body, {});
+      const script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          spinner.style.display = "none";
+          progressBarEmpty.style.display = "";
+          progressBarFull.style.width = `${100 * progress}%`;
+        }).then((unityInstance) => {
+          window.unityInstance = unityInstance;
+          //loadData();
+          loadingCover.style.display = "none";
+          if (canFullscreen) {
+            if (!hideFullScreenButton) {
+              fullscreenButton.style.display = "";
+            }
+            fullscreenButton.onclick = () => {
+              unityInstance.SetFullscreen(1);
+            };
+          }
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
 
-canvas.focus();
-canvas.addEventListener('webglcontextlost', event => location.reload());
-canvas.addEventListener('contentmenu', event => event.preventDefault());
-canvas.addEventListener('click', () => {
- window.focus();
- canvas.focus();
- window.__requestPointerLock(canvas);
-});
+
+  <script type="text/javascript">
+    var player = null;
+    var sdk;
+    var payments = null;
+    var SHOW_ADS = true;
+
+     YaGames.init({
+      adv: {
+        onAdvClose: wasShown => {
+          console.info('adv closed!');
+        }
+      }
+    })
+      .then(ysdk => {
+        sdk = ysdk;
+        ysdk.getPlayer({ signed: true }).then(_player => {
+          player = _player;
+        }).catch(err => {
+        });
+        ysdk.getPayments({ signed: true }).then(_payments => {
+          payments = _payments;
+          console.log("Purchasing True");
+          payments.getPurchases().then(purchases => {
+          if (purchases.some(purchase => purchase.productID === 'remove_ads')) {
+              SHOW_ADS = false;
+
+            }
+        }).catch(err => {
+
+        })
+        }).catch(err => {
+        })
+        if(SHOW_ADS){
+          sdk.adv.showFullscreenAdv({ callbacks: {} });
+          sdk.adv.showBannerAdv();
+        }
+        else
+        {
+          sdk.adv.hideBannerAdv();
+        }
+      });
+
+    function checkCom() {
+      var isCom = 0;
+      var output;
+
+      if (sdk != null) {
+        var output = sdk.environment.i18n.tld;
+        if (output == "com") {
+          isCom = 1;
+        } else if (output == "com.tr") {
+          isCom = 2;
+        }
+      }
+
+      console.log(output);
+      console.log(isCom);
+
+      window.unityInstance.SendMessage('GameManager', 'IsCom', isCom);
+
+      if (payments != null) {
+        initPurchasing();
+        checkShop();
+      }
+    }
+
+    function purchaseComplete(id) 
+    {
+        if(id == 0)
+        {
+            SHOW_ADS = false;
+            sdk.adv.hideBannerAdv();
+        }
+    }
+
+    function checkShop() 
+    {
+        payments.getPurchases().then(purchases => {
+          if (purchases.some(purchase => purchase.productID === 'remove_ads')) {
+              SHOW_ADS = false;
+              window.unityInstance.SendMessage('SDKPlatforms', 'ShopComplete', 0);
+              sdk.adv.hideBannerAdv();
+          }
+          if (purchases.some(purchase => purchase.productID === 'weapon_1')) {
+              window.unityInstance.SendMessage('SDKPlatforms', 'ShopComplete', 3);
+          }
+          if (purchases.some(purchase => purchase.productID === 'weapon_2')) {
+              window.unityInstance.SendMessage('SDKPlatforms', 'ShopComplete', 4);
+          }
+        }).catch(err => {
+
+        })
+    }
+
+    function initPurchasing() {
+      console.log('Get Purchasing Data....');
+      if (payments != null) {
+        var gameShop = []
+        payments.getCatalog().then(products => {
+          gameShop = products;
+          console.log('Get Catalog Data....');
+          gameShop.forEach(product => {
+            window.unityInstance.SendMessage('SDKPlatforms', 'PurchaseDataId', product.id);
+            window.unityInstance.SendMessage('SDKPlatforms', 'PurchaseDataPrice', product.priceValue);
+            console.log(product.id + ' ' + product.price);
+          });
+        });
+        payments.getPurchases().then(purchases => purchases.forEach(consumePurchase));
+      }
+    }
+
+    function consumePurchase(purchase) {
+      window.unityInstance.SendMessage('SDKPlatforms', 'PurchasesComplete', purchase.id);
+      payments.consumePurchase(purchase.purchaseToken)
+    }
 
 
-var Module = {
- preRun: [ () => {
-  addRunDependency('load-idb');
-  FS.mkdir('/classicube');
-  FS.mount(IDBFS, {}, '/classicube');
-  FS.syncfs(true, err => {
-   assert(!err); 
-   removeRunDependency('load-idb');
-  });
- } ],
- postRun: [],
- arguments: [ 'No' ],
- print: console.log,
- printErr: console.error,
- canvas: canvas,
- setStatus: (...text) => log.innerHTML = text.join(' '),
- totalDependencies: 0,
- monitorRunDependencies(left){
-  this.totalDependencies = Math.max(this.totalDependencies, left);
-  Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
- },
-};
+    function buy(id_buy) {
+      if (payments != null) {
+        payments.purchase({ id: id_buy }).then(purchase => {
+          window.unityInstance.SendMessage('SDKPlatforms', 'PurchasesComplete', id_buy);
+          if (id_buy != 'remove_ads') 
+          {
+            payments.consumePurchase(purchase.purchaseToken);
+          }
+        });
+      }
+    }
 
-Module.setStatus('Downloading...');
+     function checkSave() {
+        loadData();
+     }
 
-window.addEventListener('error', err => {
- Module.setStatus('Exception thrown, see JavaScript console');
- Module.setStatus = (...text) => log.innerHTML ='[post-exception status] ' + text.join(' ');
-});
+    function checkLanguage() {
+      var currentLanguage = 0;
+      var output;
+
+      if (sdk != null) {
+        var output = sdk.environment.i18n.lang;
+        if (output == "ru" || output == "be" || output == "kk" || output == "uk" || output == "uz")
+          currentLanguage = 0;
+        else if (output == "tr")
+          currentLanguage = 2;
+        else
+          currentLanguage = 1;
+      }
+
+      console.log(output);
+      console.log(currentLanguage);
+
+      window.unityInstance.SendMessage('GameManager', 'SetLanguage', currentLanguage);
+    }
+
+    function loadData() {
+      if (player != null) {
+        console.log("Loading......")
+        var save1;
+        var save2;
+        player.getData(["save1", "save2"]).then(data => {
+          if(data.save1) {
+            console.log("Load")
+            window.unityInstance.SendMessage('SDKPlatforms', 'LoadCloudFirst', data.save1);
+            window.unityInstance.SendMessage('SDKPlatforms', 'LoadCloud', data.save2);
+          }
+          else {
+            console.log('No Save');
+          }
+        }).catch(() => {
+          console.log('No Save');
+        });
+      }
+
+    }
   </script>
+
+
+
+  <script>
+    function saveCloud(dataSave, dataSave2, counterSave) {
+      console.log("Saving....... ");
+      if (player != null) {
+        player.getData(["save1", "counterFunny2", "save2"]).then(data => {
+          if (data.counterFunny2) {
+            console.log('Counter ' + data.counterFunny2 + " " + counterSave);
+            if (data.counterFunny2 < counterSave) {
+              player.setData({
+                save1: dataSave,
+                save2: dataSave2,
+                counterFunny2: counterSave,
+              }).then(() => {
+                console.log('data is set -update');
+              });
+            }
+          }
+          else {
+            player.setData({
+              save1: dataSave,
+              save2: dataSave2,
+              counterFunny2: counterSave,
+            }).then(() => {
+              console.log('data is set -first');
+            });
+          }
+        }).catch(() => {
+          player.setData({
+             save1: dataSave,
+             save2: dataSave2,
+             counterFunny2: counterSave,
+          }).then(() => {
+            console.log('data is set -first');
+          });
+        });
+      }
+    }
+  </script>
+
+
+  <script>
+    function showFullscrenAd() {
+      sdk.adv.showFullscreenAdv({
+        callbacks: {}
+      })
+    }
+  </script>
+
+  <script>
+    function rate() {
+    }
+  </script>
+
+  <script>
+    function showRewardedAd(id) {
+      sdk.adv.showRewardedVideo({
+        callbacks: {
+          onOpen: () => {
+            window.unityInstance.SendMessage('SDKPlatforms', 'AudioEnable', 0);
+          },
+          onRewarded: () => {
+            window.unityInstance.SendMessage('SDKPlatforms', 'AudioEnable', 1);
+            window.unityInstance.SendMessage('SDKPlatforms', 'BuyComplete', id);
+          },
+          onClose: () => {
+            window.unityInstance.SendMessage('SDKPlatforms', 'AudioEnable', 1);
+          },
+          onError: (e) => {
+            window.unityInstance.SendMessage('SDKPlatforms', 'AudioEnable', 1);
+          }
+        }
+      })
+    }
+  </script>
+  <script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
 
 
 <script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
