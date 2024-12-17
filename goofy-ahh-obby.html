@@ -1,9 +1,6 @@
 
-
-<html>
-<head>
-    <script>
-(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
+<!DOCTYPE html>
+<html lang="en-us"><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
 0<b&&d>=b&&(c.tick("_wtsrt",void 0,b),c.tick("wtsrt_","_wtsrt",d),c.tick("tbsd_","wtsrt_"))}try{var k=window.top!=window.self,l=window.location.href;a=null;window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),c&&0<b&&(c.tick("_tbnd",void 0,window.chrome.csi().startE),c.tick("tbnd_","_tbnd",b)));null==a&&window.gtbExternal&&(a=k?window.gtbExternal.frameT(l):window.gtbExternal.pageT());null==a&&window.external&&(k?a=window.external.frameT(l):(a=window.external.pageT,c&&0<b&&(c.tick("_tbnd",
 void 0,window.external.startE),c.tick("tbnd_","_tbnd",b))));a&&(window.jstiming.pt=a)}catch(g){}})();}).call(this);
 window["__csi"]={a:false,b:false,c:"ig",v:"default",g:null,d:false};if(window.jstiming){window.jstiming.beaconImageReferences_={};window.jstiming.reportCounter_=1;var getTick=function(a,b,c){var d=a.t[b],e=a.t.start;if(d&&(e||c))return d=a.t[b][0],e=void 0!=c?c:e[0],a=d-e,Math.round(a)},getReportUri=function(a,b,c){var d="";window.jstiming.srt&&(d+="&srt="+window.jstiming.srt,delete window.jstiming.srt);window.jstiming.pt&&(d+="&tbsrt="+window.jstiming.pt,delete window.jstiming.pt);try{window.external&&window.external.tran?d+="&tran="+window.external.tran:window.gtbExternal&&
@@ -45,40 +42,11 @@ goog.createTrustedTypesPolicy=function(a){var b=null,c=goog.global.trustedTypes;
 google.csi=function(){function a(h){var m=g?g:document.location.href;return(h=m.match(new RegExp("[?&]"+h+"=([^&#]+)")))?h[1]:null}function b(h){window.jstiming.load.tick(h);f[h]=(new Date).getTime()}function c(){if(!l){var h=a("url")||"default",m=window.__csi||{},r=m.c||"default",v=m.v||"default",p=window.encodeURIComponent?encodeURIComponent:escape;p={gadget:p(h),container:p(r),view:p(v)};var t=window.__dflags||{},u=[];m.g&&u.push(m.g);if(m.d)for(var n in t)"control"!==t[n]&&(p[n]=t[n],"true"===
 t[n]&&u.push(n));p.e=u.join(",");n=k?k:document.location.protocol;n=e[n];window.jstiming.load.name=[r,"_",v].join("");window.jstiming.report(window.jstiming.load,p,n);(r=window.gadgets)&&r.rpc&&m.b&&(f.url=h,f.id=a("mid"),r.rpc.call(null,"time_iframe",void 0,f));l=!0}}function d(h){window.addEventListener?window.addEventListener("load",h,!1):window.attachEvent&&window.attachEvent("onload",h)}var e={"http:":"http://csi.gstatic.com/csi","https:":"https://gg.google.com/csi"},f={},g,k,l=!1,q=window.__csi||
 {};q.a?(d(function(){b("prt")}),window.onbeforeunload=function(){c()}):d(function(){b("ol");b("prt");c()});return{reset_:function(){l=!1},mockHref_:function(h){g=h},mockProtocol_:function(h){k=h},report_:c,tickPrtAndReport:function(){b("prt");c()},tickDl:function(){b("dl")}}}();
-    </script>
-    <script>
-__dflags={"RefererProxy":"control","DynamicHeightGadgetRewriter":"true","CacheErrorThrottleCountLimit":"control","AnalyticsGadgetRewriter":"true","StyleAdjacencyGadgetRewriter":"true","CsiSample":"true","UseETags":"false","StyleTagExtractorGadgetRewriter":"true","LogResources":"false","ContentDivGadgetRewriter":"false","TimeSecsSinceEpochEnvGadgetRewriter":"true","AdsUrlGadgetRewriter":"true","ErrorCodesToLog":"control","YtVideoUrlGadgetRewriter":"true","ProxyingGadgetRewriter":"true","UseCajaSerializer":"false","CorpDomainSuffixes":"control","DflagsJsDebugGadgetRewriter":"true","GadgetBlacklist":"control","MiniMessageGadgetRewriter":"true","EnableJsErrorTracking":"true","TrackResources":"false","ClickTrackGadgetRewriter":"false","InjectClientId":"true","DisableLoggingJs":"false","UseBrowserSpecificJson":"false","HtmlParser":"control","UseUrlGadgetWhitelist":"false","ResourceUsageJsDebugGadgetRewriter":"true","UrlTranslations":"control","EnableContextCache":"false","UseNoVarGlobals":"false","Monkeypatch":"control","ValidateTypeUrl":"true","UseJsPipelineForRendering":"false"};
-
+</script><script>
 /* mp-start */
 window['___jsl']=window['___jsl']||{};
 /* mp-end */
-    </script>
-    <style type="text/css">
-        body, td, div, span, p {
-            font-family: arial,sans-serif;
-        }
-
-        a {
-            color: #0000cc;
-        }
-
-            a:visited {
-                color: #551a8b;
-            }
-
-            a:active {
-                color: #ff0000;
-            }
-
-        body {
-            margin: 0px;
-            padding: 0px;
-            background-color: white;
-        }
-    </style>
-    <script>window['__isgadget']=true;</script>
-    <script>
-window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www-ig-opensocial.googleusercontent.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
+</script><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www-ig-opensocial.googleusercontent.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
 var tamings___=window.tamings___||[];
 var bridge___;
 var caja___=window.caja___;
@@ -803,14 +771,13 @@ typeof window&&window.document?window.document.createElement("textarea"):l,$=/\0
 a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.sanitize=function(a,b,c,e){return L(a,g(b,c,e))};o.sa=o.sanitizeAttribs=s;o.ta=o.sanitizeWithPolicy=L;o.ua=o.unescapeEntities=u;return o}(M),ba=Q.sanitize;"undefined"!==typeof window&&(window.html=Q,window.html_sanitize=ba);})();
 ;
 gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www-ig-opensocial.googleusercontent.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
-    </script>
-    <script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script>
-    <link href="https://cdn.jsdelivr.net/gh/paigerodeghero/academicwebsite@897c910c65e6c68b04c44a6b6eba0b99d0f2f2cf/TemplateData/style.css" rel="stylesheet">
+</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><style>html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}html,body{height:100%}canvas{display:block}body{margin:0}#unity-container{width:100%;height:100%;position:relative}#unity-canvas{width:100%;height:100%;background:#231F20}#loading-cover{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center}#unity-loading-bar{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;align-items:center}#unity-logo{text-align:center}#unity-logo img{max-width:80%;max-height:80%}#unity-progress-bar-empty{width:40%;height:24px;margin:10px 20px 20px 10px;text-align:left;border:1px solid white;padding:2px}#unity-progress-bar-full{width:0;height:100%;background:white}.light #unity-progress-bar-empty{border-color:black}.light #unity-progress-bar-full{background:black}.spinner,.spinner:after{border-radius:50%;width:5em;height:5em}.spinner{margin:10px;font-size:10px;position:relative;text-indent:-9999em;border-top:1.1em solid rgba(255,255,255,0.2);border-right:1.1em solid rgba(255,255,255,0.2);border-bottom:1.1em solid rgba(255,255,255,0.2);border-left:1.1em solid #ffffff;transform:translateZ(0);animation:spinner-spin 1.1s infinite linear}@keyframes spinner-spin{0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)}}</style><style> body{overflow:hidden;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}</style>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
 
 
-
-
-    <script>
+<script>
 /* mp-start */
 
 var _params = gadgets.util.getUrlParameters();
@@ -819,21 +786,59 @@ if (_params['exp_rpc_js'] != 1) {
   gadgets.rpc.setRelayUrl('..', url, true);
 }
 /* mp-end */
-    </script>
-</head>
-<body dir="ltr">
-    <script src="https://cdn.jsdelivr.net/gh/paigerodeghero/academicwebsite@897c910c65e6c68b04c44a6b6eba0b99d0f2f2cf/TemplateData/UnityProgress.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gertdoro/Toolkit@80a659a20b7bb0f4e3141cc82c64286b22bb12cc/Tcl/holeUnityLoader.js"></script>
-    <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "https://cdn.jsdelivr.net/gh/gertdoro/Toolkit@80a659a20b7bb0f4e3141cc82c64286b22bb12cc/Tcl/Hole.json", { onProgress: UnityProgress, Module: { onRuntimeInitialized: function () { UnityProgress(gameInstance, "complete") } } });
-    </script>
-    <script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script><div class="webgl-content">
-        <div id="gameContainer" style="width: 100vw; height: 100vh"></div>
-    </div>
+</script></head><body class="dark" dir="ltr">
+<div class="unity-desktop" id="unity-container">
+<canvas id="unity-canvas"></canvas>
+</div>
+<div id="loading-cover" style="display:none;">
+<div id="unity-loading-bar">
+<div id="unity-progress-bar-empty" style="display: none;">
+<div id="unity-progress-bar-full"></div>
+</div>
+<div class="spinner"></div>
+</div>
+</div>
+<script>
+const hideFullScreenButton="";const buildUrl="https://cdn.jsdelivr.net/gh/Loddypof/jsalgorithms@fb25f5324547c755e8c60a36d734c4f82cf0b158/others";const loaderUrl=buildUrl+"/obrob.js";const config={dataUrl:buildUrl+"/obrob.data.unityweb",frameworkUrl:buildUrl+"/obrob.framework.js.unityweb",codeUrl:buildUrl+"/obrob.wasm.unityweb",streamingAssetsUrl:"https://cdn.jsdelivr.net/gh/Loddypof/jsalgorithms@fb25f5324547c755e8c60a36d734c4f82cf0b158/others/StreamingAssets",};const container=document.querySelector("#unity-container");const canvas=document.querySelector("#unity-canvas");const loadingCover=document.querySelector("#loading-cover");const progressBarEmpty=document.querySelector("#unity-progress-bar-empty");const progressBarFull=document.querySelector("#unity-progress-bar-full");const spinner=document.querySelector('.spinner');const canFullscreen=(function(){for(const key of['exitFullscreen','webkitExitFullscreen','webkitCancelFullScreen','mozCancelFullScreen','msExitFullscreen',]){if(key in document){return true}}return false}());if(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){container.className="unity-mobile"}loadingCover.style.display="";canvas.addEventListener("touchstart",()=>{window.focus()});canvas.addEventListener("pointerdown",()=>{window.focus()});let player;let leaderboard;let myGameInstance=null;let payments=null;let promptCanShow=false;let reviewCanShow=false;let initSDK=true;let initGame=true;let photoSizeForInit;let scopesForInit;let nowFullAdOpen=false;let letGameReadyApi=true;let ysdk=null;const script=document.createElement("script");script.src=loaderUrl;script.onload=()=>{createUnityInstance(canvas,config,(progress)=>{spinner.style.display="none";progressBarEmpty.style.display="";progressBarFull.style.width=`${100*progress}%`}).then((unityInstance)=>{myGameInstance=unityInstance;loadingCover.style.display="none"}).catch((message)=>{})};var playerData='noData';var environmentData='null';var cloudSaves='noData';function InitSDK(photoSize,scopes){console.log('Init GAME');initGame=true;photoSizeForInit=photoSize;scopesForInit=scopes;InitPlayer(photoSize,scopes)}
+function InitGame(photoSize,scopes,gameReadyApi){console.log('Init GAME');initGame=true;photoSizeForInit=photoSize;scopesForInit=scopes;if(initSDK==true){if(gameReadyApi==true)GameReadyAPI();InitPlayer(photoSize,scopes)}else{InitYandex();setTimeout(function(){if(!initSDK){console.error('CRASH InitYandex');NotAuthorized()}},1000)}if(nowFullAdOpen==true){myGameInstance.SendMessage('YandexGame','OpenFullAd')}} 
+function GameReadyAPI(){if(letGameReadyApi){}}function NotAuthorized(){try{console.log('Authorized failed');let authJson={"playerAuth":"rejected","playerName":"unauthorized","playerId":"unauthorized","playerPhoto":"null"};myGameInstance.SendMessage('YandexGame','SetInitializationSDK',JSON.stringify(authJson))}catch(e){console.error('CRASH Not Authorized: ',e.message)}}function InitPlayer(photoSize,_scopes){NotAuthorized();window.focus()}function OpenAuthDialog(photoSize,scopes){try{ysdk.auth.openAuthDialog().then(()=>{InitPlayer(photoSize,scopes)}).catch(()=>{InitSDK(photoSize,scopes)})}catch(e){console.log('CRASH Open Auth Dialog: ',e.message)}}
+function FullAdShow(){try{window.ysdk.adv.showFullscreenAdv({callbacks:{onOpen:()=>{console.log('Open Fullscreen Ad');nowFullAdOpen=true;if(initGame===true)myGameInstance.SendMessage('YandexGame','OpenFullAd')},onClose:(wasShown)=>{nowFullAdOpen=false;if(initGame===true){if(wasShown){myGameInstance.SendMessage('YandexGame','CloseFullAd','true')}else{myGameInstance.SendMessage('YandexGame','CloseFullAd','false')}}window.focus()},onError:(error)=>{console.error('Error Fullscreen Ad',error);myGameInstance.SendMessage('YandexGame','ErrorFullAd');window.focus()}}})}catch(e){console.error('CRASH FullAd Show: ',e.message)}}
+function RewardedShow(id){try{window.ysdk.adv.showRewardedVideo({callbacks:{onOpen:()=>{console.log('Opened Video Ad. Id: '+id);myGameInstance.SendMessage('YandexGame','OpenVideo')},onClose:()=>{console.log('Closed Video Ad. Id: '+id);myGameInstance.SendMessage('YandexGame','CloseVideo');window.focus()},onRewarded:()=>{console.log('Reward Video Ad. Id: '+id);myGameInstance.SendMessage('YandexGame','RewardVideo',id)},onError:(e)=>{console.error('Error Video Ad. Id: '+id,e);myGameInstance.SendMessage('YandexGame','ErrorVideo')}}})}catch(err){console.error('CRASH Rewarded Video Ad Show: ',err.message)}}
+function StickyAdActivity(show){try{ysdk.adv.getBannerAdvStatus().then(({stickyAdvIsShowing,reason})=>{if(stickyAdvIsShowing){if(!show){ysdk.adv.hideBannerAdv()}}else if(reason){console.log('Sticky ad are not shown. Reason:',reason)}else if(show){ysdk.adv.showBannerAdv()}})}catch(e){console.error('CRASH Sticky Activity: ',e.message)}}
+function InitPayments(){try{ysdk.getPayments().then(_payments=>{console.log('Purchases are available');payments=_payments}).catch(e=>{console.log('Purchases are not available',e.message)})}catch(e){console.error('CRASH Init Payments: ',e.message)}}
+function BuyPayments(id){try{if(payments!=null){payments.purchase(id).then(()=>{console.log('Purchase Success');ConsumePurchase(id);window.focus()}).catch(e=>{console.error('Purchase Failed',e.message);myGameInstance.SendMessage('YandexGame','OnPurchaseFailed',id);window.focus()})}else{console.log('Payments == null')}}catch(e){console.error('CRASH Buy Payments: ',e.message);window.focus()}}
+function GetPayments(){try{if(payments!=null){payments.getCatalog().then(products=>{let productID=[];let title=[];let description=[];let imageURI=[];let priceValue=[];let consumed=[];payments.getPurchases().then(purchases=>{for(let i=0;i<products.length;i++){productID[i]=products[i].id;title[i]=products[i].title;description[i]=products[i].description;imageURI[i]=products[i].imageURI;priceValue[i]=products[i].priceValue;consumed[i]=true;for(i2=0;i2<purchases.length;i2++){if(purchases[i2].productID===productID[i]){consumed[i]=false;break}}}let jsonPayments={"id":productID,"title":title,"description":description,"imageURI":imageURI,"priceValue":priceValue,"consumed":consumed};myGameInstance.SendMessage('YandexGame','PaymentsEntries',JSON.stringify(jsonPayments))})})}else{console.log('Get Payments: payments == null')}}catch(e){console.error('CRASH Get Payments: ',e.message)}}
+function ConsumePurchase(id){try{if(payments!=null){payments.getPurchases().then(purchases=>{for(i=0;i<purchases.length;i++){if(purchases[i].productID===id){payments.consumePurchase(purchases[i].purchaseToken);myGameInstance.SendMessage('YandexGame','OnPurchaseSuccess',id)}}})}else console.log('Consume purchase: payments null')}catch(e){console.error('CRASH Consume Purchase: ',e.message)}}
+function ConsumePurchases(){try{if(payments!=null){payments.getPurchases().then(purchases=>{console.log('Unprocessed purchases: ',purchases.length);for(i=0;i<purchases.length;i++){payments.consumePurchase(purchases[i].purchaseToken);myGameInstance.SendMessage('YandexGame','OnPurchaseSuccess',purchases[i].productID)}})}else console.log('Consume purchases: payments null')}catch(e){console.error('CRASH Consume purchases: ',e.message)}}
+function SaveCloud(jsonData,flush){try{player.setData({saves:[jsonData],},flush)}catch(e){console.error('CRASH Save Cloud: ',e.message)}}function LoadCloud(){try{player.getData(["saves"]).then(data=>{if(data.saves){myGameInstance.SendMessage('YandexGame','SetLoadSaves',JSON.stringify(data.saves))}else{myGameInstance.SendMessage('YandexGame','SetLoadSaves',"noData")}}).catch(()=>{console.error('getData Error!');myGameInstance.SendMessage('YandexGame','SetLoadSaves',"noData")})}catch(e){console.error('CRASH Load saves Cloud: ',e.message);myGameInstance.SendMessage('YandexGame','SetLoadSaves',"noData")}}
+            function InitLeaderboard() {
+                try {
+                    ysdk.getLeaderboards().then(_lb => {
+                        leaderboard = _lb
+                        myGameInstance.SendMessage('YandexGame', 'InitializedLB');
+                    });
+                } catch (e) {
+                    console.error('CRASH Init Leaderboard: ', e.message);
+                }
+            }
+            function SetLeaderboardScores(_name, score) {
+                try {
+                    ysdk.getLeaderboards()
+                        .then(leaderboard => {
+                            leaderboard.setLeaderboardScore(_name, score);
+                        });
+                } catch (e) {
+                    console.error('CRASH Set Leader board Scores: ', e.message);
+                }
+            }
+function GetLeaderboardScores(nameLB,maxPlayers,quantityTop,quantityAround,photoSize,auth){try{var jsonEntries={technoName:'',isDefault:false,isInvertSortOrder:false,decimalOffset:0,type:''};ysdk.getLeaderboards().then(leaderboard=>leaderboard.getLeaderboardDescription(nameLB)).then(res=>{jsonEntries.technoName=nameLB;jsonEntries.isDefault=res.default;jsonEntries.isInvertSortOrder=res.description.invert_sort_order;jsonEntries.decimalOffset=res.description.score_format.options.decimal_offset;jsonEntries.type=res.description.type;return leaderboard.getLeaderboardEntries(nameLB,{quantityTop:quantityTop,includeUser:auth,quantityAround:quantityAround})}).then(res=>{let jsonPlayers=EntriesLB(res,maxPlayers,photoSize);let combinedJson={...jsonEntries,...jsonPlayers};myGameInstance.SendMessage('YandexGame','LeaderboardEntries',JSON.stringify(combinedJson))}).catch(error=>{console.error(error)})}catch(e){console.error('CRASH Get Leaderboard: ',e.message)}}       
+function EntriesLB(res,maxPlayers,photoSize){let LeaderboardEntriesText='';let playersCount;if(res.entries.length<maxPlayers){playersCount=res.entries.length}else{playersCount=maxPlayers}let ranks=new Array(playersCount);let photos=new Array(playersCount);let mames=new Array(playersCount);let scores=new Array(playersCount);let uniqueIDs=new Array(playersCount);for(i=0;i<playersCount;i++){ranks[i]=res.entries[i].rank;scores[i]=res.entries[i].score;uniqueIDs[i]=res.entries[i].player.uniqueID;if(photoSize==='nonePhoto'||res.entries[i].player.scopePermissions.avatar!=="allow"){photos[i]='nonePhoto'}else{photos[i]=res.entries[i].player.getAvatarSrc(photoSize)}if(res.entries[i].player.scopePermissions.public_name!=="allow"){mames[i]="anonymous"}else{mames[i]=res.entries[i].player.publicName}LeaderboardEntriesText+=ranks[i]+'. '+mames[i]+": "+scores[i]+'\n'}if(playersCount===0){LeaderboardEntriesText='no data'}let jsonPlayers={"entries":LeaderboardEntriesText,"ranks":ranks,"photos":photos,"names":mames,"scores":scores,"uniqueIDs":uniqueIDs};return jsonPlayers}
+function LanguageRequest(){try{myGameInstance.SendMessage('YandexGame','SetLanguage',ysdk.environment.i18n.lang)}catch(e){}}function RequestingEnvironmentData(){try{let jsonEnvir={"language":ysdk.environment.i18n.lang,};myGameInstance.SendMessage('YandexGame','SetEnvironmentData',JSON.stringify(jsonEnvir))}catch(e){console.error('CRASH Requesting Environment Data: ',e.message)}}      
+function Review(){try{ysdk.feedback.canReview().then(({value,reason})=>{if(value){ysdk.feedback.requestReview().then(({feedbackSent})=>{console.log('feedbackSent ',feedbackSent);if(feedbackSent){myGameInstance.SendMessage('YandexGame','ReviewSent','true');console.log('Review left')}else{myGameInstance.SendMessage('YandexGame','ReviewSent','false');console.log('Review not left',reason)}window.focus()})}else{console.log('Review can show = false',reason);window.focus()}})}catch(e){console.error('CRASH Review: ',e.message);window.focus()}}   
+function PromptShow(){try{ysdk.shortcut.showPrompt().then(result=>{console.log('Shortcut created?:',result);if(result.outcome==='accepted'){console.log('Prompt Success');myGameInstance.SendMessage('YandexGame','OnPromptSuccess')}else{myGameInstance.SendMessage('YandexGame','OnPromptFail')}window.focus()})}catch(e){console.error('CRASH Prompt Show: ',e.message);window.focus()}}   
+function PaintRBT(rbt){try{document.getElementById(rbt).style.background='#ff0000'}catch(e){console.error('CRASH Paint RBT: ',e.message)}}function StaticRBTDeactivate(){}document.body.appendChild(script);
+</script><script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
 
-    <script>gadgets.util.runOnLoadHandlers();</script>
-    <script>
-        window.google.csi.tickDl();
-    </script>
-</body>
-</html>
+
+<script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
+</script></body></html>
