@@ -1,11 +1,8 @@
 
-
-
-<!DOCTYPE html>
-<html lang="en"><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
+<html><head><script>(function(){(function(){function e(g){this.t={};this.tick=function(h,m,f){var n=void 0!=f?f:(new Date).getTime();this.t[h]=[n,m];if(void 0==f)try{window.console.timeStamp("CSI/"+h)}catch(q){}};this.getStartTickTime=function(){return this.t.start[0]};this.tick("start",null,g)}var a;if(window.performance)var d=(a=window.performance.timing)&&a.responseStart;var p=0<d?new e(d):new e;window.jstiming={Timer:e,load:p};if(a){var b=a.navigationStart;0<b&&d>=b&&(window.jstiming.srt=d-b)}if(a){var c=window.jstiming.load;
 0<b&&d>=b&&(c.tick("_wtsrt",void 0,b),c.tick("wtsrt_","_wtsrt",d),c.tick("tbsd_","wtsrt_"))}try{var k=window.top!=window.self,l=window.location.href;a=null;window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),c&&0<b&&(c.tick("_tbnd",void 0,window.chrome.csi().startE),c.tick("tbnd_","_tbnd",b)));null==a&&window.gtbExternal&&(a=k?window.gtbExternal.frameT(l):window.gtbExternal.pageT());null==a&&window.external&&(k?a=window.external.frameT(l):(a=window.external.pageT,c&&0<b&&(c.tick("_tbnd",
 void 0,window.external.startE),c.tick("tbnd_","_tbnd",b))));a&&(window.jstiming.pt=a)}catch(g){}})();}).call(this);
-window["__csi"]={a:false,b:false,c:"default",v:"default",g:null,d:false};if(window.jstiming){window.jstiming.beaconImageReferences_={};window.jstiming.reportCounter_=1;var getTick=function(a,b,c){var d=a.t[b],e=a.t.start;if(d&&(e||c))return d=a.t[b][0],e=void 0!=c?c:e[0],a=d-e,Math.round(a)},getReportUri=function(a,b,c){var d="";window.jstiming.srt&&(d+="&srt="+window.jstiming.srt,delete window.jstiming.srt);window.jstiming.pt&&(d+="&tbsrt="+window.jstiming.pt,delete window.jstiming.pt);try{window.external&&window.external.tran?d+="&tran="+window.external.tran:window.gtbExternal&&
+window["__csi"]={a:false,b:false,c:"ig",v:"default",g:null,d:false};if(window.jstiming){window.jstiming.beaconImageReferences_={};window.jstiming.reportCounter_=1;var getTick=function(a,b,c){var d=a.t[b],e=a.t.start;if(d&&(e||c))return d=a.t[b][0],e=void 0!=c?c:e[0],a=d-e,Math.round(a)},getReportUri=function(a,b,c){var d="";window.jstiming.srt&&(d+="&srt="+window.jstiming.srt,delete window.jstiming.srt);window.jstiming.pt&&(d+="&tbsrt="+window.jstiming.pt,delete window.jstiming.pt);try{window.external&&window.external.tran?d+="&tran="+window.external.tran:window.gtbExternal&&
 window.gtbExternal.tran?d+="&tran="+window.gtbExternal.tran():window.chrome&&window.chrome.csi&&(d+="&tran="+window.chrome.csi().tran)}catch(m){}var e=window.chrome;if(e&&(e=e.loadTimes)&&"function"===typeof e&&(e=e())){e.wasFetchedViaSpdy&&(d+="&p=s");if(e.wasNpnNegotiated){d+="&npn=1";var f=e.npnNegotiatedProtocol;f&&(d+="&npnv="+(encodeURIComponent||escape)(f))}e.wasAlternateProtocolAvailable&&(d+="&apa=1")}var g=a.t,k=g.start;e=[];f=[];for(var l in g)if("start"!=l&&0!=l.indexOf("_")){var q=g[l][1];
 q?g[q]&&f.push(l+"."+getTick(a,l,g[q][0])):k&&e.push(l+"."+getTick(a,l))}delete g.start;if(b)for(var h in b)d+="&"+h+"="+b[h];(b=c)||(b="https:"==document.location.protocol?"https://csi.gstatic.com/csi":"http://csi.gstatic.com/csi");return a=[b,"?v=3","&s="+(window.jstiming.sn||"opensocial-gadgets")+"&action=",a.name,f.length?"&it="+f.join(","):"",d,"&rt=",e.join(",")].join("")},sendReport_=function(a,b,c){a=getReportUri(a,b,c);if(!a)return"";b=new Image;var d=window.jstiming.reportCounter_++;window.jstiming.beaconImageReferences_[d]=
 b;b.onload=b.onerror=function(){window.jstiming&&delete window.jstiming.beaconImageReferences_[d]};b.src=a;b=null;return a};window.jstiming.report=function(a,b,c){var d=document.visibilityState,e="visibilitychange";d||(d=document.webkitVisibilityState,e="webkitvisibilitychange");if("prerender"==d){var f=!1,g=function(){if(!f){b?b.prerender="1":b={prerender:"1"};if("prerender"==(document.visibilityState||document.webkitVisibilityState))var k=!1;else sendReport_(a,b,c),k=!0;k&&(f=!0,document.removeEventListener(e,
@@ -25,7 +22,7 @@ goog.isInEs6ModuleLoader_=function(){var a=!!goog.moduleLoaderState_&&goog.modul
 goog.declareModuleId=function(a){if(goog.moduleLoaderState_)goog.moduleLoaderState_.moduleName=a;else{var b=goog.LEGACY_NAMESPACE_OBJECT_.$jscomp;if(!b||"function"!=typeof b.getCurrentModulePath)throw Error('Module with namespace "'+a+'" has been loaded incorrectly.');b=b.require(b.getCurrentModulePath());goog.loadedModules_[a]={exports:b,type:goog.ModuleType.ES6,moduleId:a}}};
 goog.setTestOnly=function(a){if(goog.DISALLOW_TEST_ONLY_CODE)throw a=a||"",Error("Importing test-only code into non-debug environment"+(a?": "+a:"."));};goog.forwardDeclare=function(){};goog.getObjectByName=function(a,b){a=a.split(".");b=b||goog.global;for(var c=0;c<a.length;c++)if(b=b[a[c]],null==b)return null;return b};goog.addDependency=function(){};goog.ENABLE_DEBUG_LOADER=!1;goog.logToConsole_=function(a){goog.global.console&&goog.global.console.error(a)};goog.require=function(){};
 goog.requireType=function(){return{}};goog.basePath="";goog.abstractMethod=function(){throw Error("unimplemented abstract method");};goog.addSingletonGetter=function(a){a.instance_=void 0;a.getInstance=function(){if(a.instance_)return a.instance_;goog.DEBUG&&(goog.instantiatedSingletons_[goog.instantiatedSingletons_.length]=a);return a.instance_=new a}};goog.instantiatedSingletons_=[];goog.LOAD_MODULE_USING_EVAL=!0;goog.SEAL_MODULE_EXPORTS=goog.DEBUG;goog.loadedModules_={};
-goog.DEPENDENCIES_ENABLED=!1;goog.TRANSPILE="detect";goog.ASSUME_ES_MODULES_TRANSPILED=!1;goog.TRUSTED_TYPES_POLICY_NAME="goog";goog.hasBadLetScoping=null;
+goog.DEPENDENCIES_ENABLED=!1;goog.ASSUME_ES_MODULES_TRANSPILED=!1;goog.TRUSTED_TYPES_POLICY_NAME="goog";goog.hasBadLetScoping=null;
 goog.loadModule=function(a){var b=goog.moduleLoaderState_;try{goog.moduleLoaderState_={moduleName:"",declareLegacyNamespace:!1,type:goog.ModuleType.GOOG};var c={},d=c;if("function"===typeof a)d=a.call(void 0,d);else if("string"===typeof a)d=goog.loadModuleFromSource_.call(void 0,d,a);else throw Error("Invalid module definition");var e=goog.moduleLoaderState_.moduleName;if("string"===typeof e&&e){goog.moduleLoaderState_.declareLegacyNamespace?(a=c!==d,goog.constructNamespace_(e,d,a)):goog.SEAL_MODULE_EXPORTS&&
 Object.seal&&"object"==typeof d&&null!=d&&Object.seal(d);var f={exports:d,type:goog.ModuleType.GOOG,moduleId:goog.moduleLoaderState_.moduleName};goog.loadedModules_[e]=f}else throw Error('Invalid module name "'+e+'"');}finally{goog.moduleLoaderState_=b}};goog.loadModuleFromSource_=function(a,b){eval(goog.CLOSURE_EVAL_PREFILTER_.createScript(b));return a};
 goog.normalizePath_=function(a){a=a.split("/");for(var b=0;b<a.length;)"."==a[b]?a.splice(b,1):b&&".."==a[b]&&a[b-1]&&".."!=a[b-1]?a.splice(--b,2):b++;return a.join("/")};goog.loadFileSync_=function(a){if(goog.global.CLOSURE_LOAD_FILE_SYNC)return goog.global.CLOSURE_LOAD_FILE_SYNC(a);try{var b=new goog.global.XMLHttpRequest;b.open("get",a,!1);b.send();return 0==b.status||200==b.status?b.responseText:null}catch(c){return null}};
@@ -44,11 +41,12 @@ goog.createTrustedTypesPolicy=function(a){var b=null,c=goog.global.trustedTypes;
 google.csi=function(){function a(h){var m=g?g:document.location.href;return(h=m.match(new RegExp("[?&]"+h+"=([^&#]+)")))?h[1]:null}function b(h){window.jstiming.load.tick(h);f[h]=(new Date).getTime()}function c(){if(!l){var h=a("url")||"default",m=window.__csi||{},r=m.c||"default",v=m.v||"default",p=window.encodeURIComponent?encodeURIComponent:escape;p={gadget:p(h),container:p(r),view:p(v)};var t=window.__dflags||{},u=[];m.g&&u.push(m.g);if(m.d)for(var n in t)"control"!==t[n]&&(p[n]=t[n],"true"===
 t[n]&&u.push(n));p.e=u.join(",");n=k?k:document.location.protocol;n=e[n];window.jstiming.load.name=[r,"_",v].join("");window.jstiming.report(window.jstiming.load,p,n);(r=window.gadgets)&&r.rpc&&m.b&&(f.url=h,f.id=a("mid"),r.rpc.call(null,"time_iframe",void 0,f));l=!0}}function d(h){window.addEventListener?window.addEventListener("load",h,!1):window.attachEvent&&window.attachEvent("onload",h)}var e={"http:":"http://csi.gstatic.com/csi","https:":"https://gg.google.com/csi"},f={},g,k,l=!1,q=window.__csi||
 {};q.a?(d(function(){b("prt")}),window.onbeforeunload=function(){c()}):d(function(){b("ol");b("prt");c()});return{reset_:function(){l=!1},mockHref_:function(h){g=h},mockProtocol_:function(h){k=h},report_:c,tickPrtAndReport:function(){b("prt");c()},tickDl:function(){b("dl")}}}();
-</script><script>
+</script><script>__dflags={"RefererProxy":"control","DynamicHeightGadgetRewriter":"true","CacheErrorThrottleCountLimit":"control","AnalyticsGadgetRewriter":"true","StyleAdjacencyGadgetRewriter":"true","CsiSample":"true","UseETags":"false","StyleTagExtractorGadgetRewriter":"true","LogResources":"false","ContentDivGadgetRewriter":"false","TimeSecsSinceEpochEnvGadgetRewriter":"true","AdsUrlGadgetRewriter":"true","ErrorCodesToLog":"control","YtVideoUrlGadgetRewriter":"true","ProxyingGadgetRewriter":"true","UseCajaSerializer":"false","CorpDomainSuffixes":"control","DflagsJsDebugGadgetRewriter":"true","GadgetBlacklist":"control","MiniMessageGadgetRewriter":"true","EnableJsErrorTracking":"true","TrackResources":"false","ClickTrackGadgetRewriter":"false","InjectClientId":"true","DisableLoggingJs":"false","UseBrowserSpecificJson":"false","HtmlParser":"control","UseUrlGadgetWhitelist":"false","ResourceUsageJsDebugGadgetRewriter":"true","UrlTranslations":"control","EnableContextCache":"false","UseNoVarGlobals":"false","Monkeypatch":"control","ValidateTypeUrl":"true","UseJsPipelineForRendering":"false"};
+
 /* mp-start */
 window['___jsl']=window['___jsl']||{};
 /* mp-end */
-</script><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
+</script><style type="text/css">body,td,div,span,p{font-family:arial,sans-serif;}a {color:#0000cc;}a:visited {color:#551a8b;}a:active {color:#ff0000;}body{margin: 0px;padding: 0px;background-color:white;}</style><script>window['__isgadget']=true;</script><script>window['___jsl'] = window['___jsl'] || {};(window['___jsl']['ci'] = (window['___jsl']['ci'] || [])).push({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www-ig-opensocial.googleusercontent.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});var safeJSON=window.safeJSON;
 var tamings___=window.tamings___||[];
 var bridge___;
 var caja___=window.caja___;
@@ -772,380 +770,34 @@ default:i=l,f&&m(f,a,k,j,i)}else i=l,f&&m(f,a,k,j,i);b[g+1]=i}return b}function 
 typeof window&&window.document?window.document.createElement("textarea"):l,$=/\0/g,U=/&(#[0-9]+|#[xX][0-9A-Fa-f]+|\w+);/g,Y=/^(#[0-9]+|#[xX][0-9A-Fa-f]+|\w+);/,N=/&/g,W=/&([^a-z#]|#(?:[^0-9x]|x(?:[^0-9a-f]|$)|$)|$)/gi,F=/[<]/g,G=/>/g,V=/\"/g,Z=/^\s*([-.:\w]+)(?:\s*(=)\s*((")[^"]*("|$)|(')[^']*('|$)|(?=[a-z][-\w]*\s*=)|[^"'\s]*))?/i,X=3==="a,b".split(/(,)/).length,O=e.c.CDATA|e.c.RCDATA,t={},H={},aa=/^(?:https?|geo|mailto|sms|tel)$/i,o={};o.ka=o.escapeAttrib=v;o.la=o.escapePcdata=b;o.ma=o.makeHtmlSanitizer=
 a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.sanitize=function(a,b,c,e){return L(a,g(b,c,e))};o.sa=o.sanitizeAttribs=s;o.ta=o.sanitizeWithPolicy=L;o.ua=o.unescapeEntities=u;return o}(M),ba=Q.sanitize;"undefined"!==typeof window&&(window.html=Q,window.html_sanitize=ba);})();
 ;
-gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
-</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><style type="text/css">
-        /* Disable user selection to avoid strange bug in Chrome on Windows:
-  * Selecting a text outside the canvas, then clicking+draging would
-  * drag the selected text but block mouse down/up events to the engine.
-  */
-
-        body {
-            position: fixed;
-            /* Prevent overscroll */
-            margin: 0;
-            padding: 0;
-        }
-
-        .canvas-app-container {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .canvas-app-container:-webkit-full-screen {
-            /* Auto width and height in Safari/Chrome fullscreen. */
-            width: auto;
-            height: auto;
-        }
-
-        #canvas {
-            outline: none;
-            border: 0;
-            width: 100%;
-            vertical-align: bottom;
-        }
-
-        #canvas-container {
-            position: relative;
-        }
-
-        canvas:focus,
-        canvas:active {
-            outline: none;
-            border: 0;
-            ie-dummy: expression(this.hideFocus=true);
-            -moz-outline-style: none;
-        }
-
-        div {
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .banner-styleBottom {
-            margin: 0 auto;
-            position: fixed;
-            bottom: 0;
-            display: block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .banner-styleTop {
-            margin: 0 auto;
-            position: fixed;
-            top: 0;
-            display: block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .canvas-app-progress {
-            position: absolute;
-            background-color: #0A8A40;
-            height: 30px;
-            margin-top: -30px;
-            width: 100%;
-        }
-
-        .canvas-app-progress-bar {
-            font-size: 12px;
-            height: 30px;
-            color: rgb(255, 255, 255);
-            background-color: #FFE333;
-            text-align: center;
-            line-height: 20px;
-        }
-
-        .link,
-        .button {
-            font-family: sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: 0px;
-            padding-top: 12px;
-        }
-
-        .buttons-background {
-            background-color: #ffffff;
-            width: 100%;
-            height: 42px;
-        }
-
-        body {
-            background-color: #ffffff;
-        }
-
-        .canvas-app-container {
-            background: #00BB61;
-            /* background: -moz-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(250,252,255,1)), color-stop(50%, rgba(250,252,255,1)), color-stop(50%, rgba(245,249,255,1)), color-stop(100%, rgba(245,249,255,1)));
-    background: -webkit-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
-    background: -o-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
-    background: -ms-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
-    background: linear-gradient(135deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafcff', endColorstr='#f5f9ff', GradientType=1 ); */
-        }
-
-        .canvas-app-canvas {
-            background-repeat: no-repeat;
-            background-position: center;
-            background-position: top;
-            background-size: cover;
-            background-image: url("https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/bg_loading.png");
-        }
-    </style>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui, shrink-to-fit=no" name="viewport">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Monkey Mart</title>
+gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www-ig-opensocial.googleusercontent.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
+</script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><link href="https://cdn.jsdelivr.net/gh/bessiegasbarro/SDuel@0986e17255749a0cdbed64e6200a8ffd8aa492e8/style.css" rel="stylesheet" type="text/css">
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
 
 
+<script>
+/* mp-start */
 
-</head><body dir="ltr"><script src="https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/Jump_Gamemonetize3.js" type="text/javascript"></script><script>
-        var mpConfig = {
-            "game": "monkey-mart",
-            "partner": "miniplay"
-        };
-    </script>
-    <div class="canvas-app-container" id="app-container">
-        <div class="canvas-app-canvas-container" id="canvas-container">
-            <canvas class="canvas-app-canvas" height="640" id="canvas" tabindex="1" width="960"></canvas>
-        </div>
-        <div class="buttons-background">
-        </div>
-        <!-- center and anchor to bottom of page -->
-        <div id="progress-bar-root" style="position: absolute; bottom: 16%; left: 50%; visibility: hidden; z-index: 4;">
-            <!-- <div id="progress-bar-text"> -->
-            <img id="progress-bar-bg" src="https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/load_bar_bg.png">
-            <img id="progress-bar-fg" src="https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/load_bar_fg.png" style="position:absolute; clip: rect(0px,0px,0px,0px);">
-        </div>
-    </div>
-    <!-- -->
-    <!-- <div id="bannerTop" class="banner-styleTop"></div> -->
-    <!-- <div id="bannerBottom" class="banner-styleBottom"></div> -->
-    <!-- -->
-    <script id="engine-loader" src="https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/dmloader.js" type="text/javascript"></script>
-    <!-- -->
-    <script id="engine-setup" type="text/javascript">
-        var extra_params = {
-            archive_location_filter: function(path) {
-                return ("https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/archive" + path + "");
-            },
-            engine_arguments: ["--verify-graphics-calls=false", ],
-            custom_heap_size: 67108864,
-            full_screen_container: "#canvas-container",
-            disable_context_menu: true
-        }
-
-        Module['INITIAL_MEMORY'] = extra_params.custom_heap_size;
-
-        Module['onRuntimeInitialized'] = function() {
-            Module.runApp("canvas", extra_params);
-        };
-
-        Module["locateFile"] = function(path, scriptDirectory) {
-            // dmengine*.wasm is hardcoded in the built JS loader for WASM,
-            // we need to replace it here with the correct project name.
-            if (path =="dmengine.wasm" || path =="dmengine_release.wasm" || path =="dmengine_headless.wasm") {
-                path ="MonkeyMart.wasm";
-            }
-            return scriptDirectory + path;
-        };
-
-        var is_iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        var buttonHeight = 0;
-        var prevInnerWidth = -1;
-        var prevInnerHeight = -1;
-
-        function resize_game_canvas() {
-            // Hack for iOS when exit from Fullscreen mode
-            if (is_iOS) {
-                window.scrollTo(0, 0);
-            }
-
-            var app_container = document.getElementById('app-container');
-            var game_canvas = document.getElementById('canvas');
-            var progress_bar_root = document.getElementById('progress-bar-root');
-            var progress_bar_fg = document.getElementById('progress-bar-fg');
-            var progress_bar_bg = document.getElementById('progress-bar-bg');
-            var innerWidth = window.innerWidth;
-            var innerHeight = window.innerHeight - buttonHeight;
-            if (prevInnerWidth == innerWidth && prevInnerHeight == innerHeight) {
-                return;
-            }
-            prevInnerWidth = innerWidth;
-            prevInnerHeight = innerHeight;
-            var width = 960;
-            var height = 640;
-            var targetRatio = width / height;
-            var actualRatio = innerWidth / innerHeight;
-
-
-            //Stretch
-            width = innerWidth;
-            height = innerHeight;
-
-
-
-            app_container.style.width = width + "px";
-            app_container.style.height = height + buttonHeight + "px";
-            game_canvas.width = width;
-            game_canvas.height = height;
-
-            // progress bar
-            var bar_h = width < height ? width : height;
-            progress_bar_bg.width = Math.min(Math.ceil(bar_h * 0.06 * 300 / 24), width * 0.8);
-
-            progress_bar_bg.style.marginLeft = -progress_bar_bg.width / 2 + "px";
-            progress_bar_fg.width = Math.ceil(progress_bar_bg.width * 1);
-
-            progress_bar_fg.style.marginTop = (progress_bar_bg.width * 0) * (0) / 2 + "px";
-            progress_bar_fg.style.marginLeft = -progress_bar_bg.width / 2 - progress_bar_fg.width / 2 + "px";
-
-            // progress_bar_text.style.fontSize = Math.ceil(bar_h * 0.10) + "px";
-            progress_bar_root.style.bottom = Math.ceil(height * 0.08 + buttonHeight) + "px";
-        }
-        resize_game_canvas();
-        window.addEventListener('resize', resize_game_canvas, false);
-        window.addEventListener('orientationchange', resize_game_canvas, false);
-        // window.addEventListener('wheel', e => e.preventDefault(), { passive: false });
-        window.addEventListener("keydown", function(e) {
-            if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-                e.preventDefault();
-            }
-        }, false);
-        window.addEventListener('focus', resize_game_canvas, false);
-
-        // HashSHA1 implementation
-        ! function() {
-            var r = function(r) {
-                    for (var n = "", t = 7; t >= 0; t--) n +="0123456789abcdef".charAt(r >> 4 * t & 15);
-                    return n
-                },
-                n = function(r, n) {
-                    var t = (65535 & r) + (65535 & n);
-                    return (r >> 16) + (n >> 16) + (t >> 16) << 16 | 65535 & t
-                },
-                e = function(r, n) {
-                    return r << n | r >>> 32 - n
-                },
-                o = function(r, n, t, e) {
-                    return r < 20 ? n & t | ~n & e : r < 40 ? n ^ t ^ e : r < 60 ? n & t | n & e | t & e : n ^ t ^ e
-                },
-                u = function(r) {
-                    return r < 20 ? 1518500249 : r < 40 ? 1859775393 : r < 60 ? -1894007588 : -899497514
-                };
-            window._HashSHA1 = function(f) {
-                for (var a = function(r) {
-                        for (var n = 1 + (r.length + 8 >> 6), t = new Array(16 * n), e = 0; e < 16 * n; e++) t[e] = 0;
-                        for (e = 0; e < r.length; e++) t[e >> 2] |= r.charCodeAt(e) << 24 - e % 4 * 8;
-                        return t[e >> 2] |= 128 << 24 - e % 4 * 8, t[16 * n - 1] = 8 * r.length, t
-                    }(f), c = new Array(80), i = 1732584193, h = -271733879, v = -1732584194, A = 271733878, g = -1009589776, l = 0; l < a.length; l += 16) {
-                    for (var w = i, d = h, y = v, H = A, b = g, s = 0; s < 80; s++) c[s] = s < 16 ? a[l + s] : e(c[s - 3] ^ c[s - 8] ^ c[s - 14] ^ c[s - 16], 1), t = n(n(e(i, 5), o(s, h, v, A)), n(n(g, c[s]), u(s))), g = A, A = v, v = e(h, 30), h = i, i = t;
-                    i = n(i, w), h = n(h, d), v = n(v, y), A = n(A, H), g = n(g, b)
-                }
-                return r(i) + r(h) + r(v) + r(A) + r(g)
-            }
-        }();
-
-        // Delete all LiveUpdate files stored in IDBFS
-        var old_preloadAndCallMain = Module._preloadAndCallMain;
-        Module._preloadAndCallMain = function() {
-            var dir = DMSYS.GetUserPersistentDataRoot();
-            var resDir = _HashSHA1("MonkeyMart");
-            try {
-                FS.unlink(dir + "/." + resDir + "/liveupdate.arcd");
-            } catch (e) {}
-            try {
-                FS.unlink(dir + "/." + resDir + "/liveupdate.arci");
-            } catch (e) {}
-            try {
-                FS.unlink(dir + "/." + resDir + "/liveupdate.arci.tmp");
-            } catch (e) {}
-            old_preloadAndCallMain();
-
-            if (Module._archiveLoaded) {
-                // 
-            }
-        };
-    </script>
-    <script id="engine-start" type="text/javascript">
-        var currentPercentage = 0
-
-        Progress.updateProgress = function(percentage) {
-            Progress.notifyListeners(percentage);
-            if (currentPercentage > percentage) {
-                percentage = currentPercentage
-            }
-            currentPercentage = percentage
-            // var progress_bar_text = document.getElementById('progress-bar-text');
-            // progress_bar_text.innerHTML  ="<b>" +  Math.ceil(percentage) + "%</b>";
-
-            var fg = document.getElementById('progress-bar-fg');
-            fg.style.clip ="rect(0px," + fg.width * percentage / 100 + "px," + fg.height + "px," + "0px)"
-
-            if (isNaN(percentage)) {
-                var progress_bar_root = document.getElementById('progress-bar-root');
-                progress_bar_root.style.visibility ="hidden";
-            }
-        };
-        Progress.addProgress = function() {
-            var progress_bar_root = document.getElementById('progress-bar-root');
-            progress_bar_root.style.visibility ="visible"
-        }
-        Progress.removeProgress = function() {
-            var progress_bar_root = document.getElementById('progress-bar-root');
-            progress_bar_root.style.visibility ="hidden";
-            // Remove any background/splash image that was set in runApp().
-            // Workaround for Safari bug DEF-3061.
-            Module.canvas.style.background = "";
-        }
-
-        EngineLoader.stream_wasm ="false" ==="true";
-        EngineLoader.load("canvas", "https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/MonkeyMart");
-    </script>
-    <script type="text/javascript">
-        function poki_showBanner(vBanner) {}
-
-        function poki_showBigBanner(vBanner) {}
-
-        function poki_hideBanner(vBanner) {}
-
-        function poki_check() {
-
-        }
-    </script>
-    <script id="poki-sdk-setup" type="text/javascript">
-        var data = {};
-        var isLoadFinished = false;
-        Progress.addListener(function(percentage) {
-            data.percentageDone = percentage / 100;
-            if (!isLoadFinished)
-                if (percentage == 100 && !isLoadFinished) {
-                    isLoadFinished = true;
-                }
-        });
-        Module['onRuntimeInitialized'] = function() {
-            Module.runApp("canvas", extra_params);
-        };
-        JumpGame.startup("ugi7ftbv2kgodcq7vful9u9v34wein5z");
-    </script>
-    <script src="https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/GameAnalytics.js" type="text/javascript"></script>
-  <script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
+var _params = gadgets.util.getUrlParameters();
+if (_params['exp_rpc_js'] != 1) {
+  var url = _params['parent'] + '/ig/ifpc_relay';
+  gadgets.rpc.setRelayUrl('..', url, true);
+}
+/* mp-end */
+</script></head><body dir="ltr">
+<div id="fb-root"></div>
+ <script src="https://cdn.jsdelivr.net/gh/bessiegasbarro/SDuel@0986e17255749a0cdbed64e6200a8ffd8aa492e8/box2d.wasm.js"></script>
+ <noscript>
+  <div id="notSupportedWrap">
+   <h2 id="notSupportedTitle">This content requires JavaScript</h2>
+   <p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
+  </div>
+ </noscript>
+ <script src="https://cdn.jsdelivr.net/gh/bessiegasbarro/SDuel@0986e17255749a0cdbed64e6200a8ffd8aa492e8/scripts/supportcheck.js"></script>
+ <script src="https://cdn.jsdelivr.net/gh/bessiegasbarro/SDuel@0986e17255749a0cdbed64e6200a8ffd8aa492e8/scripts/offlineclient.js"></script>
+ <script src="https://cdn.jsdelivr.net/gh/bessiegasbarro/SDuel@0986e17255749a0cdbed64e6200a8ffd8aa492e8/scripts/main.js"></script>
+ <script src="https://cdn.jsdelivr.net/gh/bessiegasbarro/SDuel@0986e17255749a0cdbed64e6200a8ffd8aa492e8/scripts/register-sw.js"></script>
 
 
 <script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
