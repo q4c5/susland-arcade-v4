@@ -20897,7 +20897,7 @@
     function V(t) {
         if (!W) {
             if (navigator.userAgent.toLowerCase().indexOf("chrome") > -1) {
-                var e = ["\n %c %c %c PixiJS " + Y + " - ✰ " + t + " ✰  %c  %c  http://www.pixijs.com/  %c %c ♥%c♥%c♥ \n\n", "background: #ff66a5; padding:5px 0;", "background: #ff66a5; padding:5px 0;", "color: #ff66a5; background: #030307; padding:5px 0;", "background: #ff66a5; padding:5px 0;", "background: #ffc3dc; padding:5px 0;", "background: #ff66a5; padding:5px 0;", "color: #ff2424; background: #fff; padding:5px 0;", "color: #ff2424; background: #fff; padding:5px 0;", "color: #ff2424; background: #fff; padding:5px 0;"];
+                var e = ["\n %c %c %c PixiJS " + Y + " - âœ° " + t + " âœ°  %c  %c  http://www.pixijs.com/  %c %c â™¥%câ™¥%câ™¥ \n\n", "background: #ff66a5; padding:5px 0;", "background: #ff66a5; padding:5px 0;", "color: #ff66a5; background: #030307; padding:5px 0;", "background: #ff66a5; padding:5px 0;", "background: #ffc3dc; padding:5px 0;", "background: #ff66a5; padding:5px 0;", "color: #ff2424; background: #fff; padding:5px 0;", "color: #ff2424; background: #fff; padding:5px 0;", "color: #ff2424; background: #fff; padding:5px 0;"];
                 window.console.log.apply(console, e)
             } else window.console && window.console.log("PixiJS " + Y + " - " + t + " - http://www.pixijs.com/");
             W = !0
@@ -25877,7 +25877,7 @@
         void 0 === t && (t = ""), t ? delete hi._fonts[t] : hi._fonts = {}
     };
     var ci = document.createElement("canvas");
-    ci.width = ci.height = 10, hi._canvas = ci, hi._context = ci.getContext("2d"), hi._fonts = {}, hi.METRICS_STRING = "|ÉqÅ", hi.BASELINE_SYMBOL = "M", hi.BASELINE_MULTIPLIER = 1.4, hi._newlines = [10, 13], hi._breakingSpaces = [9, 32, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8200, 8201, 8202, 8287, 12288];
+    ci.width = ci.height = 10, hi._canvas = ci, hi._context = ci.getContext("2d"), hi._fonts = {}, hi.METRICS_STRING = "|Ã‰qÃ…", hi.BASELINE_SYMBOL = "M", hi.BASELINE_MULTIPLIER = 1.4, hi._newlines = [10, 13], hi._breakingSpaces = [9, 32, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8200, 8201, 8202, 8287, 12288];
     var ui = {
             texture: !0,
             children: !1,
