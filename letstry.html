@@ -1,0 +1,1488 @@
+
+ <style>
+
+.star-rating2 {
+    display: inline-flex; /* Use inline-flex to align items properly */
+    align-items: center; /* Vertically align items */
+    font-size: 0; /* Prevents spacing between inline-block elements */
+    padding: 0;
+    margin: 0;
+}
+
+.star-rating2 .star,
+.star-rating2 .empty-star2,
+.star-rating2 .half-star2 {
+    font-size: 20px; /* Reduced by 25% from 24px */
+    color: #FFD700; /* Gold color for full stars */
+    display: inline-block;
+    width: 20px; /* Reduced by 25% from 24px */
+    height: 20px; /* Reduced by 25% from 24px */
+    text-align: center;
+    line-height: 20px; /* Reduced by 25% from 24px */
+    padding: 0;
+    margin: 0;
+}
+
+.star-rating2 .empty-star2 {
+    color: #DDDDDD; /* Grey color for empty stars */
+}
+
+.star-rating2 .half-star2 {
+    position: relative;
+    color: #FFD700; /* Gold color for the visible part of the half star */
+}
+
+.star-rating2 .half-star2::before {
+    content: '\2605'; /* Full star character */
+    position: absolute;
+    left: 0;
+    width: 50%; /* Show only half of the star */
+    overflow: hidden;
+    color: #FFD700; /* Gold color for the visible part */
+}
+
+.star-rating2 .half-star2::after {
+    content: '\2605'; /* Full star character */
+    color: #DDDDDD; /* Grey color for the invisible part */
+}
+
+.star-rating2 .plays {
+    font-size: 10.7px; /* Reduced by 25% from 16px */
+    color: #555555; /* Grey color for the plays text */
+    margin-left: 0px; /* Space between stars and plays text */
+    font-family: "Arial Narrow", Arial, sans-serif;
+}
+
+
+</style>
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+   
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5NRL58YXWM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5NRL58YXWM');
+</script>
+
+<!-- adinplay -->
+	<script>
+
+
+	window.aiptag = window.aiptag || {cmd: []};
+	aiptag.cmd.player = aiptag.cmd.player || [];
+	//CMP tool settings
+	aiptag.cmp = {
+		show: true,
+		position: "centered",  //centered, bottom
+		button: true,
+		buttonText: "Privacy settings",
+		buttonPosition: "bottom-left" //bottom-left, bottom-right, top-left, top-right
+	}
+	aiptag.cmd.player.push(function() {
+		aiptag.adplayer = new aipPlayer({
+                        AD_WIDTH: 975,
+			AD_HEIGHT: 650,
+			AD_DISPLAY: 'default', //default, fullscreen, fill, center, modal-center
+			LOADING_TEXT: 'loading advertisement',
+			PREROLL_ELEM: function(){return document.getElementById('videoad')},
+			AIP_COMPLETE: function (state)  {
+				/*******************
+				 ***** WARNING *****
+				 *******************
+				 Please do not remove the PREROLL_ELEM
+				 from the page, it will be hidden automaticly.
+				*/
+
+
+				 document.getElementById('videoad').style.display = 'none';
+
+  //  alert("Video Ad Completed: " + state);
+
+
+				// Send video completion event to GA4
+    gtag('event', 'video_complete', {
+        'event_category': 'Video Ad',
+        'event_label': 'Ad Complete',
+        'value': 1 // Optional: Assign a value to this event if relevant
+    });
+
+
+			}
+		});
+
+			});
+
+		function show_videoad() {
+	//	alert('show video ad');
+		  document.getElementById('videoad').style.display = 'block';
+		//check if the adslib is loaded correctly or blocked by adblockers etc.
+		if (typeof aiptag.adplayer !== 'undefined') {
+			aiptag.cmd.player.push(function() { aiptag.adplayer.startVideoAd();
+                        // Send video start event to GA4
+            gtag('event', 'video_start', {
+                'event_category': 'Video Ad',
+                'event_label': 'Ad Start',
+            });
+
+                         });
+		} else {
+			//Adlib didnt load this could be due to an adblocker, timeout etc.
+			//Please add your script here that starts the content, this usually is the same script as added in AIP_COMPLETE.
+		//	alert("Ad Could not be loaded, load your content here");
+			aiptag.adplayer.aipConfig.AIP_COMPLETE();
+			
+			gtag('event', 'ad_load_failure', {
+            'event_category': 'Video Ad',
+            'event_label': 'Ad Load Failure',
+        });
+
+		}
+	}
+		</script>
+	<script async src="//api.adinplay.com/libs/aiptag/pub/KZS/kidzsearch.com/tag.min.js"></script>
+
+
+
+    <style>
+        #iframeContainer {
+            position: relative;
+            width: 975px; /* Width of the iframe */
+            height: 650px; /* Height of the iframe */
+            min-height: 600px;
+        }
+
+#playButtonOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around; /* Adjust the space between elements */
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+  
+  
+  #playButtonContainer {
+    /* Ensure sufficient space around the play button */
+    margin: 0 auto; /* Center the play button container */
+    padding: 20px; /* Add more padding if necessary */
+    min-width: 300px; /* Minimum width to ensure space around the play button */
+    max-width: 300px; /* Maximum width to maintain layout consistency */
+    text-align: center;
+    /* Additional styling */
+}
+   
+.adContainer {
+    min-width: 160px!important; /* Minimum width of the ad */
+    max-width: 160px!important; /* Maximum width of the ad */
+    min-height: 600px!important; /* Minimum height of the ad */
+    max-height: 600px!important; /* Maximum height of the ad */
+
+
+    z-index: 2;
+    position: relative!important;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 160px; /* Width of your AdSense ad */
+    height: 600px; /* Height of your AdSense ad, assuming a skyscraper format */
+    /* Additional styling as needed */
+}
+
+#leftAdContainer {
+    left: 10; /* Align to the left side */
+}
+
+#rightAdContainer {
+    right: 10; /* Align to the right side */
+}  
+
+
+    .playButton {
+    width: 60px;
+    height: 40px;
+    background-color: black;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 25px; /* Makes it circular */
+    cursor: pointer;
+    font-size: 40pt;
+    font-weight: bold;
+    font-color:#fff;
+    border: 2px solid #fff;
+    transition: box-shadow 0.3s;
+
+}
+
+.playButton:hover {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7); /* Glowing effect */
+}
+    
+    #videoad {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 975px!important;
+    height: 650px!important;
+    display: none; /* Initially hidden */
+}
+
+
+.gameButton {
+      z-index: 2;
+    position: relative; /* Ensure it's clickable */
+    width: 350px; /* Adjust as needed */
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #000; /* Optional border */
+    padding: 10px;
+    margin-top:-60px;
+    background-color: #fff; /* Background color */
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+.gameButton:hover {
+    background-color: #e6e6e6; /* More distinct background color on hover */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Larger shadow for a more pronounced effect */
+    transform: scale(1.05); /* Slightly scale up the button */
+}
+
+
+.gameImage img {
+    width: 100%; /* Make image fill the container */
+    height: auto;
+}
+
+.gameName {
+    margin-top: 10px;
+    font-size: 18px; /* Adjust font size as needed */
+    color: #000; /* Text color */
+}
+
+.playButton {
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    margin: 10px auto; /* Centers the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px; /* Circular shape */
+    font-size: 20px;
+    border: 2px solid #fff;
+    transition: box-shadow 0.3s;
+}
+
+.playButton:hover {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7); /* Glow effect */
+}
+
+
+    </style>
+<!-- adinplay end -->
+
+
+
+
+
+
+<script>
+function lightsoff() {
+
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+
+   <script language="javascript">
+
+        function goFullscreen() {
+            // Must be called as a result of user interaction to work
+            mf = document.getElementById("main_frame");
+          //  mf.webkitRequestFullscreen();
+            
+
+ if (mf.requestFullscreen) {
+    mf.requestFullscreen();
+  } else if (mf.webkitRequestFullscreen) { /* Safari */
+    mf.webkitRequestFullscreen();
+  } else if (mf.msRequestFullscreen) { /* IE11 */
+    mf.msRequestFullscreen();
+  }
+
+
+            mf.style.display="";
+        }
+        function fullscreenChanged() {
+            if (document.webkitFullscreenElement == null) {
+                mf = document.getElementById("main_frame");
+               // mf.style.display="none";
+               // var x = document.getElementById("main_frame");
+                //  x.pause();
+            }
+        }
+        document.onwebkitfullscreenchange = fullscreenChanged;
+       // document.documentElement.onclick = goFullscreen;
+       // document.onkeydown = goFullscreen;
+    </script>
+
+
+
+
+
+
+
+ <script>
+// var loc = window.location.href+'';
+//if (loc.indexOf('https://')==0){
+  //  window.location.href = loc.replace('https://','http://');
+//}
+</script>
+
+
+<meta charset="UTF-8">
+
+
+<script src="https://games.kidzsearch.com/computer/rating/rating/jquery.min.js" type="text/javascript"></script>
+ <script src="https://games.kidzsearch.com/computer/rating/rating/starrating.js" type="text/javascript"></script>
+ <link href="https://games.kidzsearch.com/computer/rating/rating/starrating.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<link type="text/css" href="https://games.kidzsearch.com/computer/1.10.3-smoothness-jquery-ui.css" rel="Stylesheet" />
+
+
+
+<link rel="canonical" href="https://games.kidzsearch.com/computer/title/airplane-fly-3d-flight-plane-ks120414-179649" /><br><meta name="robots" content="index,follow" />
+<meta itemprop="operatingSystem" content="Any, Web / Browser" />
+<meta itemprop="gamePlatform" content="Web, Browser" />
+<meta itemprop="applicationCategory" content="Product" />
+
+<meta property="fb:admins" content="{686792238045619}"/>
+<title>Play Airplane Fly 3D Flight Plane | Free Online Games | KidzSearch.com</title>
+<meta name="description" content="Use S for take off and W for landingUse A for left turn and D for right turnUse F for ThrottleUse space for Throttle down Best Free Games presentingUnleash..." />
+<meta name="thumbnail" content="https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fly-3d-flight-plane-ks120414-179649-img.png" />
+
+
+
+<!--
+  <PageMap>
+    <DataObject type="thumbnail">
+      <Attribute name="src" value="https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fly-3d-flight-plane-ks120414-179649-img.png"/>
+    </DataObject>
+  </PageMap>
+-->
+
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="content-language" content="en" />
+<meta name="rating" content="General">
+<meta name="author" content="KidzSearch.com">
+<meta name="publisher" content="KidzSearch.com">
+<meta name="copyright" content="KidzSearch.com">
+<meta name="audience" content="All">
+
+<meta property="og:title" content="Play Airplane Fly 3D Flight Plane | Free Online  Games. KidzSearch.com"/>
+<meta property="og:site_name" content="KidzSearch"/>
+<meta property="og:image" content="https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fly-3d-flight-plane-ks120414-179649-img.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://games.kidzsearch.com/computer/title/airplane-fly-3d-flight-plane-ks120414-179649/"/>
+<meta property="og:description" content="Airplane Fly 3D Flight Plane. Use S for take off and W for landingUse A for left turn and D for right turnUse F for ThrottleUse space for Throttle down Best Free Games presentingUnleash..."/>
+<meta property="fb:admins" content="100001445485796"/>
+<meta property="fb:app_id" content="414159689247303" />
+
+<meta http-equiv="pics-label" content='(pics-1.1 "http://www.icra.org/ratingsv02.html" l gen true for "http://www.KidzSearch.com" r (nz 1 vz 1 lz 1 oz 1 cz 1))'>
+
+
+<style>
+
+
+  .gamehistorylink
+  {
+  text-decoration: none;
+  color:#3B65A7;
+  font-size:14pt;
+  }
+  
+    .gamehistorylink:hover
+  {
+  text-decoration: underline;
+  color:#3B65A7;
+  font-size:14pt;
+  }
+
+@media only screen and (min-width: 1400px) {
+.Xkzcontainer {
+   height: 100vh;
+    position: relative;
+}
+
+.Xkzvertical-center {
+   display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -webkit-box-align: center;
+       -ms-flex-align: center;
+          align-items: center;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+     justify-content: center;
+}
+
+}
+
+
+
+@media only screen and (min-width: 1400px) {
+.kzcontainer {
+ position: relative;
+}
+
+.kzvertical-center {
+  width: 100px;
+  padding: 20px;
+
+  position: absolute;
+  left: 20%;
+
+  margin: -70px 0 0 -170px;
+}
+
+}
+
+</style>
+
+
+
+<style type="text/css">
+
+ .dark-mode {
+  background-color: black;
+}
+
+#main_frame:-webkit-full-screen	{ width: 100vw!important; height: 100vh!important;}
+#main_frame:-moz-full-screen		{ width: 100vw!important; height: 100vh!important; }
+#main_frame:-ms-full-screen		{ width: 100vw!important; height: 100vh!important; }
+#main_frame:-o-full-screen		{ width: 100vw!important; height: 100vh!important; }
+#main_frame:full-screen			{ width: 100vw!important; height: 100vh!important; }
+
+#auto {
+    position: relative;
+    z-index: 10000;
+}
+
+#auto2 {
+    position: relative;
+    z-index: 10000;
+}
+
+.ui-autocomplete {
+     z-index: 9999 !important;
+}
+
+
+a.morelink {
+	text-decoration:none;
+	outline: none;
+}
+.morecontent span {
+	display: none;
+}
+.comment {
+	width: 600px;
+	margin: 10px;
+}
+
+
+
+
+
+
+
+ a:hover {
+  cursor:pointer;
+ }
+
+
+
+::-webkit-input-placeholder {
+  font-size: 13px;
+}
+::-moz-placeholder {
+  font-size: 13px;
+}
+:-ms-input-placeholder {
+  font-size: 13px;
+}
+::placeholder {
+  font-size: 13px;
+}
+
+
+
+
+.web-only {display: block;}
+.mobile-only {display: none;}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+        .web-only {display: none;}
+        .mobile-only {display: block;}
+    }
+
+
+        #auto{
+            border-top:thin solid  #4285F4;
+            border-right:thin solid #4285F4;
+            border-bottom:thin solid  #4285F4;
+            border-left:thin solid  #4285F4;
+              z-index: 1000000;
+-webkit-border-top-left-radius: 10px;
+-webkit-border-bottom-left-radius: 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-bottomleft: 10px;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+
+-webkit-border-top-right-radius: 10px;
+-webkit-border-bottom-right-radius: 10px;
+-moz-border-radius-topright: 10px;
+-moz-border-radius-bottomright: 10px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+
+margin-top: 4px!important;
+
+
+
+        }
+
+
+ .smenu {font-size:14px}
+
+ .mainbody {
+  /* max-width: 1080px; */
+  margin: 0 auto !important;
+  float: none !important;
+  }
+
+ #bookmark-this {
+  padding: 6px 10px 4px 10px;
+  vertical-align: text-top;
+  font-size: 12px;
+  background: #3b5998;
+  color: #fff;
+  border: 1px solid #3b5998;
+  border-radius: 4px;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+
+#bookmark-this:hover {
+  background: #ec971f;
+  border: 1px solid #d58512;
+  text-decoration: none;
+}
+
+#bookmark-this:active {
+  border: 1px solid #d58512;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+  background: #ec971f;
+}
+
+
+.featuredthumb
+{
+max-height: 250px!important;
+max-width: 300px!important;
+min-width: 250px!important;
+padding-right:5px!important;
+padding-bottom:5px!important;
+
+}
+
+
+
+
+.devicewarn {font: 25pt Arial; color:red;}
+
+.devicewarn2 {font: 22pt Arial; }
+
+.adshow {font: normal 10pt Arial; text-decoration: none; color: #a9a9a9;}
+
+
+.compat {font: normal 27pt Arial; text-decoration: none; color: #000;}
+
+
+
+ .poptitle {font: 9pt Arial; text-decoration: bold; none; color:green;}
+ .hottitle {font: 9pt Arial; text-decoration: bold; none; color:red;}
+ .flash {font: 9pt Arial; text-decoration: bold; none; color:black;}
+
+
+ .titlebar {font: 10.5pt Arial; text-decoration: none; color:#3B65A7;}
+ .titlebar:hover {font: 10.5pt Arial; text-decoration: underline; color:#3B65A7;}
+
+ .titlebar2 {font: 12pt Arial; text-decoration: none; color:#3B65A7;}
+ .titlebar2:hover {font: 12pt Arial; text-decoration: underline;  color:#3B65A7;}
+
+ .viewmore {font: 32pt Arial; text-decoration: none; color:#3B65A7;}
+ .viewmore:hover {font: 32pt Arial; text-decoration: underline; color:#3B65A7; }
+
+ .categoryclass {font: 10pt Arial; color: #black;}
+ .smalltxt {font: 8pt Arial; text-decoration: none; color: #black;}
+ .smalltxt2 {font: 10.5pt Arial; text-decoration: none; color: #black;}
+ .smalltxt3 {font: 10pt Arial Narrow!important; text-decoration: none!important; color:navy!important;}
+
+ .game2 {font: 16pt Arial; color: #800000;}
+ .categoryclass {font: 10pt Arial; color: #black;}
+ .likeit {font: 8pt Arial; color: #777777;}
+ .rating {font: 10pt Arial; color: #777777;}
+ .gamesearchbox {font: 16pt; color=#000000; }
+ .gamesearchbutton {font: 16pt; #000000;}
+ 
+ .smalltextpromo {
+  text-decoration: none;
+  font: 11pt Arial;
+  color: #324FE1;
+}
+
+.smalltextpromo:hover {
+  text-decoration: underline;
+  font: 11pt Arial;
+  color: #3B65A7;
+}
+
+
+
+
+ .smalltextpromo3 {
+  text-decoration: none;
+      padding: 3px;
+  font: 10pt Arial;
+  color: #3B65A7;
+}
+
+.smalltextpromo3:hover {
+  text-decoration: underline;
+      padding: 3px;
+  font: 10pt Arial;
+  color: #3B65A7;
+}
+
+
+
+ html, body {
+    margin: 0;
+    padding: 0;
+}
+
+  h1 {font: 15pt Arial, sans-serif; text-decoration: none; color: #800000;  display: inline; }
+
+
+
+ 
+ 
+
+
+</style>
+
+
+
+
+
+<script>
+function darkmode() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+
+
+</head>
+
+<body>
+<div class="kzcontainer">
+  <div class="kzvertical-center">
+
+
+
+<div class='mainbody'>
+
+
+<style type="text/css">
+
+
+
+ #navbar ul {
+        margin: 0;
+        padding: 5px;
+        list-style-type: none;
+        text-align: left;
+        font-size: 12pt;
+        /* background-color: #fff;  */
+        }
+
+#navbar ul li {
+        display: inline;
+        }
+
+#navbar ul li a {
+        font-family: verdana;
+        text-decoration: none;
+    font-size: 13.5px;
+    font-weight: bold;
+        padding: .1em .6em;
+        color: #3b5998;
+        /*  background-color: #fff;  */
+        }
+
+#navbar ul li a:hover {
+    font-size: 13.5px;
+    font-weight: bold;
+        color: #3b5998;
+        text-decoration: underline;
+         /* background-color: #fff; */
+
+        }
+
+.li { white-space: nowrap; }
+
+
+
+</style>
+
+
+
+<div id="navbar">
+<table width='100%' style="border-collapse: collapse;">
+<tr><td nowrap style="padding:0; margin:0;">
+  <ul>
+		                 <li><a target='_top' href="https://www.kidzsearch.com/">HOME</a></li>
+
+                                 <li><a  target="_top" href="https://net.kidzsearch.com">KIDZNET</a> </li>
+
+
+ 				<li><a  target="_top" href="https://www.kidzsearch.com/questions">KIDZTALK</a> </li>
+
+				<li><a  target="_top" href="https://www.kidzsearch.com/kidztube">KIDZTUBE</a></li>
+
+				<li><a  target="_top" href="https://www.kidzsearch.com/images.html">PICS</a></li>
+
+				<li><a  target="_top" href="https://games.kidzsearch.com/computer/">GAMES</a></li>
+
+
+				<li><a  target="_top"  href="https://www.kidzsearch.com/sites.html">SITES</a></li>
+
+
+
+
+
+				<li><a  target="_top" href="https://www.kidzsearch.com/facts.html">FACTS</a></li>
+
+				<li><a  target="_top" href="https://wiki.kidzsearch.com/wiki">WIKI</a></li>
+
+				<li><a  target="_top" href="https://www.kidzsearch.com/news">NEWS</a></li>
+
+
+
+
+				<li><a target="_top" href="http://www.kidzsearch.com/radio.html">MUSIC</a></li>
+				<li><a   target="_top" href="https://www.kidzsearch.com/boolify/">BOOLIFY</a></li>
+                  		<li><a   target="_top" href="https://www.kidzsearch.com/mobile/kidzsearchapp.html?ref=happs">APPS</a></li>				<li><a   target='_top' href="https://www.kidzsearch.com/ksthm.html">SETTINGS</a></li>
+				  </ul>
+
+
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<br>
+
+
+
+
+	<script type="text/javascript">
+
+
+
+		$(document).ready(function()
+		{
+
+
+$("#infoToggler img").click(function() {
+   $("#infoToggler img").toggle();
+});
+
+
+ $('#auto').autocomplete(
+			{
+				source: "https://games.kidzsearch.com/computer/gameac.php",				minLength: 1,
+				select: function(event, ui) {
+        $("#auto").val(ui.item.label);
+        $("#cse-search-box").submit(); }
+
+			});
+			
+			
+ $('#auto2').autocomplete(
+			{
+				source: "https://games.kidzsearch.com/computer/gameac.php",				minLength: 1,
+				select: function(event, ui) {
+        $("#auto").val(ui.item.label);
+        $("#cse-search-box2").submit(); }
+
+			});
+
+
+
+jQuery(function($) {
+  $('#bookmark-this').click(function(e) {
+    var bookmarkURL = 'https://www.kidzsearch.com';
+    var bookmarkTitle = 'KidzSearch';
+
+    if ('addToHomescreen' in window && addToHomescreen.isCompatible) {
+      // Mobile browsers
+      addToHomescreen({ autostart: false, startDelay: 0 }).show(true);
+    } else if (window.sidebar && window.sidebar.addPanel) {
+      // Firefox version < 23
+      window.sidebar.addPanel(bookmarkTitle, bookmarkURL, '');
+    } else if ((window.sidebar && /Firefox/i.test(navigator.userAgent)) || (window.opera && window.print)) {
+      // Firefox 23+ and Opera version < 15
+      $(this).attr({
+        href: bookmarkURL,
+        title: bookmarkTitle,
+        rel: 'sidebar'
+      }).off(e);
+      return true;
+    } else if (window.external && ('AddFavorite' in window.external)) {
+      // IE Favorites
+      window.external.AddFavorite(bookmarkURL, bookmarkTitle);
+    } else {
+      // Other browsers (mainly WebKit & Blink - Safari, Chrome, Opera 15+)
+      alert('Press ' + (/Mac/i.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+    }
+
+    return false;
+  });
+  
+  // view more
+  var showChar = 1000;
+	var ellipsestext = "...";
+	var moretext = "more";
+	var lesstext = "less";
+	$('.more').each(function() {
+		var content = $(this).html();
+
+		if(content.length > showChar) {
+
+			var c = content.substr(0, showChar);
+			var h = content.substr(showChar-0, content.length - showChar);
+
+			var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+			$(this).html(html);
+		}
+
+	});
+
+	$(".morelink").click(function(){
+		if($(this).hasClass("less")) {
+			$(this).removeClass("less");
+			$(this).html(moretext);
+		} else {
+			$(this).addClass("less");
+			$(this).html(lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
+
+
+  // ready end
+  // more functions here
+
+
+
+
+  });
+
+
+
+
+
+     var timeout = setTimeout(function(){
+       $('#ksvid').hide(); }, 32000);
+
+
+                              // 10 min
+     var timeout = setTimeout(function(){
+       $('#ampvid').hide(); }, 600000);
+
+
+
+                });
+
+
+
+
+
+
+function closeIFrame(){
+     $('#ksvid').remove();
+} 
+
+        </script>
+
+
+
+
+
+
+
+<table><tr><td valign='top'>
+<!-- &nbsp;<a id="bookmark-this" href="#"  title="KidzSearch.com">Bookmark</a><br> -->
+<a href='https://games.kidzsearch.com/computer'><img alt='kidzsearch free games' title='kidzsearch free games' style="PADDING-TOP: 5px" src='https://games.kidzsearch.com/computer/kidzsearch-games2.png' ></a><br>
+
+</td>
+<td valign='bottom'>
+
+<script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=82101&domain=kidzsearch.com"></script>
+</td></tr></table>
+ <br>
+
+<table >
+ <tr>
+ <td align="left" valign="top">
+ <!-- &nbsp;<button onclick="goBack()"><< Back</button> -->
+
+<script>
+function goBack() {
+    window.history.back()
+}
+</script>
+ </td>
+
+<tr><td align="left" valign="top" >
+
+
+
+
+
+ <table><tr><td colspan='3'><div><a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html'>ALL</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?recentadd=1'>NEW</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?pop=7'>HOT</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Racing'>RACING</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Girl'>GIRL</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Shooting'>SHOOTING</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Arcade'>ARCADE</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Fun'>FUN</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Sports'>SPORTS</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=Action'>ACTION</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=MMO'>IO</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?related=0&learning=1&gamesearch=Learning'>LEARN</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?gamesearch=skill'>SKILL</a>|<img style="vertical-align:middle;padding-right:0px!important;padding-bottom:4px!important;padding-left:2px!important"  width='20px' src='https://games.kidzsearch.com/computer/game_history_icon.png'><a class='smalltextpromo3'  style="padding-left:1px!important;" href='https://games.kidzsearch.com/computer/index.html?nowplayingmg=1'>HISTORY</a>|<a class='smalltextpromo3' href='https://games.kidzsearch.com/computer/index.html?allcat=1'>more...</a>
+</div></td></tr>
+ <tr><td>
+
+
+
+ <h1>Airplane Fly 3D Flight Plane</h1>  
+
+
+</td><td><ul class='star-rating'>
+  <li class="current-rating" id="current-rating"><!-- will show current rating --></li>
+   <span id="ratelinks">
+  <li><a href="javascript:void(0)" title="1 star out of 5" class="one-star">1</a></li>
+  <li><a href="javascript:void(0)" title="2 stars out of 5" class="two-stars">2</a></li>
+  <li><a href="javascript:void(0)" title="3 stars out of 5" class="three-stars">3</a></li>
+  <li><a href="javascript:void(0)" title="4 stars out of 5" class="four-stars">4</a></li>
+  <li><a href="javascript:void(0)" title="5 stars out of 5" class="five-stars">5</a></li>
+  </span>
+
+</ul></td><td><span class='rating'>4.5</span> <font class='likeit'>stars</font>
+ <font class='likeit'>(40,026 plays / 28 votes)</font>&nbsp;&nbsp;<a onclick='goFullscreen()'><img style='vertical-align:middle'  border='0' alt='fullscreen' title='fullscreen mode' width='108px' src='https://games.kidzsearch.com/computer/FullScreen-Mode.png' ></a><div id="infoToggler" onclick="lightsoff()" class="tog" style="display: inline;cursor: pointer;">
+    <img src="https://games.kidzsearch.com/computer/lights-off.png" alt="dark mode" title="lights off" />
+    <img src="https://games.kidzsearch.com/computer/lights-on.png" alt="dark mode off" title="lights on" style="display:none"/>
+</div>
+
+
+ <tr><td colspan='3'><!--ad slot-->
+
+
+
+
+ </td></tr>
+</td></tr></table>
+<div id="iframeContainer">
+
+
+    <iframe id='main_frame' allow='autoplay'  allowfullscreen  width="975" height="650" src="https://html5.gamedistribution.com/619f97bc881945ed9dfcb0aed82c1cc5/?gd_sdk_referrer_url=https://games.kidzsearch.com/computer/title/airplane-fly-3d-flight-plane-ks120414-179649/" frameborder="0" scrolling="no"></iframe>    <div id="videoad" style="display:none;"></div>
+    <div id="playButtonOverlay">
+        <div id="leftAdContainer" class="adContainer">
+            <!-- Left Ad Code  -->
+<script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=121591&domain=kidzsearch.com"></script>
+            <!-- Left ad unit code for the left banner -->
+        </div>
+        <div class="gameButton" onclick="playVideo()">
+            <div class="gameImage">
+                <img src="https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fly-3d-flight-plane-ks120414-179649-img.png" alt="Airplane Fly 3D Flight Plane Game Image">
+            </div>
+            <div class="gameName">Airplane Fly 3D Flight Plane</div>
+        
+            <div id="playButtonContainer">
+            <div class="playButton">&#9654;</div>
+             </div>
+
+        </div>
+        <div id="rightAdContainer" class="adContainer">
+            <!-- Right Ad Code Here -->
+<script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=121591&domain=kidzsearch.com"></script>
+            <!-- Right ad unit code for the right banner -->
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<br><br>
+<a name='ilink'></a>
+<br><br><script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=128776&domain=kidzsearch.com"></script><br>   
+
+ 
+<div itemscope itemtype='https://schema.org/Product'><table><tr><td  valign='top'></td><td  width='450' align='left' valign='top'>&nbsp;<font class='game2'><span itemprop='name'>Airplane Fly 3D Flight Plane</span></font> <br><font class='smalltxt2'> <a title='Airplane Fly 3D Flight Plane' href='https://games.kidzsearch.com/computer/title/airplane-fly-3d-flight-plane-ks120414-179649/'><img class='featuredthumb'  itemprop='image' align='left' alt='Airplane Fly 3D Flight Plane' hspace='5'  border='0' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fly-3d-flight-plane-ks120414-179649-img.png' /></a>
+<span itemprop='description'><div class='comment more'>Use S for take off and W for landing Use A for left turn and D for right turn Use F for Throttle Use space for Throttle down Best Free Games presenting Unleash your inner pilot CONQUER the skies! Flight Plane 3D is a game which includes lots of fun collecting rings and following a specific path to land at your destination point. The simulation games spiced with cool graphics, awesome game play, adventurous oceans and airports on the lap of tides making you feel real pilot sitting in cockpit. Doesn't matter if your are a kid, old or young you should get the ultimate flying fun.</div></span></font>
+  </td><td><script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=124515&domain=kidzsearch.com"></script></td></tr></table>
+
+ <span  itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+ &nbsp;&nbsp;<span class='rating'><span itemprop='ratingValue'>4.5</span></span> <font class='likeit'>stars out of <span itemprop='bestRating'>5</span></font>
+ <font class='likeit'>(40,026 plays / <span itemprop='reviewCount'>28</span> votes)</font>
+ </div>
+
+
+
+</span>
+</td>
+
+<td align="left" valign="top">
+
+
+
+  
+
+ <style>
+ .wrapper{
+    width:400px; /*fixed width, so if the window is resized (zoomed in/out), it won't break*/
+    z-index:1000000000;
+}
+
+
+</style>
+
+ <div class='wrapper'>
+ 
+  <script>
+
+ var opflash = 0;
+
+if(isFlashEnabled() )
+{
+}
+else if( opflash==1)
+{ // document.write('This game requires Flash which may not be available on your device. <a target="_blank" class="titlebar" href="https://games.kidzsearch.com/computer/playerhelp.html">See help section</a>.');
+}
+
+if(opflash==0)
+{
+document.write('<br><br>');
+}
+function isFlashEnabled()
+{
+    var flash = navigator.plugins.namedItem('Shockwave Flash');
+    if (!flash) { return 0; } 
+    else { return 1; }
+}
+</script>
+
+
+
+<div id="web-only">
+
+   <br><br><form  autocomplete="off"  id="cse-search-box" method="GET" action="https://www.kidzsearch.com/gamesearch.php" style="display: inline;"><input required  id='auto' style="height:30px;font-size:14pt;background-color:transparent;" type="text" name="q" size="20" placeholder="Search over 100,000 games...">&nbsp;&nbsp;<input style="height:30px;font-size:11pt;" type="submit" value="Search" name="B1"><br><input type="radio" name="stype" value="kidzsearch" checked> <font class="smenu">kidzsearch</font> &nbsp;<input type="radio" name="stype" value="web"> <font class="smenu">all sites</font> </form>  <br>
+
+  &nbsp;<a class='titlebar' href='https://www.kidzsearch.com/'>KidzSearch</a> > <a class='titlebar' href='https://games.kidzsearch.com/computer/'>Games</a> > <a class='titlebar' href="https://games.kidzsearch.com/computer/index.html?gamesearch=adventure&related=1">Adventure Games</a>   </div>
+
+&nbsp;<a class='titlebar' href='#ilink'>instructions</a> &#183;
+<a class='titlebar' href="https://games.kidzsearch.com/computer/title/airplane-fly-3d-flight-plane-ks120414-179649" title='reload'>reload</a> &#183; <a class='titlebar' onclick='goFullscreen()'>fullscreen</a>&nbsp;&#183;&nbsp;<a class='titlebar' target='_blank' href='https://games.kidzsearch.com/computer/flaggame.html?id=airplane-fly-3d-flight-plane-ks120414-179649'>report</a> &#183; <a class='titlebar' target='_blank' href='https://games.kidzsearch.com/computer/playerhelp.html' title='help with player'>help</a>
+
+
+</div>
+
+
+
+
+
+<table cellpadding="1" cellspacing="1">
+
+
+</tr></td></tr></table>
+
+
+  <table border='0'><tr colspan='2'><td><img height='1' width='5' src='https://s3.amazonaws.com/kzs3files/spacer.gif'></td><td>
+
+<div id="ksvid"><div id="preroll" style="max-width:336px!important; max-height: 280px!important;overflow:hidden!important">
+<div id="preroll"><div id="prerollcontent"><script async type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=41553&video=true&domain=kidzsearch.com"></script></div></div></div></div><br><script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=103321&domain=kidzsearch.com"></script><br>
+  <br><br>
+ <script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=128779&domain=kidzsearch.com"></script>
+
+ <br> <br>
+<script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=128778&domain=kidzsearch.com"></script>
+
+  </td></tr></table>
+
+<br>
+
+
+
+</td></tr>
+ </table>
+
+   <br>
+<script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=128782&domain=kidzsearch.com"></script>
+ <br><a NAME='ilink2'></a><br>&nbsp;<b>Tags:</b>   &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=adventure' class='titlebar2' >adventure</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=airplane' class='titlebar2' >airplane</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=flight' class='titlebar2' >flight</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=fly' class='titlebar2' >fly</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=flying' class='titlebar2' >flying</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=flynn' class='titlebar2' >flynn</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=plane' class='titlebar2' >plane</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=sim' class='titlebar2' >sim</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=simulation' class='titlebar2' >simulation</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=simulator' class='titlebar2' >simulator</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=airplanes' class='titlebar2' >airplanes</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=planes' class='titlebar2' >planes</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=addictive' class='titlebar2' >addictive</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=addition' class='titlebar2' >addition</a> &nbsp;  &nbsp;<a href='https://games.kidzsearch.com/computer/index.html?gamesearch=html5' class='titlebar2' >html5</a> &nbsp; 
+
+<a NAME='ilink3'></a>
+
+
+ <table>
+ <tr><td colspan='8'>
+ <a NAME='relatedgames'>
+ 
+ <!-- <textarea id="myTextarea" name="thetextarea"></textarea> -->
+ <br><font class='game2'><b>Play More Related Games</font>
+
+
+ </td></tr>
+
+
+<td align='left'  valign='top'><a title='Airplane Flight 3D Simulator' href='https://games.kidzsearch.com/computer/title/airplane-flight-3d-simulator-ks120414-170202/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(63.5k, 56 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-flight-3d-simulator-ks120414-170202-img.png'></img></a><br><font class='smalltxt3'>Airplane Flight 3D </font></td><td align='left'  valign='top'><a title='Airplane Free Fly Simulator' href='https://games.kidzsearch.com/computer/title/airplane-free-fly-simulator-ks120414-170096/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(51k, 49 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-free-fly-simulator-ks120414-170096-img.png'></img></a><br><font class='smalltxt3'>Airplane Free Fly Simulator</font></td><td align='left'  valign='top'><a title='Airplane Fly Simulator' href='https://games.kidzsearch.com/computer/title/airplane-fly-simulator-ks120414-170138/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(43.2k, 35 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fly-simulator-ks120414-170138-img.png'></img></a><br><font class='smalltxt3'>Airplane Fly Simulator</font></td><td align='left'  valign='top'><a title='AirWar Plane Flight Simulator Challenge 3D' href='https://games.kidzsearch.com/computer/title/airwar-plane-flight-simulator-challenge-3d-ks120414-168430/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(29.4k, 14 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airwar-plane-flight-simulator-challenge-3d-ks120414-168430-img.png'></img></a><br><font class='smalltxt3'>AirWar Plane Flight </font></td><td align='left'  valign='top'><a title='Boeing Flight Simulator 3D' href='https://games.kidzsearch.com/computer/title/boeing-flight-simulator-3d-ks120414-166441/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(381.7k, 102 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-boeing-flight-simulator-3d-ks120414-166441-img.png'></img></a><br><font class='smalltxt3'>Boeing Flight Simulator 3D</font></td><td align='left'  valign='top'><a title='Ultimate Flying Car 3d' href='https://games.kidzsearch.com/computer/title/ultimate-flying-car-3d-ks120414-183497/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(16.8k, 11 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-ultimate-flying-car-3d-ks120414-183497-img.png'></img></a><br><font class='smalltxt3'>Ultimate Flying Car 3d</font></td><td align='left'  valign='top'><a title='Real Free Plane Fly Flight Simulator 3D 2020' href='https://games.kidzsearch.com/computer/title/real-free-plane-fly-flight-simulator-3d-2020-ks120414-202199/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(27.9k, 8 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-real-free-plane-fly-flight-simulator-3d-2020-ks120414-202199-img.png'></img></a><br><font class='smalltxt3'>Real Free Plane Fly Flight </font></td></tr><tr><td align='left'  valign='top'><a title='3D Flight Simulator Stunts' href='https://games.kidzsearch.com/computer/title/3d-flight-simulator-stunts-130441/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(4.2k, 7 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/ksfgws-3d-flight-simulator-stunts-130441-medium.jpg'></img></a><br><font class='smalltxt3'>3D Flight Simulator Stunts</font></td><td align='left'  valign='top'><a title='City Helicopter Flight' href='https://games.kidzsearch.com/computer/title/city-helicopter-flight-ks120414-179432/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(12.5k, 6 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-city-helicopter-flight-ks120414-179432-img.png'></img></a><br><font class='smalltxt3'>City Helicopter Flight</font></td><td align='left'  valign='top'><a title='Real Flight Simulator 3D' href='https://games.kidzsearch.com/computer/title/real-flight-simulator-3d-ks120414-207183/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(23k, 5 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-real-flight-simulator-3d-ks120414-207183-img.png'></img></a><br><font class='smalltxt3'>Real Flight Simulator 3D</font></td><td align='left'  valign='top'><a title='Plane In The Hole 3D' href='https://games.kidzsearch.com/computer/title/plane-in-the-hole-3d-ks120414-159928/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(4.5k, 1 vote)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-plane-in-the-hole-3d-ks120414-159928-img.png'></img></a><br><font class='smalltxt3'>Plane In The Hole 3D</font></td><td align='left'  valign='top'><a title='AIRPLANE FLYING EXPIERENCE' href='https://games.kidzsearch.com/computer/title/airplane-flying-expierence-85557-9040/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(9.6k, 4 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gameater-airplane-flying-expierence-85557-9040-img.png'></img></a><br><font class='smalltxt3'>AIRPLANE FLYING EXPIERENCE</font></td><td align='left'  valign='top'><a title='Drone Flight Simulator' href='https://games.kidzsearch.com/computer/title/drone-flight-simulator-44768-9118/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(20.6k, 12 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gameater-drone-flight-simulator-44768-9118-img.png'></img></a><br><font class='smalltxt3'>Drone Flight Simulator</font></td><td align='left'  valign='top'><a title='Airplane Parking Mania' href='https://games.kidzsearch.com/computer/title/airplane-parking-mania-4244/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="empty-star2">&#9733;</span><span class="plays">(11.7k, 3 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-airplane-parking-mania-4244-img.png'></img></a><br><font class='smalltxt3'>Airplane Parking Mania</font></td></tr><tr><td align='left'  valign='top'><a title='Airplane Racer Game' href='https://games.kidzsearch.com/computer/title/airplane-racer-game-24342/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.3k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-airplane-racer-game-24342-img.png'></img></a><br><font class='smalltxt3'>Airplane Racer Game</font></td><td align='left'  valign='top'><a title='Airplane Simulator Island Travel' href='https://games.kidzsearch.com/computer/title/airplane-simulator-island-travel-2281/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(10.7k, 9 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/gamemntze-airplane-simulator-island-travel-2281-img.png'></img></a><br><font class='smalltxt3'>Airplane Simulator Island </font></td><td align='left'  valign='top'><a title='AirPlane War HD' href='https://games.kidzsearch.com/computer/title/airplane-war-hd-11425/'><div class="star-rating2"><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.6k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-airplane-war-hd-11425-img.png'></img></a><br><font class='smalltxt3'>AirPlane War HD</font></td><td align='left'  valign='top'><a title='Airport Manager Adventure' href='https://games.kidzsearch.com/computer/title/airport-manager-adventure-9723/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(5.1k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-airport-manager-adventure-9723-img.png'></img></a><br><font class='smalltxt3'>Airport Manager Adventure</font></td><td align='left'  valign='top'><a title='Airport Manager  Adventure Airplane 3D Games ' href='https://games.kidzsearch.com/computer/title/airport-manager-adventure-airplane-3d-games-15943/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.3k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-airport-manager-adventure-airplane-3d-games-15943-img.png'></img></a><br><font class='smalltxt3'>Airport Manager  Adventure</font></td><td align='left'  valign='top'><a title='AirPort Manager Master' href='https://games.kidzsearch.com/computer/title/airport-manager-master-11125/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(6k, 3 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-airport-manager-master-11125-img.png'></img></a><br><font class='smalltxt3'>AirPort Manager Master</font></td><td align='left'  valign='top'><a title='Crash Landing' href='https://games.kidzsearch.com/computer/title/crash-landing-23458/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-crash-landing-23458-img.png'></img></a><br><font class='smalltxt3'>Crash Landing</font></td></tr><tr><td align='left'  valign='top'><a title='Crash Landing 3D' href='https://games.kidzsearch.com/computer/title/crash-landing-3d-2977/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.7k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-crash-landing-3d-2977-img.png'></img></a><br><font class='smalltxt3'>Crash Landing 3D</font></td><td align='left'  valign='top'><a title='Crash Landing 3D  Airplane Game' href='https://games.kidzsearch.com/computer/title/crash-landing-3d-airplane-game-21309/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.4k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-crash-landing-3d-airplane-game-21309-img.png'></img></a><br><font class='smalltxt3'>Crash Landing 3D  Airplane</font></td><td align='left'  valign='top'><a title='Flappy Paper Plane' href='https://games.kidzsearch.com/computer/title/flappy-paper-plane-14489/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(4.1k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-flappy-paper-plane-14489-img.png'></img></a><br><font class='smalltxt3'>Flappy Paper Plane</font></td><td align='left'  valign='top'><a title='Flight Journey' href='https://games.kidzsearch.com/computer/title/flight-journey-4285/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.4k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-flight-journey-4285-img.png'></img></a><br><font class='smalltxt3'>Flight Journey</font></td><td align='left'  valign='top'><a title='Flight Of The Viking' href='https://games.kidzsearch.com/computer/title/flight-of-the-viking-17769/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.1k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-flight-of-the-viking-17769-img.png'></img></a><br><font class='smalltxt3'>Flight Of The Viking</font></td><td align='left'  valign='top'><a title='Flight Survival' href='https://games.kidzsearch.com/computer/title/flight-survival-24274/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.2k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-flight-survival-24274-img.png'></img></a><br><font class='smalltxt3'>Flight Survival</font></td><td align='left'  valign='top'><a title='Fly AirPlane 3D' href='https://games.kidzsearch.com/computer/title/fly-airplane-3d-28385/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.7k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-fly-airplane-3d-28385-img.png'></img></a><br><font class='smalltxt3'>Fly AirPlane 3D</font></td></tr><tr><td align='left'  valign='top'><a title='Helicopter Rescue Operation 2020' href='https://games.kidzsearch.com/computer/title/helicopter-rescue-operation-2020-5005/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(4.7k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-helicopter-rescue-operation-2020-5005-img.png'></img></a><br><font class='smalltxt3'>Helicopter Rescue Operation</font></td><td align='left'  valign='top'><a title='Kids Car Wash Service Auto Workshop Garage' href='https://games.kidzsearch.com/computer/title/kids-car-wash-service-auto-workshop-garage-4387/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(18.7k, 20 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-kids-car-wash-service-auto-workshop-garage-4387-img.png'></img></a><br><font class='smalltxt3'>Kids Car Wash Service Auto </font></td><td align='left'  valign='top'><a title='Missile Escape Jet Era' href='https://games.kidzsearch.com/computer/title/missile-escape-jet-era-55499/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(78)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-missile-escape-jet-era-55499-img.png'></img></a><br><font class='smalltxt3'>Missile Escape Jet Era</font></td><td align='left'  valign='top'><a title='Panda Air Fighter Airplane Shooting' href='https://games.kidzsearch.com/computer/title/panda-air-fighter-airplane-shooting-9413/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(3.8k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-panda-air-fighter-airplane-shooting-9413-img.png'></img></a><br><font class='smalltxt3'>Panda Air Fighter Airplane</font></td><td align='left'  valign='top'><a title='Paper Survive' href='https://games.kidzsearch.com/computer/title/paper-survive-16203/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.6k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-paper-survive-16203-img.png'></img></a><br><font class='smalltxt3'>Paper Survive</font></td><td align='left'  valign='top'><a title='Parkour Aircrufe' href='https://games.kidzsearch.com/computer/title/parkour-aircrufe-23184/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.6k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-parkour-aircrufe-23184-img.png'></img></a><br><font class='smalltxt3'>Parkour Aircrufe</font></td><td align='left'  valign='top'><a title='Pilot Heroes 3D' href='https://games.kidzsearch.com/computer/title/pilot-heroes-3d-21684/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(1.8k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-pilot-heroes-3d-21684-img.png'></img></a><br><font class='smalltxt3'>Pilot Heroes 3D</font></td></tr><tr><td align='left'  valign='top'><a title='Plane Battle Clash' href='https://games.kidzsearch.com/computer/title/plane-battle-clash-27888/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(2.3k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-plane-battle-clash-27888-img.png'></img></a><br><font class='smalltxt3'>Plane Battle Clash</font></td><td align='left'  valign='top'><a title='Plane Fighter  Plane  Air Fighter' href='https://games.kidzsearch.com/computer/title/plane-fighter-plane-air-fighter-9205/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(11.8k, 5 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-plane-fighter-plane-air-fighter-9205-img.png'></img></a><br><font class='smalltxt3'>Plane Fighter  Plane  Air </font></td><td align='left'  valign='top'><a title='Polygon Flight Simulator' href='https://games.kidzsearch.com/computer/title/polygon-flight-simulator-30797/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(106)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-polygon-flight-simulator-30797-img.png'></img></a><br><font class='smalltxt3'>Polygon Flight Simulator</font></td><td align='left'  valign='top'><a title='Real Aircraft Parkour 3D' href='https://games.kidzsearch.com/computer/title/real-aircraft-parkour-3d-23381/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(332)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-real-aircraft-parkour-3d-23381-img.png'></img></a><br><font class='smalltxt3'>Real Aircraft Parkour 3D</font></td><td align='left'  valign='top'><a title='Rescue Plan  Flight Control' href='https://games.kidzsearch.com/computer/title/rescue-plan-flight-control-6941/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="empty-star2">&#9733;</span><span class="plays">(3.2k, 3 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-rescue-plan-flight-control-6941-img.png'></img></a><br><font class='smalltxt3'>Rescue Plan  Flight </font></td><td align='left'  valign='top'><a title='Sky Hero' href='https://games.kidzsearch.com/computer/title/sky-hero-7709/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.7k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-sky-hero-7709-img.png'></img></a><br><font class='smalltxt3'>Sky Hero</font></td><td align='left'  valign='top'><a title='Turbulent Little Plane' href='https://games.kidzsearch.com/computer/title/turbulent-little-plane-4016/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.4k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-turbulent-little-plane-4016-img.png'></img></a><br><font class='smalltxt3'>Turbulent Little Plane</font></td></tr><tr><td align='left'  valign='top'><a title='War Airplane' href='https://games.kidzsearch.com/computer/title/war-airplane-24406/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.3k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-war-airplane-24406-img.png'></img></a><br><font class='smalltxt3'>War Airplane</font></td><td align='left'  valign='top'><a title='War Of Tanks Shooter' href='https://games.kidzsearch.com/computer/title/war-of-tanks-shooter-12383/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(7.3k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamemntze-war-of-tanks-shooter-12383-img.png'></img></a><br><font class='smalltxt3'>War Of Tanks Shooter</font></td><td align='left'  valign='top'><a title='Airplane Pilot Simulator' href='https://games.kidzsearch.com/computer/title/airplane-pilot-simulator-iiioo/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(10.6k, 9 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamepix-airplane-pilot-simulator-iiioo-img.png'></img></a><br><font class='smalltxt3'>Airplane Pilot Simulator</font></td><td align='left'  valign='top'><a title='Fly a plane' href='https://games.kidzsearch.com/computer/title/fly-a-plane-0p74f/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.2k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamepix-fly-a-plane-0p74f-img.png'></img></a><br><font class='smalltxt3'>Fly a plane</font></td><td align='left'  valign='top'><a title='Plane and Rain' href='https://games.kidzsearch.com/computer/title/plane-and-rain-070r6/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(1.9k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamepix-plane-and-rain-070r6-img.png'></img></a><br><font class='smalltxt3'>Plane and Rain</font></td><td align='left'  valign='top'><a title='Stickman Airplane' href='https://games.kidzsearch.com/computer/title/stickman-airplane-eean7/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.5k, 2 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamepix-stickman-airplane-eean7-img.png'></img></a><br><font class='smalltxt3'>Stickman Airplane</font></td><td align='left'  valign='top'><a title='Tappy Plane' href='https://games.kidzsearch.com/computer/title/tappy-plane-p18yp/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.1k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/gamepix-tappy-plane-p18yp-img.png'></img></a><br><font class='smalltxt3'>Tappy Plane</font></td></tr><tr><td align='left'  valign='top'><a title='3D Flight Simulator' href='https://games.kidzsearch.com/computer/title/3d-flight-simulator-ks121714-224808/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(13.4k, 4 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearch9fg-3d-flight-simulator-ks121714-224808-img.png'></img></a><br><font class='smalltxt3'>3D Flight Simulator</font></td><td align='left'  valign='top'><a title='Aerial Stunt Pilot 2' href='https://games.kidzsearch.com/computer/title/aerial-stunt-pilot-2-ks121714-224341/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearch9fg-aerial-stunt-pilot-2-ks121714-224341-img.png'></img></a><br><font class='smalltxt3'>Aerial Stunt Pilot 2</font></td><td align='left'  valign='top'><a title='Boe Wings' href='https://games.kidzsearch.com/computer/title/boe-wings-ks121714-239256/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(120)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearch9fg-boe-wings-ks121714-239256-img.png'></img></a><br><font class='smalltxt3'>Boe Wings</font></td><td align='left'  valign='top'><a title='Bomber XXL' href='https://games.kidzsearch.com/computer/title/bomber-xxl-ks121714-235106/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.6k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearch9fg-bomber-xxl-ks121714-235106-img.png'></img></a><br><font class='smalltxt3'>Bomber XXL</font></td><td align='left'  valign='top'><a title='Endless Toy Flight' href='https://games.kidzsearch.com/computer/title/endless-toy-flight-ks121714-225479/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.1k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearch9fg-endless-toy-flight-ks121714-225479-img.png'></img></a><br><font class='smalltxt3'>Endless Toy Flight</font></td><td align='left'  valign='top'><a title='Plane Crash Ragdoll Simulator' href='https://games.kidzsearch.com/computer/title/plane-crash-ragdoll-simulator-ks121714-239741/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(115, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearch9fg-plane-crash-ragdoll-simulator-ks121714-239741-img.png'></img></a><br><font class='smalltxt3'>Plane Crash Ragdoll </font></td><td align='left'  valign='top'><a title='3d Airplane Race Simulator' href='https://games.kidzsearch.com/computer/title/3d-airplane-race-simulator-ks120414-161890/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="empty-star2">&#9733;</span><span class="plays">(8.9k, 9 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-3d-airplane-race-simulator-ks120414-161890-img.png'></img></a><br><font class='smalltxt3'>3d Airplane Race Simulator</font></td></tr><tr><td align='left'  valign='top'><a title='Air Plane Parking 3d' href='https://games.kidzsearch.com/computer/title/air-plane-parking-3d-ks120414-184659/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(17.9k, 5 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-air-plane-parking-3d-ks120414-184659-img.png'></img></a><br><font class='smalltxt3'>Air Plane Parking 3d</font></td><td align='left'  valign='top'><a title='Air Stunts Flying Simulator' href='https://games.kidzsearch.com/computer/title/air-stunts-flying-simulator-ks120414-166807/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="empty-star2">&#9733;</span><span class="plays">(4.7k, 4 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-air-stunts-flying-simulator-ks120414-166807-img.png'></img></a><br><font class='smalltxt3'>Air Stunts Flying Simulator</font></td><td align='left'  valign='top'><a title='Air Wolves Flight' href='https://games.kidzsearch.com/computer/title/air-wolves-flight-ks120414-145332/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(4.5k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-air-wolves-flight-ks120414-145332-img.png'></img></a><br><font class='smalltxt3'>Air Wolves Flight</font></td><td align='left'  valign='top'><a title='Airplane Battle' href='https://games.kidzsearch.com/computer/title/airplane-battle-ks120414-148295/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(4.3k, 1 vote)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-battle-ks120414-148295-img.png'></img></a><br><font class='smalltxt3'>Airplane Battle</font></td><td align='left'  valign='top'><a title='Airplane Fight' href='https://games.kidzsearch.com/computer/title/airplane-fight-ks120414-163243/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(3.4k, 1 vote)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-fight-ks120414-163243-img.png'></img></a><br><font class='smalltxt3'>Airplane Fight</font></td><td align='left'  valign='top'><a title='Airplane Flying Simulator' href='https://games.kidzsearch.com/computer/title/airplane-flying-simulator-ks120414-166314/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(22.2k, 19 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-flying-simulator-ks120414-166314-img.png'></img></a><br><font class='smalltxt3'>Airplane Flying Simulator</font></td><td align='left'  valign='top'><a title='Airplane Missile Escape' href='https://games.kidzsearch.com/computer/title/airplane-missile-escape-ks120414-212872/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.2k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-airplane-missile-escape-ks120414-212872-img.png'></img></a><br><font class='smalltxt3'>Airplane Missile Escape</font></td></tr><tr><td align='left'  valign='top'><a title='Airplane Parking Mania 3D' href='https://games.kidzsearch.com/computer/title/airplane-parking-mania-3d-ks120414-166918/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(14.2k, 21 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-parking-mania-3d-ks120414-166918-img.png'></img></a><br><font class='smalltxt3'>Airplane Parking Mania 3D</font></td><td align='left'  valign='top'><a title='Airplane Parking Mania Simulator 2019' href='https://games.kidzsearch.com/computer/title/airplane-parking-mania-simulator-2019-ks120414-168913/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(17.2k, 33 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airplane-parking-mania-simulator-2019-ks120414-168913-img.png'></img></a><br><font class='smalltxt3'>Airplane Parking Mania </font></td><td align='left'  valign='top'><a title='Airport Control' href='https://games.kidzsearch.com/computer/title/airport-control-ks120414-146161/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(8.7k, 2 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airport-control-ks120414-146161-img.png'></img></a><br><font class='smalltxt3'>Airport Control</font></td><td align='left'  valign='top'><a title='AirWingsio' href='https://games.kidzsearch.com/computer/title/airwingsio-ks120414-147428/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(11.3k, 15 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-airwingsio-ks120414-147428-img.png'></img></a><br><font class='smalltxt3'>AirWingsio</font></td><td align='left'  valign='top'><a title='Escape Plane' href='https://games.kidzsearch.com/computer/title/escape-plane-ks120414-159732/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-escape-plane-ks120414-159732-img.png'></img></a><br><font class='smalltxt3'>Escape Plane</font></td><td align='left'  valign='top'><a title='Flight Pilot Airplane Games 24' href='https://games.kidzsearch.com/computer/title/flight-pilot-airplane-games-24-ks120414-237140/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(5k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-flight-pilot-airplane-games-24-ks120414-237140-img.png'></img></a><br><font class='smalltxt3'>Flight Pilot Airplane Games</font></td><td align='left'  valign='top'><a title='Fly THIS' href='https://games.kidzsearch.com/computer/title/fly-this-ks120414-200572/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.2k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-fly-this-ks120414-200572-img.png'></img></a><br><font class='smalltxt3'>Fly THIS</font></td></tr><tr><td align='left'  valign='top'><a title='Flying Car Driving Simulator' href='https://games.kidzsearch.com/computer/title/flying-car-driving-simulator-ks120414-178529/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(69.1k, 52 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-flying-car-driving-simulator-ks120414-178529-img.png'></img></a><br><font class='smalltxt3'>Flying Car Driving </font></td><td align='left'  valign='top'><a title='Flying Car Extreme Simulator' href='https://games.kidzsearch.com/computer/title/flying-car-extreme-simulator-ks120414-182574/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(53.5k, 61 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-flying-car-extreme-simulator-ks120414-182574-img.png'></img></a><br><font class='smalltxt3'>Flying Car Extreme </font></td><td align='left'  valign='top'><a title='Flying Car Real Driving' href='https://games.kidzsearch.com/computer/title/flying-car-real-driving-ks120414-169719/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(32.1k, 28 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-flying-car-real-driving-ks120414-169719-img.png'></img></a><br><font class='smalltxt3'>Flying Car Real Driving</font></td><td align='left'  valign='top'><a title='Free Flight Sim' href='https://games.kidzsearch.com/computer/title/free-flight-sim-ks120414-154895/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(60k, 45 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-free-flight-sim-ks120414-154895-img.png'></img></a><br><font class='smalltxt3'>Free Flight Sim</font></td><td align='left'  valign='top'><a title='Funky Plane' href='https://games.kidzsearch.com/computer/title/funky-plane-ks120414-213147/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(1.7k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-funky-plane-ks120414-213147-img.png'></img></a><br><font class='smalltxt3'>Funky Plane</font></td><td align='left'  valign='top'><a title='Gunducky Industries' href='https://games.kidzsearch.com/computer/title/gunducky-industries-ks120414-178994/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.9k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-gunducky-industries-ks120414-178994-img.png'></img></a><br><font class='smalltxt3'>Gunducky Industries</font></td><td align='left'  valign='top'><a title='Heli Adventure' href='https://games.kidzsearch.com/computer/title/heli-adventure-ks120414-183136/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.5k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-heli-adventure-ks120414-183136-img.png'></img></a><br><font class='smalltxt3'>Heli Adventure</font></td></tr><tr><td align='left'  valign='top'><a title='Jet Racer Infinite Flight Rider Space Racing' href='https://games.kidzsearch.com/computer/title/jet-racer-infinite-flight-rider-space-racing-ks120414-183133/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(4.2k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-jet-racer-infinite-flight-rider-space-racing-ks120414-183133-img.png'></img></a><br><font class='smalltxt3'>Jet Racer Infinite Flight </font></td><td align='left'  valign='top'><a title='Merge Plane' href='https://games.kidzsearch.com/computer/title/merge-plane-ks120414-158600/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(5.4k, 14 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-merge-plane-ks120414-158600-img.png'></img></a><br><font class='smalltxt3'>Merge Plane</font></td><td align='left'  valign='top'><a title='Missile Dodge' href='https://games.kidzsearch.com/computer/title/missile-dodge-ks120414-144581/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.5k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-missile-dodge-ks120414-144581-img.png'></img></a><br><font class='smalltxt3'>Missile Dodge</font></td><td align='left'  valign='top'><a title='One More Flight' href='https://games.kidzsearch.com/computer/title/one-more-flight-ks120414-144795/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(4.4k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-one-more-flight-ks120414-144795-img.png'></img></a><br><font class='smalltxt3'>One More Flight</font></td><td align='left'  valign='top'><a title='Paper Airplane' href='https://games.kidzsearch.com/computer/title/paper-airplane-ks120414-192199/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(4.1k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-paper-airplane-ks120414-192199-img.png'></img></a><br><font class='smalltxt3'>Paper Airplane</font></td><td align='left'  valign='top'><a title='Paper Flight 2' href='https://games.kidzsearch.com/computer/title/paper-flight-2-ks120414-191992/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(10.8k, 4 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-paper-flight-2-ks120414-191992-img.png'></img></a><br><font class='smalltxt3'>Paper Flight 2</font></td><td align='left'  valign='top'><a title='Paper Flight' href='https://games.kidzsearch.com/computer/title/paper-flight-ks120414-160938/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(8.3k, 5 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-paper-flight-ks120414-160938-img.png'></img></a><br><font class='smalltxt3'>Paper Flight</font></td></tr><tr><td align='left'  valign='top'><a title='Paperly  Paper Plane Adventure' href='https://games.kidzsearch.com/computer/title/paperly-paper-plane-adventure-ks120414-241090/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(45)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-paperly-paper-plane-adventure-ks120414-241090-img.png'></img></a><br><font class='smalltxt3'>Paperly  Paper Plane </font></td><td align='left'  valign='top'><a title='Plane GO' href='https://games.kidzsearch.com/computer/title/plane-go-ks120414-146840/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-plane-go-ks120414-146840-img.png'></img></a><br><font class='smalltxt3'>Plane GO</font></td><td align='left'  valign='top'><a title='Plane Parking 3D 2019' href='https://games.kidzsearch.com/computer/title/plane-parking-3d-2019-ks120414-169574/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(5.7k, 5 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-plane-parking-3d-2019-ks120414-169574-img.png'></img></a><br><font class='smalltxt3'>Plane Parking 3D 2019</font></td><td align='left'  valign='top'><a title='Plane Racing Madness' href='https://games.kidzsearch.com/computer/title/plane-racing-madness-ks120414-215887/'><div class="star-rating2"><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.3k, 1 vote)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-plane-racing-madness-ks120414-215887-img.png'></img></a><br><font class='smalltxt3'>Plane Racing Madness</font></td><td align='left'  valign='top'><a title='Pocket Wings WW2' href='https://games.kidzsearch.com/computer/title/pocket-wings-ww2-ks120414-149755/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="plays">(3.2k, 1 vote)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-pocket-wings-ww2-ks120414-149755-img.png'></img></a><br><font class='smalltxt3'>Pocket Wings WW2</font></td><td align='left'  valign='top'><a title='Real Sports Flying Car 3d' href='https://games.kidzsearch.com/computer/title/real-sports-flying-car-3d-ks120414-215923/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(12.5k, 5 votes)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-real-sports-flying-car-3d-ks120414-215923-img.png'></img></a><br><font class='smalltxt3'>Real Sports Flying Car 3d</font></td><td align='left'  valign='top'><a title='Real Stunts Drift Car Driving 3D' href='https://games.kidzsearch.com/computer/title/real-stunts-drift-car-driving-3d-ks120414-179108/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(19.3k, 11 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-real-stunts-drift-car-driving-3d-ks120414-179108-img.png'></img></a><br><font class='smalltxt3'>Real Stunts Drift Car </font></td></tr><tr><td align='left'  valign='top'><a title='SkyKid Mini' href='https://games.kidzsearch.com/computer/title/skykid-mini-ks120414-183121/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(2.3k)</span></div><br><img width='166' height='125' src='https://games.kidzsearch.com/computer/thumbs/kidzsearchgl-skykid-mini-ks120414-183121-img.png'></img></a><br><font class='smalltxt3'>SkyKid Mini</font></td><td align='left'  valign='top'><a title='Stunt Planes' href='https://games.kidzsearch.com/computer/title/stunt-planes-ks120414-160149/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.1k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-stunt-planes-ks120414-160149-img.png'></img></a><br><font class='smalltxt3'>Stunt Planes</font></td><td align='left'  valign='top'><a title='World War Pilot' href='https://games.kidzsearch.com/computer/title/world-war-pilot-ks120414-159011/'><div class="star-rating2"><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="empty-star2">&#9733;</span><span class="plays">(3.9k)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/kidzsearchgl-world-war-pilot-ks120414-159011-img.png'></img></a><br><font class='smalltxt3'>World War Pilot</font></td><td align='left'  valign='top'><a title='3D Jet Pilot Flight Simulator' href='https://games.kidzsearch.com/computer/title/3d-jet-pilot-flight-simulator-124144/'><div class="star-rating2"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="half-star2"></span><span class="plays">(9.7k, 13 votes)</span></div><br><img width='166' height='125' src='https://s3.amazonaws.com/kzs3files/ksfgws-3d-jet-pilot-flight-simulator-124144-medium.jpg'></img></a><br><font class='smalltxt3'>3D Jet Pilot Flight </font></td><tr><td align='left' colspan='8'>
+
+
+<!-- <br>&nbsp;&nbsp;<a class='viewmore' href="https://games.kidzsearch.com/computer/index.html?gamesearch=adventure&related=1">view more adventure games...</a>
+<br> -->
+
+<br>&nbsp;&nbsp;<a class='viewmore' href="https://games.kidzsearch.com/computer/index.html?gamesearch=airplane fly  flight plane&related=1">view more airplane fly  flight plane games...</a>
+<br>
+
+
+
+<br>
+
+
+<script type="text/javascript" src="https://ads.superawesome.tv/v2/ad.js?placement=128781&domain=kidzsearch.com"></script>
+
+
+
+</td></tr>
+
+
+</tr></td></tr></table>
+
+
+
+
+ 
+
+
+
+ 
+
+
+<br>
+
+<table>
+<tr><td style='padding:15px'>
+<div id="web-only">
+<br>
+<a class='titlebar' href='https://www.kidzsearch.com/'>KidzSearch</a> > <a class='titlebar' href='https://games.kidzsearch.com/computer/'>Games</a> > <a class='titlebar' href="https://games.kidzsearch.com/computer/index.html?gamesearch=adventure&related=1">Adventure Games</a><br>
+   <br><b>Find KidzSearch Games</b><br><form  autocomplete="off"  id="cse-search-box2" method="GET" action="https://www.kidzsearch.com/gamesearch.php" style="display: inline;"><input required  id='auto2' style="height:30px;font-size:14pt;" type="text" name="q" size="50" placeholder="Search over 100,000 games...">&nbsp;&nbsp;<input style="height:30px;font-size:11pt;" type="submit" value="Search" name="B1"><br><input type="radio" name="stype" value="kidzsearch" checked> <font class="smenu">kidzsearch</font> &nbsp;<input type="radio" name="stype" value="web"> <font class="smenu">all sites</font> </form>  <br>
+
+   </div>
+
+<br><br>
+<tr>
+ <td>       &nbsp;&nbsp;&nbsp;&nbsp;<img style="vertical-align:middle"  width='20px' src='https://games.kidzsearch.com/computer/game_history_icon.png'>&nbsp;<b><a class='gamehistorylink' href='https://games.kidzsearch.com/computer/index.html?nowplayingmg=1&gmh=1'>View Your Recently Played Games</a></b></td></tr>
+</td></tr></table>
+
+<br><br>
+
+
+    <script>
+        function playVideo() {
+            // Hide the overlay for adinplay
+            document.getElementById('playButtonOverlay').style.display = 'none';
+
+           show_videoad();
+
+        }
+    </script>
+
+
+
+
+<table align='left' cellpadding='20'>
+<tr><td>
+                <br><br>
+
+
+ <!-- ad block check -->
+<div id="wrapper">
+    <!-- Content here -->
+</div>
+    <!-- <script src="https://search.kidzsearch.com/ads/script.js"></script>  -->
+
+
+	
+<style type="text/css">
+table.ksfooter td {
+font: 10pt Arial; text-decoration: none; color: #3B65A7;
+.navf {font: 11pt Arial; text-decoration: none;  color:#3B65A7;}
+.navf:hover {font: 11pt Arial; text-decoration: underline;  color:#3B65A7;}
+}
+.navf {font: 11pt Arial; text-decoration: none;  color:#3B65A7;}
+.navf:hover {font: 11pt Arial; text-decoration: underline;  color:#3B65A7;}
+</style>
+
+
+    <br><br>
+    
+
+<table border="0"  class='ksfooter' width="978">
+
+	<tr>
+		<td  align="left" width="205">
+<b>COMPANY</b></td>
+		<td  align="left" width="229">
+<b>RESOURCES</b></td>
+		<td  align="left" width="143">
+<b>LINKS</b></td>
+		<td  align="left">
+<b>SOCIAL</b></td>
+		<td  align="left" width="260">
+<b></b></td>
+	</tr>
+<tr><td width="205">
+<a  target="_blank"  class="navf" href="https://www.KidzSearch.com/contactus.html" >contact us</a></td>
+	<td width="229">
+<font color="#000000">       
+<a target="_blank"  class="navf" href="https://www.kidzsearch.com/blog/">education daily journal</a></font></td>
+	<td width="143">
+<a target="_blank"  class="navf"  href="https://www.KidzSearch.com">home</a></td><td>
+<font color="#000000">
+<a target="_blank" class="navf" href="https://www.facebook.com/kidzsearch">facebook</a></font></td>
+	<td width="260">
+<font color="#000000"></font></td></tr>
+<tr><td width="205" height="21">
+<a target="_blank" class="navf"  href="https://www.KidzSearch.com/about.html">about us</a>
+</td><td height="21" width="229">
+<a target="_blank"  class="navf" href="https://www.kidzsearch.com/browserplugin.html">make us your default search</a></td>
+	<td height="21" width="143">
+	<a target="_blank"  class="navf"  href="https://www.KidzSearch.com/questions/">kidztalk</a></td>
+	<td height="21">
+<font color="#000000">
+<a target="_blank" class="navf" href="https://www.twitter.com/kidz_search">twitter</a></font></td>
+	<td height="21" width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+<a target="_blank"  class="navf" href="https://www.KidzSearch.com/privacy.html" >terms/privacy</a></td>
+	<td width="229">
+<a target="_blank"  class="navf" href="https://www.kidzsearch.com/blog/student-safety/how-to-block-adult-websites-using-free-opendns/">blocking websites</a></td>
+	<td width="143">
+<a target="_blank" class="navf" href="https://net.kidzsearch.com">kidznet</a></td><td>
+<font color="#000000">
+<a class="navf" target="_blank" href="https://www.pinterest.com/kidzsearch">pinterest</a></font></td>
+	<td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+		<font color="#000000">
+		<a  target="_blank"  class="navf" href="https://www.KidzSearch.com/advertise.html" >advertise</a></font></td>
+	<td width="229">
+<a target="_blank"  class="navf" href="https://www.kidzsearch.com/teachers/">teacher zone</a></td>
+	<td width="143">
+<a target="_blank"  class="navf" href="https://wiki.kidzsearch.com/wiki/" >wiki</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+<font color="#000000">
+<a target="_blank"  class="navf" href="https://www.KidzSearch.com/press.html">media</a></font></td>
+	<td width="229">
+<a target="_blank"  class="navf" href="https://www.KidzSearch.com/logos.html">link to us</a></td>
+	<td width="143">
+	<a  target="_blank"  class="navf" href="https://www.KidzSearch.com/sites.html" >
+	learning sites</a> 
+</td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+<font color="#000000">
+		<a target="_blank" class="navf" href="https://www.KidzSearch.com/api.html">business / api solutions</a></font></td>
+	<td width="229">
+<a target="_blank" class="navf" href="https://www.KidzSearch.com/addsite.html" >add a site</a></td>
+	<td width="143">
+		<a target="_blank"  class="navf" href="https://www.KidzSearch.com/images.html">image search</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+<font color="#000000">
+		<a  target="_blank"  class="navf" href="https://www.kidzsearch.com/affiliates/">
+affiliate program</a></font></td>
+	<td width="229">
+<a class="navf"  target="_blank" href="https://www.kidzsearch.com/mobile/kidzsearchapp.html">kidzsearch apps</a></td>
+	<td width="143">
+		<a target="_blank"  class="navf" href="https://www.KidzSearch.com/kidztube">kidztube</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+<font color="#000000"></font></td><td width="229">
+<a class="navf"  target="_blank" href="https://www.kidzsearch.com/watch">play youtube on
+kidzsearch</a></td><td width="143">
+<a target="_blank"  class="navf" href="https://www.KidzSearch.com/games/">games</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+&nbsp;</td><td width="229">
+<a class="navf"  target="_blank" href="https://www.kidzsearch.com/speech-to-text.html">voice
+search</a></td><td width="143">
+		<a target="_blank"  class="navf" href="http://www.KidzSearch.com/radio.html">music</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+&nbsp;</td><td width="229">
+<a class="navf" target="_blank" href="https://www.kidzsearch.com/searchreport.html?type=web&bt=0">
+report a problem</a></td><td width="143">
+		<a target="_blank"  class="navf" href="https://www.KidzSearch.com/facts.html">cool facts</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+&nbsp;</td><td width="229">
+
+		<a target="_blank"  class="navf" href="https://www.KidzSearch.com/ksthm.html">
+		settings</a></td><td width="143">
+
+		<a target="_blank"  class="navf" href="https://www.KidzSearch.com/news/">news</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+&nbsp;</td><td width="229">
+&nbsp;</td><td width="143">
+<a target="_blank"  class="navf" href="https://www.KidzSearch.com/searchhelp.html">
+		search help</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+&nbsp;</td><td width="229">
+&nbsp;</td><td width="143">
+	<a target="_blank" class="navf" href="https://net.kidzsearch.com/kidznet_site_directory.html">
+	kidznet directory</a></td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+<tr><td width="205">
+&nbsp;</td><td width="229">
+&nbsp;</td><td width="143">
+&nbsp;</td><td>
+&nbsp;</td><td width="260">
+&nbsp;</td></tr>
+</table>
+
+<br><br>
+<div id='p1'>
+ <table>
+ <tr><td><img src='https://www.kidzsearch.com/spacer.gif' width='120' height='1' border='0'></td><td>
+ <a target='_blank' href="https://www.kidzsearch.com/mobile/kidzsearchapp.html?src=footer"><img border="0" src="https://s3.amazonaws.com/kzs3files/get-the-app-5.png" align="left"></a>
+ </td></tr>
+ </table>
+ </div>
+ <br><br><br><br><br><br><br><br>
+<script>
+var userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test( userAgent ),
+    ios = /iphone|ipod|ipad/.test( userAgent );
+
+if( ios ) {
+
+    if ( safari ) {
+        //browser
+    } else if ( !safari ) {
+ document.getElementById("p1").innerHTML = "";
+
+        //webview
+    };
+} else {
+    //not iOS
+};
+</script>
+
+
+</td></tr></table>
+
+	</p>
+
+<table border="0" style="border-collapse: collapse" width="877">
+	<tr>
+		<td align="left" valign="top" class='adtextblue' width="7">&nbsp;
+		<img border="0" src="https://s3.amazonaws.com/kzs3files/spacer.gif" width="51" height="1"></td>
+		<td align="center" valign="top"  class='adTextSmall2' nowrap>
+		<a href="https://www.ala.org/" target="_blank">
+		<img src="https://s3.amazonaws.com/kzs3files/ala_logo_color.gif" alt="Member of the American Library Association" border="0" width="134" height="30"></a><b><font face="Arial, Helvetica, sans-serif" color="#808080">&nbsp;&nbsp;
+		</font></b><font face="Arial, Helvetica, sans-serif" color="#772b1a"><b>
+  		<font size="2" color="#808080">
+		<a target="_blank" href="https://www.safesurf.com/"><IMG BORDER=0 SRC= "https://s3.amazonaws.com/kzs3files/ssurf.gif"></a></font></b></font><br>
+<b><font face="Arial, Helvetica, sans-serif" size="2" color="#808080">Member of
+the American Library Association&nbsp; <br>
+	</font></b><font face="Arial, Helvetica, sans-serif" color="#772b1a">
+	<b>
+  	<font size="2" color="#808080">
+Copyright 2005-2024 KidzSearch.com&nbsp;
+</font></b></font><br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Cached 16th December 2024 08:48 --></div></div></div></body></html>
