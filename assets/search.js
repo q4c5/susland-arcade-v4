@@ -16,3 +16,6 @@ function filterGames() {
 }
 
 document.getElementById('searchInput').addEventListener('input', filterGames);
+
+
+// Clipped Was Here (;
