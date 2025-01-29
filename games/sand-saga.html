@@ -1,0 +1,1616 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Patrik Harag">
+    <meta property="og:site_name" content="Harag.cz">
+    <meta name="Description" content="Sand Game JS is a fast and powerful falling-sand game engine for desktop &amp; mobile browsers. It allows players to experiment with various elements, such as sand, soil, water and fire. With grass and trees growing on soil, and other natural processes, Sand Game JS offers a unique experience.">
+    <meta property="og:description" content="Sand Game JS is a fast and powerful falling-sand game engine for desktop &amp; mobile browsers. It allows players to experiment with various elements, such as sand, soil, water and fire. With grass and trees growing on soil, and other natural processes, Sand Game JS offers a unique experience.">
+    <meta property="og:title" content="Sand Game JS">
+    <meta property="og:image" content="https://files.harag.cz/www/app/sand-game-js/social-preview.png">
+
+    <!-- icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#e6c700">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#000000">
+
+    <title>Sand Saga JS</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="/resources/main.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLHEV50NKX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-HLHEV50NKX');
+    </script>
+    <script>
+        function harag_cz_showLoginForm() {
+            var dialogNode = document.getElementById('dialog-login');
+            var modal = new window.bootstrap.Modal(dialogNode);
+            modal.show();
+        }
+        if (window.location.hash === '#login' || window.location.hash === '#login-failed') {
+            document.addEventListener('DOMContentLoaded', function () {
+                harag_cz_showLoginForm();
+            });
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                });
+            }
+        });
+    </script>
+
+<script>
+    function harag_cz_comment(replyTo) {
+        document.getElementById('dialog-comment_title').textContent = replyTo ? 'Reply' : 'Post Comment';
+        document.getElementById('dialog-comment_reply').value = replyTo;
+        document.getElementById('dialog-comment_error-message-wrapper').innerHTML = '';
+
+        const dialogNode = document.getElementById('dialog-comment');
+        const modal = new window.bootstrap.Modal(dialogNode);
+        modal.show();
+    }
+
+    function harag_cz_sendComment() {
+        document.getElementById('dialog-comment_error-message-wrapper').innerHTML = '';
+
+        let formComment = document.getElementById('form-comment');
+        let serialized = new FormData(formComment);
+        let dataToSend = {};
+
+        for (let [key, value] of serialized.entries()) {
+            dataToSend[key] = key.startsWith('test') ? value === 'on' : value;
+        }
+
+        fetch(`/discussion/app-sand-game-js`, {
+                method: 'POST',
+                body: JSON.stringify(dataToSend),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('dialog-comment_content').value = '';
+                    alert('Submitted successfully. Your comment will be visible after page reload.');
+                } else if (response.status === 400) {
+                    harag_cz_sendCommentHandleError('check the form again');
+                } else {
+                    harag_cz_sendCommentHandleError(response.statusText);
+                }
+            })
+            .catch(error => {
+                harag_cz_sendCommentHandleError(error);
+            });
+    }
+
+    function harag_cz_sendCommentHandleError(error) {
+        setTimeout(() => {
+            const alert = document.createElement('div');
+            alert.setAttribute('role', 'alert');
+            alert.setAttribute('class', 'alert alert-danger');
+            alert.append('Submit failed: ' + error);
+
+            const messageWrapper = document.getElementById('dialog-comment_error-message-wrapper');
+            messageWrapper.append(alert);
+
+            const dialogNode = document.getElementById('dialog-comment');
+            const modal = new window.bootstrap.Modal(dialogNode);
+            modal.show();
+        }, 0);
+    }
+
+</script>
+
+  <style>
+    #sand-game-root {
+        margin-bottom: 3em;
+    }
+    .social-media-bar a {
+        margin-left: 1em;
+        text-decoration: none;
+    }
+    .social-media-bar a:hover {
+        opacity: 0.7;
+        text-decoration: none;
+    }
+    .social-media-bar .social-media-entry {
+        display: inline-block;
+        white-space: nowrap;
+        margin-top: 2pt;
+        margin-bottom: 2pt
+    }
+    .social-media-bar .static-popper {
+        z-index: unset;
+        display: inline-block;
+        position: relative;
+        inset: 0px auto auto 0px;
+        margin: 0px 0px 0px 5pt;
+        --bs-popover-body-padding-x: 0.75rem;
+        --bs-popover-body-padding-y: 0.5rem;
+    }
+
+    .social-media-bar .static-popper .popover-arrow {
+        position: absolute;
+        top: 8px;
+    }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="https://files.harag.cz/www/app/sand-game-js/prod/24w12a/sand-game-js.css">
+  <script defer src="https://files.harag.cz/www/app/sand-game-js/prod/24w12a/sand-game-js.umd.min.js"></script>
+  <script>
+      // global variables, accessible from browser console
+      var sandGame = null;
+      var brushes = null;
+
+      document.addEventListener('DOMContentLoaded', function () {
+          if (window.SandGameJS !== undefined) {
+              var root = document.getElementById('sand-game-root');
+
+              var config = {
+                  version: '24w12a',
+                  debug: false,
+                  canvas: {
+                      maxHeightPx: 400
+                  },
+              };
+              var controller = SandGameJS.init(root, config);
+
+              // scripting
+              sandGame = controller.getSandGame();
+              controller.addOnInitialized(function (s) {
+                  sandGame = s;
+              });
+              brushes = SandGameJS.brushes;
+              console.log('Globals:');
+              console.log('  sandGame, brushes');
+              console.log('Examples:');
+              console.log('  sandGame.graphics().drawLine(10, 10, 300, 150, 2, brushes.sand);');
+              console.log('  sandGame.graphics().draw(100, 20, brushes.meteor);');
+
+              // sand saga promotions
+              controller.addOnInitialized(function (s) {
+                  s.overlay().createRectangle(0, 0, s.getWidth(), 20, {
+                      visible: true,
+                      label: 'You are playing an old version, try SandSaga.com',
+                      style: {
+                          color: 'blue',
+                          textAlign: 'right'
+                      }
+                  })
+              });
+
+              // sand saga alternative domain promotion
+
+              setTimeout(function () {
+                  if (sandGame === null) {
+                      return;
+                  }
+
+                  var domain = ['sga4schools', 'harag', 'cz'].join('.');
+                  var html = '<p>Psst, if the SandSaga.com domain is blocked, try this one:</p>'
+                      + '<p><strong><a target="_blank" href="https://' + domain + '">' + domain + '</a></strong></p>'
+
+                  var splashContent = document.createElement('div');
+                  splashContent.innerHTML = html;
+
+                  var splash = sandGame.scenario().createSplash({
+                      visible: true,
+                      content: splashContent,
+                      style: {},
+                      buttons: [
+                          {
+                              title: 'Hide',
+                              class: 'btn btn-primary',
+                              focus: true,
+                              action: function () {
+                                  splash.setVisible(false);
+                              }
+                          }
+                      ]
+                  });
+              }, 60 * 1000);
+
+          } else {
+              var placeholder = document.getElementById('sand-game-placeholder-content');
+              placeholder.innerHTML = '<span style="color: red; font-weight: bold;">' +
+                  'Failed to load the game. Possible reasons:<br>' +
+                  '&bull; Your browser may not support modern JavaScript<br>' +
+                  '&bull; Internet connection<br>' +
+                  '&bull; A server side problem' +
+                  '</span>';
+          }
+      });
+  </script>
+  </head>
+
+  <body class="d-flex">
+    <div class="modal fade" id="dialog-login" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <strong>Login</strong>
+          </div>
+          <div class="modal-body">
+            <form class="" action="/login" method="POST">
+              <input type="hidden" name="csrf-token" value="07c04347-667e-45fc-b2e2-6f750efa282d">
+              <div class="mb-3">
+                <label class="form-label" for="username">Name</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter login" maxlength="30" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="password">Pass</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" maxlength="30" required>
+              </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper" class="d-flex flex-column">
+
+      <!-- Navigation -->
+      <nav id="navbar" class="navbar navbar-dark bg-dark">
+        <button id="sidebarToggle" class="navbar-toggler" type="button" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      </nav>
+
+
+      <noscript>
+        <div class="container"><div class="row"><div class="col-12">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            For full functionality of this site it is necessary to enable JavaScript.
+            Here are the <a href="https://www.enablejavascript.io/">instructions how to enable JavaScript in your web browser</a>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div></div></div>
+      </noscript>
+
+      <main class="container"><div class="row"><div class="col-12">
+  <span style="float: right; margin: 0 0 0.5rem 0.5rem; font-size: small;"><a href="/app/sand-game-js/history" target="_blank">24w12a</a></span>
+  <h1>Sand Game JS</h1>
+  <div class="alert alert-info alert-dismissible fade show" style="margin-bottom: 2em" role="alert">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2" style="text-align: center;">
+          <p>
+            <a href="https://sandsaga.com">
+              <img src="https://sandsaga.com/android-chrome-192x192.png" alt="Sand Saga preview" width="150" height="150" class="img-fluid">
+            </a>
+          </p>
+        </div>
+        <div class="col-md-10">
+          <p>Good news! The game moved as of April 1st, 2024, to<br><a href="https://sandsaga.com" style="font-size: 1.5rem; font-weight: bold;">SandSaga.com</a></p>
+          <p>Play with new elements like <strong>oil</strong>, <strong>napalm</strong>, <strong>acid</strong>, and <strong>extinguisher</strong>, as well as new entities like <strong>birds</strong>. In addition to the sandbox mode, the game features challenges and missions, along with much more.</p>
+        </div>
+      </div>
+      <div class="row">
+        <p><i>This page &darr;&darr;&darr; is no longer updated and contains an archived version of the game.</i></p>
+      </div>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+  <div id="sand-game-root">
+    <!-- Sand Game JS placeholder -->
+    <div style="user-select: none;">
+      <div>
+        <button disabled class="badge badge-secondary" type="button" style="min-width: 4em; padding: 0.4em 0.4em; border: none; background-color: rgb(230, 230, 230); color: black;">&nbsp;</button>
+      </div>
+      <div style="height: 70vh; display: flex; align-items: center; justify-content: center; margin-top: 4pt; padding: 2em; outline: 1px solid #b7b7b7;">
+        <div id="sand-game-placeholder-content">
+          Loading...
+        </div>
+      </div>
+      <div style="height: 20vh"></div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="social-media-bar">
+    <div class="social-media-entry">
+      <a href="https://github.com/Hartrik/sand-game-js" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-github" viewBox="0 0 16 16">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+      <div class="popover show bs-popover-end static-popper" role="tooltip" data-popper-placement="right">
+        <div class="popover-arrow"></div>
+        <div class="popover-body">Source code</div>
+      </div>
+    </div>
+    <div class="social-media-entry">
+      <a href="https://www.youtube.com/playlist?list=PLu1kv5TtMEsYlonIaUmpiHzSebZzKnn7E" aria-label="YouTube">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="red" class="bi bi-youtube" viewBox="0 0 16 16">
+          <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+        </svg>
+      </a>
+      <div class="popover show bs-popover-end static-popper" role="tooltip" data-popper-placement="right">
+        <div class="popover-arrow"></div>
+        <div class="popover-body">Videos</div>
+      </div>
+    </div>
+    <div class="social-media-entry">
+      <a href="https://sandsaga.com" style="font-weight: bold; font-size: 1.2em;">SandSaga.com</a>
+    </div>
+  </div>
+  <hr>
+
+  <h2>About</h2>
+
+<p>
+  <strong>Sand Game JS</strong> is a fast and powerful falling-sand game engine for desktop &amp; mobile browsers.
+  It allows players to experiment with various elements, such as sand, soil, water and fire.
+  With grass and trees growing on soil, and other natural processes, it offers a unique experience.
+  Sand Game JS is primarily tested on Google Chrome and Google Chrome for Android.
+  Sand Game JS is the browser-based successor to <a href="/app/sand-game-2" target="_blank">Sand Game 2</a>.
+</p>
+
+<h3>How to Play</h3>
+
+<p>
+  Sand Game JS can be played using either a mouse and keyboard or a touch screen
+</p>
+<ul>
+  <li>
+    <p>
+      For mouse and keyboard users, the left mouse button (<kbd>LMB</kbd>) is used for drawing, while the right mouse button (<kbd>RMB</kbd>) is used for erasing.
+      You can draw a straight line or a rectangle, you can hold the <kbd>shift</kbd> or <kbd>ctrl</kbd> key while dragging the <kbd>LMB</kbd> or <kbd>RMB</kbd>.
+      To prevent elements from being redrawn, you can hold the <kbd>alt</kbd> key while drawing.
+      To fill an area, hold both the <kbd>ctrl</kbd> and <kbd>shift</kbd> keys while using the <kbd>LMB</kbd> or <kbd>RMB</kbd>.
+      Additionally, the middle mouse button can be used to create a meteor.
+    </p>
+  </li>
+  <li>
+    <p>
+      On a touch screen device, touch input or dragging can be used to draw with the primary brush.
+      Simply touch and drag your finger on the screen to create elements.
+    </p>
+  </li>
+</ul>
+
+<p>
+  <strong>Scenes</strong>&emsp;There are five scenes available for exploration.
+  Furthermore, there are three distinct modes available for experimentation: boxed, fall-through, and erasing.
+  The boxed mode confines the elements within the boundaries of the canvas.
+  The erasing mode automatically removes elements when they reach the bottom of the canvas.
+  The fall-through mode creates a continuous cycle where elements repeatedly fall from the top to the bottom, providing ongoing interactions and dynamics.
+</p>
+
+<p>
+  <strong>Scale Adjustment</strong>&emsp;By default, the canvas size and the scale (element size) are calculated automatically based on the screen dimensions and other parameters.
+  By increasing the element size, fewer elements will appear on the canvas, which improves performance but also leads to a more pixelated appearance.
+  On the other hand, if the element size is decreased, more elements will populate the canvas, providing a finer level of detail, but potentially impacting performance.
+  The Performance metric is a good indicator.
+</p>
+
+<p>
+  <strong>Exporting/Importing</strong>&emsp;Canvas content can be exported (downloaded) for later use. These exports can then be opened or seamlessly placed into a scene.
+</p>
+
+<p>
+  <strong>Image Templates</strong>&emsp;By importing a JPG/PNG... image (in the same way as an exported canvas), it is possible to create a template that can be placed onto the canvas.
+  This feature enables to incorporate custom graphics.
+</p>
+
+<!--<div class="ratio ratio-4x3" style="margin: 2em 0">-->
+<!--  <iframe src="https://www.youtube-nocookie.com/embed/Leq_x-U-Qdo" allowfullscreen></iframe>-->
+<!--</div>-->
+
+<h3>Development</h3>
+I'm developing Sand Game JS to...
+<ul>
+  <li>... be fast and stable,</li>
+  <li>... be able to handle small elements (= a lot of elements),</li>
+  <li>... look natural and not ugly,</li>
+  <li>... simple (with not too many buttons),</li>
+  <li>... perform well on mobile and desktop.</li>
+</ul>
+
+<p>
+  The source code is hosted on <a href="https://github.com/Hartrik/sand-game-js">GitHub</a>.
+</p>
+<p>
+  Changes in individual versions are listed in the <a href="/app/sand-game-js/history">version history</a>.
+</p>
+
+<p>
+  Feedback is welcome.
+</p>
+
+<h3>History</h3>
+<p>
+  I created my first basic falling sand game in 2013 and named it <strong>Sand Game</strong>.
+</p>
+<p>
+  The development of <strong>Sand Game 2</strong>, based on JavaFX, began in 2014 and concluded with its final version in 2017.
+  Despite its success, the game’s reach was limited as it was a Java desktop application.
+</p>
+<p>
+  In 2022, the development of <strong>Sand Game JS</strong> began. Hosted on harag.cz, the game increased website traffic from tens to tens of thousands.
+  With its growing popularity, I decided to build <strong>Sand Saga</strong> on top of the Sand Game JS engine and host it on a new website, <a href="https://sandsaga.com">SandSaga.com</a>.
+  Sand Game JS remains the engine name and is further developed as part of the Sand Saga codebase
+</p>
+
+<h3>Similar Games</h3>
+<p>
+  While there are numerous games in this genre, each with their own unique goals and features,
+  none offer the same level of satisfying sand falling as <strong>Sand Game 2</strong> and <strong>Sand Game JS</strong> / <strong>Sand Saga</strong> :).
+  But if you're done with my games, I recommend these:
+</p>
+<ul>
+  <li><strong>The Powder Toy</strong> (pc)</li>
+  <li><strong>PLOP</strong> by Caltrop (browser)</li>
+  <li><strong>Sandspiel</strong> by Max Bittker (browser)</li>
+</ul>
+      </div></div></main>
+
+<div class="container comments"><div class="row"><div class="col-12">
+  <h2>Discussion</h2>
+  <p>
+    There are 73 comments.
+    <button type="button" class="btn btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('')">
+      Leave a comment
+    </button>
+  </p>
+
+    <div id="comment_3e4c447b-6ec8-495a-886b-8313248d71ea" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Cool</p>
+          <div class="comment-footer">
+            <span class="user ">Sus</span><span>, 2025-01-08 18:25 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('3e4c447b-6ec8-495a-886b-8313248d71ea')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_11ae445c-843b-4c28-a42e-ec4335cedac8" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Please make another link to the sand saga game. They blocked the original alternative link for school computers.</p>
+          <div class="comment-footer">
+            <span class="user ">Mr.Sir</span><span>, 2024-12-20 14:12 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('11ae445c-843b-4c28-a42e-ec4335cedac8')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_10601d5c-2fde-43c1-a948-f3554e7ca140" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_1d1ad255-b959-4302-834a-89e203c09617">1d1ad255-b959-4302-834a-89e203c09617</a>:</p>
+          <p class="comment-content">real :(</p>
+          <div class="comment-footer">
+            <span class="user ">SpaceXMonkey</span><span>, 2024-12-04 23:34 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('10601d5c-2fde-43c1-a948-f3554e7ca140')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_f5e9e757-d713-4e3d-aed4-c1c0ee3be136" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">dumba</p>
+          <div class="comment-footer">
+            <span class="user ">nig</span><span>, 2024-11-12 19:14 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('f5e9e757-d713-4e3d-aed4-c1c0ee3be136')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_49557560-23ae-4839-b7e1-c9a02784b3f1" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Not me destroying every inch of material with meteorites *Awkward smile face*</p>
+          <div class="comment-footer">
+            <span class="user ">Phoenix6540</span><span>, 2024-11-06 11:48 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('49557560-23ae-4839-b7e1-c9a02784b3f1')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_a74fad8c-33e5-4732-9468-45dfc07e9a1a" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_36a0c3d2-8f45-4a6b-b12d-a98212c660cd">36a0c3d2-8f45-4a6b-b12d-a98212c660cd</a>:</p>
+          <p class="comment-content">this version is discontinued and won&#39;t be updated so it&#39;s not gonna happen.</p>
+          <div class="comment-footer">
+            <span class="user ">za lamb</span><span>, 2024-10-31 17:24 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('a74fad8c-33e5-4732-9468-45dfc07e9a1a')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_a4b98f40-4397-410e-be30-9bd09fbc60ea" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">I played this for like, 4 hours</p>
+          <div class="comment-footer">
+            <span class="user ">Daboi</span><span>, 2024-10-30 18:38 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('a4b98f40-4397-410e-be30-9bd09fbc60ea')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_42b7b3db-9be8-49c3-8cf7-5becf999dae7" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Psst=Unblocked Fun
+Tap Open when game say Psst like screech from Roblox Doors.</p>
+          <div class="comment-footer">
+            <span class="user ">Kai Ncube</span><span>, 2024-10-25 17:20 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('42b7b3db-9be8-49c3-8cf7-5becf999dae7')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b2154c3d-f715-43b9-a53e-4ada79be6eed" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Game no glitch yay :)</p>
+          <div class="comment-footer">
+            <span class="user ">Kai Ncube</span><span>, 2024-10-25 17:06 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b2154c3d-f715-43b9-a53e-4ada79be6eed')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_36a0c3d2-8f45-4a6b-b12d-a98212c660cd" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Add Purple Void Dust that when you lit it on fire it makes a Black Hole, add Humans that talk and interact with each other and build homes and stuff and the game glitch so I cannot go into the game :(</p>
+          <div class="comment-footer">
+            <span class="user ">Kai Ncube</span><span>, 2024-10-25 17:03 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('36a0c3d2-8f45-4a6b-b12d-a98212c660cd')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_1d1ad255-b959-4302-834a-89e203c09617" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_7e8e66d2-6006-4651-a6fc-2bda00b80ea5">7e8e66d2-6006-4651-a6fc-2bda00b80ea5</a>:</p>
+          <p class="comment-content">Heck you school Chromebooks ;_;</p>
+          <div class="comment-footer">
+            <span class="user ">Sky</span><span>, 2024-10-25 12:28 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('1d1ad255-b959-4302-834a-89e203c09617')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_7e8e66d2-6006-4651-a6fc-2bda00b80ea5" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">THEY BLOCKED THE ALT SITE CAUSE ITS CATOGARIZED AS GAMES NOOOO</p>
+          <div class="comment-footer">
+            <span class="user ">Xmi2</span><span>, 2024-10-24 17:20 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('7e8e66d2-6006-4651-a6fc-2bda00b80ea5')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_7ade8f07-ccb6-437f-8bde-422ee4c2fc81" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_53a5c906-bde8-4fbf-b3ea-664f713cfd5c">53a5c906-bde8-4fbf-b3ea-664f713cfd5c</a>:</p>
+          <p class="comment-content">How is this more physics related than Minecraft? XD</p>
+          <div class="comment-footer">
+            <span class="user ">Sky</span><span>, 2024-10-24 12:02 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('7ade8f07-ccb6-437f-8bde-422ee4c2fc81')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_53a5c906-bde8-4fbf-b3ea-664f713cfd5c" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_8a50b5d9-c379-4138-b719-6aaf0c9cc8ea">8a50b5d9-c379-4138-b719-6aaf0c9cc8ea</a>:</p>
+          <p class="comment-content">yes burn burn nature</p>
+          <div class="comment-footer">
+            <span class="user ">1XxcodyxX1wastaken</span><span>, 2024-10-21 16:09 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('53a5c906-bde8-4fbf-b3ea-664f713cfd5c')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_3e74423c-ef11-4163-b377-0326293e62ef" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">I like to destroy nature</p>
+          <div class="comment-footer">
+            <span class="user ">1XxcodyxX1wastaken</span><span>, 2024-10-21 16:08 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('3e74423c-ef11-4163-b377-0326293e62ef')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_1fab78b5-a517-411c-b916-22a4c46d3dc6" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">burn burn nature</p>
+          <div class="comment-footer">
+            <span class="user ">1XxcodyxX1wastaken</span><span>, 2024-10-21 16:07 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('1fab78b5-a517-411c-b916-22a4c46d3dc6')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_2e828f55-40eb-4d2b-a4e7-27ff2f5c1dde" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">like to make gunpowder you would have to fide the elements to make gunpowder and so on and so forth</p>
+          <div class="comment-footer">
+            <span class="user ">person</span><span>, 2024-10-18 12:44 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('2e828f55-40eb-4d2b-a4e7-27ff2f5c1dde')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_c625a27f-a731-4e65-8176-51877d171a14" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_b7f660db-fda5-403e-a82e-0e1e21a84d9e">b7f660db-fda5-403e-a82e-0e1e21a84d9e</a>:</p>
+          <p class="comment-content">and to make new elements</p>
+          <div class="comment-footer">
+            <span class="user ">person</span><span>, 2024-10-18 12:40 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('c625a27f-a731-4e65-8176-51877d171a14')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b7f660db-fda5-403e-a82e-0e1e21a84d9e" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">should add the ability to make new elements but you have the option to ether discover them or click a button and then have them all like sandboxels but better</p>
+          <div class="comment-footer">
+            <span class="user ">person</span><span>, 2024-10-18 12:40 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b7f660db-fda5-403e-a82e-0e1e21a84d9e')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_8a50b5d9-c379-4138-b719-6aaf0c9cc8ea" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_d8574ef1-9d63-4d7a-b82d-9981f5f09cd0">d8574ef1-9d63-4d7a-b82d-9981f5f09cd0</a>:</p>
+          <p class="comment-content">Uh..It&#39;s also blocked but thank you Patrik! IT&#39;S SO SATISFYING! burn..burn nature.</p>
+          <div class="comment-footer">
+            <span class="user ">Madison</span><span>, 2024-10-17 11:40 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('8a50b5d9-c379-4138-b719-6aaf0c9cc8ea')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_d8574ef1-9d63-4d7a-b82d-9981f5f09cd0" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Keep it a secret :)
+https://sga4schools.harag.cz</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-10-13 14:16 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('d8574ef1-9d63-4d7a-b82d-9981f5f09cd0')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b6592d84-e4bd-4ad5-869a-4cbf8aa16554" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">What are some other game links</p>
+          <div class="comment-footer">
+            <span class="user ">Gray</span><span>, 2024-10-09 17:05 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b6592d84-e4bd-4ad5-869a-4cbf8aa16554')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_e5388eef-9b51-4d6c-aea4-b5f14e9550b0" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_1911c89a-2477-4728-a64d-881e1feb0f99">1911c89a-2477-4728-a64d-881e1feb0f99</a>:</p>
+          <p class="comment-content">shut up</p>
+          <div class="comment-footer">
+            <span class="user ">Areodaz</span><span>, 2024-10-08 14:46 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('e5388eef-9b51-4d6c-aea4-b5f14e9550b0')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_2e9b7c7b-2e15-45a1-913d-f41a5001a586" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_a8c0cb03-12de-4934-bfc6-bfa00af91cce">a8c0cb03-12de-4934-bfc6-bfa00af91cce</a>:</p>
+          <p class="comment-content">if you do it on fall through it just stops at the bottom</p>
+          <div class="comment-footer">
+            <span class="user ">Areodaz</span><span>, 2024-10-08 14:45 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('2e9b7c7b-2e15-45a1-913d-f41a5001a586')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_7b3553e2-33a6-4a4e-a6dc-4a77c963119d" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">You should add stuff</p>
+          <div class="comment-footer">
+            <span class="user ">FireClaw27</span><span>, 2024-10-03 19:53 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('7b3553e2-33a6-4a4e-a6dc-4a77c963119d')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_ab96b2ad-7d68-4170-8afa-1797675c2177" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_ef7c4dee-48bd-4edd-892e-4a3b00ac035c">ef7c4dee-48bd-4edd-892e-4a3b00ac035c</a>:</p>
+          <p class="comment-content">just put dirt and wait</p>
+          <div class="comment-footer">
+            <span class="user ">Archer</span><span>, 2024-10-02 14:20 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('ab96b2ad-7d68-4170-8afa-1797675c2177')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_4d62576d-18a3-4cdf-8517-4dc5cd34b2fd" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_1911c89a-2477-4728-a64d-881e1feb0f99">1911c89a-2477-4728-a64d-881e1feb0f99</a>:</p>
+          <p class="comment-content">...It&#39;s not the worst game in the world is it?</p>
+          <div class="comment-footer">
+            <span class="user ">Sky</span><span>, 2024-10-01 11:43 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('4d62576d-18a3-4cdf-8517-4dc5cd34b2fd')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_8a6283b9-f791-4d16-96a1-d5ebc8bf80c0" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">This game is great! The heck you mean this game sucks?!  It&#39;s fun. I&#39;ve been playing this for like 2 hours. :)</p>
+          <div class="comment-footer">
+            <span class="user ">Sky</span><span>, 2024-09-30 14:38 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('8a6283b9-f791-4d16-96a1-d5ebc8bf80c0')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_ef7c4dee-48bd-4edd-892e-4a3b00ac035c" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">How get de grass grow idk how</p>
+          <div class="comment-footer">
+            <span class="user ">grass lover</span><span>, 2024-09-27 15:11 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('ef7c4dee-48bd-4edd-892e-4a3b00ac035c')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_1911c89a-2477-4728-a64d-881e1feb0f99" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">This game suck no one should ever play it and poopy</p>
+          <div class="comment-footer">
+            <span class="user ">rachealhood6</span><span>, 2024-09-20 17:47 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('1911c89a-2477-4728-a64d-881e1feb0f99')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_7b7db54d-0e17-4b77-85e2-b5885bb8e0cb" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_b03b89a3-ae67-4dfc-8784-d714f775136e">b03b89a3-ae67-4dfc-8784-d714f775136e</a>:</p>
+          <p class="comment-content">Yes</p>
+          <div class="comment-footer">
+            <span class="user ">Archer</span><span>, 2024-09-10 22:47 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('7b7db54d-0e17-4b77-85e2-b5885bb8e0cb')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_2e517a46-24bf-49df-a289-6f6fe519fedd" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_052ba36d-78ec-4d93-a728-19322fceb267">052ba36d-78ec-4d93-a728-19322fceb267</a>:</p>
+          <p class="comment-content">You should put new entities and new items</p>
+          <div class="comment-footer">
+            <span class="user ">FireClaw27</span><span>, 2024-09-03 16:39 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('2e517a46-24bf-49df-a289-6f6fe519fedd')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_e374f145-9a05-46da-b589-e7739ea20b0e" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">There should be a slider to choose the amount of a certain element you can draw. There should be an option to create your own templates and add the cabin or custom images to make the game have more customization. The game should overall have more customization options in the base game to make it more enjoyable and more different between each and every player. That would overall make the game more player based and player controlled.</p>
+          <div class="comment-footer">
+            <span class="user ">Xramitory</span><span>, 2024-05-22 18:49 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('e374f145-9a05-46da-b589-e7739ea20b0e')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_5c53fea0-ceaf-4325-b306-5a908a8a04ba" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">SAND SAGA MORE LIKE SAND SA GAY (sorry)</p>
+          <div class="comment-footer">
+            <span class="user ">One_Shopping4500</span><span>, 2024-05-15 18:29 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('5c53fea0-ceaf-4325-b306-5a908a8a04ba')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_4d782af7-b575-429d-867a-ee45c168a1c0" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">There should be custom elements in the base game. You could only have to choose the color, the way it interacts with elements and temperatures, and whether it is a solid, liquid, or a gas. There should also be a background changer.</p>
+          <div class="comment-footer">
+            <span class="user ">Xramitory</span><span>, 2024-05-09 19:14 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('4d782af7-b575-429d-867a-ee45c168a1c0')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_fc2567a8-99cd-460c-afc0-2e404a0ceef1" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">you guys should make something really explosive better then thermite</p>
+          <div class="comment-footer">
+            <span class="user ">xxspr1ngtrapxx</span><span>, 2024-04-15 22:00 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('fc2567a8-99cd-460c-afc0-2e404a0ceef1')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_d4e7e0c8-c24a-447f-a3a9-a7486cda0d2a" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">:p</p>
+          <div class="comment-footer">
+            <span class="user ">xxspr1ngtrapxx</span><span>, 2024-04-15 21:59 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('d4e7e0c8-c24a-447f-a3a9-a7486cda0d2a')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_47abb0fd-a615-4365-b85d-1556368aa36a" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_5b65f9f9-588e-45ab-a68e-46b16652741c">5b65f9f9-588e-45ab-a68e-46b16652741c</a>:</p>
+          <p class="comment-content">By the way, if you haven&#39;t noticed... I wrote you here, about the Cheese Game...
+https://github.com/MecanixCreations/Mecanix-Sand-Game-JS-Edits/issues/1</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-04-02 21:19 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('47abb0fd-a615-4365-b85d-1556368aa36a')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_5b65f9f9-588e-45ab-a68e-46b16652741c" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_c52d9eec-0746-4df7-834f-39e8694b4ab9">c52d9eec-0746-4df7-834f-39e8694b4ab9</a>:</p>
+          <p class="comment-content">these guidelines and templates will  be useful for custom stuff!</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-04-01 15:53 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('5b65f9f9-588e-45ab-a68e-46b16652741c')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b03b89a3-ae67-4dfc-8784-d714f775136e" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_0a1c9fcd-d1b7-426f-9ea2-f57aa38b1a7d">0a1c9fcd-d1b7-426f-9ea2-f57aa38b1a7d</a>:</p>
+          <p class="comment-content">accidental physics engine is crazy</p>
+          <div class="comment-footer">
+            <span class="user ">gorp</span><span>, 2024-03-26 15:21 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b03b89a3-ae67-4dfc-8784-d714f775136e')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_c52d9eec-0746-4df7-834f-39e8694b4ab9" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_4aa27828-29b2-44ed-bd70-5ff33781c363">4aa27828-29b2-44ed-bd70-5ff33781c363</a>:</p>
+          <p class="comment-content">I just finished writing the guidelines for content creators:
+https://sandsaga.com/manual</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-03-21 22:05 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('c52d9eec-0746-4df7-834f-39e8694b4ab9')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_8642ed32-edb9-45f1-be14-ddb1a6c3af72" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Hello again!
+I have figured out how to use sandSaga&#39;s scripting, from editing the sandScape scene!
+there will be more stuff on the mod git soon.
+:)</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-20 18:09 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('8642ed32-edb9-45f1-be14-ddb1a6c3af72')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_4aa27828-29b2-44ed-bd70-5ff33781c363" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_7ce8cc76-5ae9-4595-9228-d1c92cace7c5">7ce8cc76-5ae9-4595-9228-d1c92cace7c5</a>:</p>
+          <p class="comment-content">Please do put my creation on showcase, if you were too add modding support!
+thank you!!</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-19 15:38 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('4aa27828-29b2-44ed-bd70-5ff33781c363')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_7ce8cc76-5ae9-4595-9228-d1c92cace7c5" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_50b1bfd0-ef54-40bc-b09c-ef79e8fd5932">50b1bfd0-ef54-40bc-b09c-ef79e8fd5932</a>:</p>
+          <p class="comment-content">Wow! BTW I didn&#39;t know you could create palettes in Gimp.
+
+sandsaga.com is coming out of beta soon (Sand Game JS will remain as the game engine name). There will be a space for content creators. If you&#39;re interested, we could showcase your creations here, and you could become famous as a modder ;)
+
+Soon, I&#39;ll provide guidelines for making scenarios and mods. I will also try to make modding easier, provide tools and information... and then some kind of workshop for content creators.</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-03-19 12:32 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('7ce8cc76-5ae9-4595-9228-d1c92cace7c5')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_50b1bfd0-ef54-40bc-b09c-ef79e8fd5932" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_1b34d7f2-c1c4-4b68-8d3a-c228b73aea66">1b34d7f2-c1c4-4b68-8d3a-c228b73aea66</a>:</p>
+          <p class="comment-content">I mod sand game by taking the source, and editing things, to see how they work!
+i add new brushes, new maps, and even made CHEESE game!
+here is the link to my github with some sand game mods
+https://github.com/MecanixCreations/Mecanix-Sand-Game-JS-Edits</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-18 23:42 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('50b1bfd0-ef54-40bc-b09c-ef79e8fd5932')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_1b34d7f2-c1c4-4b68-8d3a-c228b73aea66" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_cc205089-f0c5-495c-9bad-dbe3cf029285">cc205089-f0c5-495c-9bad-dbe3cf029285</a>:</p>
+          <p class="comment-content">Do you mean tools like palette-designer? These are separate &#39;apps&#39; and are not currently bundled with Sand Game JS nor deployed. Maybe in the future.
+
+Can I ask how you mod / plan to mod the game? - I&#39;m just curious</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-03-18 19:49 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('1b34d7f2-c1c4-4b68-8d3a-c228b73aea66')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_67451745-799f-4c81-97ae-c6b5dada9759" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_cc205089-f0c5-495c-9bad-dbe3cf029285">cc205089-f0c5-495c-9bad-dbe3cf029285</a>:</p>
+          <p class="comment-content">I like to mod the game, so it is very useful to have access to these tools :)</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-18 16:46 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('67451745-799f-4c81-97ae-c6b5dada9759')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_cc205089-f0c5-495c-9bad-dbe3cf029285" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Is there a way in the dev build to access the sand game JS tools, AKA the ones in the tools tab on github</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-18 16:45 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('cc205089-f0c5-495c-9bad-dbe3cf029285')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b69721d9-a337-4ce3-9c05-ab5b3ab5cf08" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_a8c0cb03-12de-4934-bfc6-bfa00af91cce">a8c0cb03-12de-4934-bfc6-bfa00af91cce</a>:</p>
+          <p class="comment-content">Thanks for answering!</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-08 19:17 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b69721d9-a337-4ce3-9c05-ab5b3ab5cf08')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_a8c0cb03-12de-4934-bfc6-bfa00af91cce" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_0a1c9fcd-d1b7-426f-9ea2-f57aa38b1a7d">0a1c9fcd-d1b7-426f-9ea2-f57aa38b1a7d</a>:</p>
+          <p class="comment-content">This happens because the solid body is blocked by the powder and the powder is blocked by the solid body, so they are deadlocked. I want to fix this before the next version is released because it often happens around tree roots (even more so in my very recent local dev builds). But thanks for the error report :)</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-03-06 08:52 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('a8c0cb03-12de-4934-bfc6-bfa00af91cce')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_0a1c9fcd-d1b7-426f-9ea2-f57aa38b1a7d" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">I found a bug In the dev beta, where a solid body will be stopped if filled with a powder, how to recreate
+pause the game
+draw a circle of metal
+fill with Sand using Ctrl+shift
+unpause</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-03-05 19:48 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('0a1c9fcd-d1b7-426f-9ea2-f57aa38b1a7d')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_32722d4c-0f47-4f60-bde0-ee76ccac49fb" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Add a workshop so people can share there ideas and make new fixes and add dynamic physics</p>
+          <div class="comment-footer">
+            <span class="user ">Chris</span><span>, 2024-03-05 13:35 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('32722d4c-0f47-4f60-bde0-ee76ccac49fb')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_464c03f3-1e46-4e0e-a9e7-45f037e5fbe3" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Add explosives</p>
+          <div class="comment-footer">
+            <span class="user ">jay</span><span>, 2024-03-04 16:40 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('464c03f3-1e46-4e0e-a9e7-45f037e5fbe3')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_02dd0623-49bd-47b8-bb49-caea2dcad1f4" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_963706fb-8d21-43b5-aebe-ce7acf53a2d9">963706fb-8d21-43b5-aebe-ce7acf53a2d9</a>:</p>
+          <p class="comment-content">another thing is fluid dynamics, aka more realistic water!</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-02-28 20:05 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('02dd0623-49bd-47b8-bb49-caea2dcad1f4')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_963706fb-8d21-43b5-aebe-ce7acf53a2d9" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">more ideas:
+• another gas
+• explosives (dynamite)
+• birds
+• new scenes, and the ablitity to change the settings of the scenes
+• spouts, for water and &quot;lava&quot;
+• strong walls and coloured walls
+• clouds, and electricity (shocking/lightning)
+
+thats all!</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-02-28 20:02 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('963706fb-8d21-43b5-aebe-ce7acf53a2d9')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_f2635edb-08c6-4d83-8500-ee919d2acecd" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">I WOULD IKE TO SPAWN PEOPLE SO I CAN KILL THEM</p>
+          <div class="comment-footer">
+            <span class="user ">aidyn</span><span>, 2024-02-27 03:57 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('f2635edb-08c6-4d83-8500-ee919d2acecd')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_052ba36d-78ec-4d93-a728-19322fceb267" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Thank you for your feedback and suggestions guys. I really appreciate it!</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2024-02-26 21:18 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('052ba36d-78ec-4d93-a728-19322fceb267')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_a14b14dc-974f-4f7d-b49e-b924b966b8e3" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Make the brush have a slider to change size, so you can make thick or fine lines!
+Add Lava, it has been requested a lot
+enable wood in the brush menu
+add the cabin as a template, and add rock as its own draw-able element alongside the template rocks
+make grass and tree seeds</p>
+          <div class="comment-footer">
+            <span class="user ">GE0PLEX</span><span>, 2024-02-26 17:50 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('a14b14dc-974f-4f7d-b49e-b924b966b8e3')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_837fdbf1-f423-429b-8ec9-d203d0a6b388" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_b9612532-496f-4f73-a965-b6c17e92c7b6">b9612532-496f-4f73-a965-b6c17e92c7b6</a>:</p>
+          <p class="comment-content">*Edit: I meant molten metal</p>
+          <div class="comment-footer">
+            <span class="user ">Bray</span><span>, 2024-02-15 14:01 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('837fdbf1-f423-429b-8ec9-d203d0a6b388')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b9612532-496f-4f73-a965-b6c17e92c7b6" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">I know you just added molten lava but can you add just plain lava to the game that doesn&#39;t harden? Thanks and me and my friends have been having fun playing your game at school.</p>
+          <div class="comment-footer">
+            <span class="user ">Bray</span><span>, 2024-02-14 17:20 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b9612532-496f-4f73-a965-b6c17e92c7b6')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_27438626-cebb-4b3d-bb56-5b0557a2bb33" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">you should make it to where you can control temperature</p>
+          <div class="comment-footer">
+            <span class="user ">erik</span><span>, 2024-02-14 17:06 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('27438626-cebb-4b3d-bb56-5b0557a2bb33')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_1f773c0d-027b-4f5f-a4fd-1be3269567b3" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">You should add cactuses for the sand and make it so template is back</p>
+          <div class="comment-footer">
+            <span class="user ">Roborexx</span><span>, 2024-02-14 14:26 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('1f773c0d-027b-4f5f-a4fd-1be3269567b3')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_fe7ee7c9-6910-48df-82a4-461d489e2be6" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">you should add a steam explosion after enough steam builds up inside of elements</p>
+          <div class="comment-footer">
+            <span class="user ">TinCard1117</span><span>, 2024-02-13 17:50 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('fe7ee7c9-6910-48df-82a4-461d489e2be6')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_c48cb87b-1108-4634-b11e-ce4beb872f17" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_b4220d80-7526-4ff9-8d5d-257c6a5217bf">b4220d80-7526-4ff9-8d5d-257c6a5217bf</a>:</p>
+          <p class="comment-content">i agree</p>
+          <div class="comment-footer">
+            <span class="user ">yes</span><span>, 2024-02-05 14:56 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('c48cb87b-1108-4634-b11e-ce4beb872f17')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_b4220d80-7526-4ff9-8d5d-257c6a5217bf" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">please add like a bomb feature where you put it down and it will explode the surrounding area it would be cool.</p>
+          <div class="comment-footer">
+            <span class="user ">hello</span><span>, 2024-02-01 14:29 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('b4220d80-7526-4ff9-8d5d-257c6a5217bf')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_c0320d39-ed5a-4df9-8d6e-77eec85149bc" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_0384ca59-2466-4c05-85c1-0e8f6ca72aa2">0384ca59-2466-4c05-85c1-0e8f6ca72aa2</a>:</p>
+          <p class="comment-content">and make a spawn tool for fish as well</p>
+          <div class="comment-footer">
+            <span class="user ">yes</span><span>, 2024-01-25 15:49 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('c0320d39-ed5a-4df9-8d6e-77eec85149bc')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_0384ca59-2466-4c05-85c1-0e8f6ca72aa2" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">can you add humans to this? just like a spawning tool. Thanks!</p>
+          <div class="comment-footer">
+            <span class="user ">yes</span><span>, 2024-01-25 15:45 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('0384ca59-2466-4c05-85c1-0e8f6ca72aa2')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_77c31ff8-7316-4270-9e94-e46a42e1e05b" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">may you please make fire better with templates</p>
+          <div class="comment-footer">
+            <span class="user ">gabriel healey</span><span>, 2023-12-20 18:21 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('77c31ff8-7316-4270-9e94-e46a42e1e05b')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_a7f43168-fc12-45da-aa29-a2a9f8a78f2b" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Please add slowing down time</p>
+          <div class="comment-footer">
+            <span class="user ">miskostreasure28</span><span>, 2023-11-30 13:27 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('a7f43168-fc12-45da-aa29-a2a9f8a78f2b')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_73caf53b-0432-47ab-933d-f9106a70648b" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_8c24dfd7-dc18-48f1-829a-2730cb5e0a4b">8c24dfd7-dc18-48f1-829a-2730cb5e0a4b</a>:</p>
+          <p class="comment-content">There is a chance that it will be implemented eventually. But now I would like to focus on finishing the temperature processing that will allow me to introduce new elements and behaviour. I would also like to add templates (like in the Sand Game 2).</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2023-04-28 12:40 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('73caf53b-0432-47ab-933d-f9106a70648b')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_8c24dfd7-dc18-48f1-829a-2730cb5e0a4b" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_c1f5aa9d-8e17-4f71-b9ad-e1fb06614e9e">c1f5aa9d-8e17-4f71-b9ad-e1fb06614e9e</a>:</p>
+          <p class="comment-content">Are you going to add a way to speed up time or slow down time.</p>
+          <div class="comment-footer">
+            <span class="user ">Alexander Daniels</span><span>, 2023-04-27 19:02 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('8c24dfd7-dc18-48f1-829a-2730cb5e0a4b')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_c1f5aa9d-8e17-4f71-b9ad-e1fb06614e9e" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          <p>Replying to <a href="#comment_f94d74b0-8b79-4c97-bf81-ab7e267b6e74">f94d74b0-8b79-4c97-bf81-ab7e267b6e74</a>:</p>
+          <p class="comment-content">That&#39;s all they can do right now. I do have some plans though ;)
+Edit 2023-08-10: Meteors are better now, click location = impact location</p>
+          <div class="comment-footer">
+            <span class="user user-admin">Patrik</span><span>, 2023-04-26 19:42 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('c1f5aa9d-8e17-4f71-b9ad-e1fb06614e9e')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <div id="comment_f94d74b0-8b79-4c97-bf81-ab7e267b6e74" class="card comment">
+      <div class="card-body">
+        <blockquote class="mb-0">
+          
+          <p class="comment-content">Can you change the way the meteor goes or will it always go right.</p>
+          <div class="comment-footer">
+            <span class="user ">Alexander Daniels</span><span>, 2023-04-26 00:33 (UTC)</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary button-show-comment-dialog" onclick="harag_cz_comment('f94d74b0-8b79-4c97-bf81-ab7e267b6e74')">
+              Reply
+            </button>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+  <div class="modal fade" id="dialog-comment" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong id="dialog-comment_title"></strong>
+        </div>
+        <div class="modal-body">
+          <div id="dialog-comment_error-message-wrapper"></div>
+          <form id="form-comment" action="javascript:harag_cz_sendComment();">
+            <input type="hidden" name="csrf-token" value="07c04347-667e-45fc-b2e2-6f750efa282d">
+            <input type="hidden" id="dialog-comment_reply" name="replyTo" value="">
+            <div class="mb-3">
+              <label class="form-label" for="dialog-comment_username">Name</label>
+              <input id="dialog-comment_username" type="text" name="username" required class="form-control" placeholder="Enter name" maxlength="32">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="dialog-comment_email">E-mail</label>
+              <input id="dialog-comment_email" type="email" name="email" required class="form-control" placeholder="Enter email" aria-describedby="dialog-comment_email-help" maxlength="64">
+              <small id="dialog-comment_email-help" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Select ALL good reasons for writing a comment</label>
+              <div class="comment-robot-test">
+                <span class="question">
+                  <input type="checkbox" id="dialog-comment_test-1" name="test1">
+                  <label for="dialog-comment_test-1">Error reporting</label>
+                </span>
+                <span class="question">
+                  <input type="checkbox" id="dialog-comment_test-2" name="test2">
+                  <label for="dialog-comment_test-2">Spamming</label>
+                </span>
+                <span class="question">
+                  <input type="checkbox" id="dialog-comment_test-3" name="test3">
+                  <label for="dialog-comment_test-3">Unconstructive criticism</label>
+                </span>
+                <span class="question">
+                  <input type="checkbox" id="dialog-comment_test-4" name="test4">
+                  <label for="dialog-comment_test-4">Sharing ideas</label>
+                </span>
+              </div>
+              <small class="form-text text-muted">Your comment won't be published if you fail this test.</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="dialog-comment_content">Message</label>
+              <textarea id="dialog-comment_content" name="content" required class="form-control" placeholder="Enter a deep comment" maxlength="1000" rows="4"></textarea>
+            </div>
+            <div class="mb-3">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Send</button>
+              <small style="margin-left: 1em" class="text-muted">IP address will be logged.</small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div></div></div>
+
+      <div class="spacer"></div>
+
+
+      <div id="footer-image-container">
+        <a href="/app/sand-game-js">
+          <div id="footer-image"></div>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
