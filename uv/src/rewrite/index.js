@@ -58,7 +58,7 @@ class Ultraviolet {
 		this.meta.base ||= undefined;
 		this.meta.origin ||= "";
 		this.bundleScript = options.bundle || "/uv.bundle.js";
-		this.handlerScript = options.handler || "/uv.handler.js";
+		this.handlerScript = options.handler || "/uv/src/uv.handler.js";
 		this.clientScript =
 			options.client ||
 			(options.bundle &&
