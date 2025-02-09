@@ -14,12 +14,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar</title>
+    <title>Sidebar UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-gray-900">
-    <div class="h-screen w-16 bg-gray-900 flex flex-col items-center py-4 space-y-6">
+<body class="bg-gray-900 text-white flex">
+
+    <!-- Sidebar -->
+    <div class="h-screen w-16 bg-gray-900 flex flex-col items-center py-4 space-y-6 fixed left-0 top-0">
         <div class="bg-yellow-500 p-2 rounded-full">
             <i data-lucide="gamepad-2" class="text-black" style="width: 28px; height: 28px;"></i>
         </div>
@@ -32,31 +34,22 @@
         <a href="/audio" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
             <i data-lucide="volume-2" class="text-white" style="width: 24px; height: 24px;"></i>
         </a>
-        <a href="/tools" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
-            <i data-lucide="wrench" class="text-white" style="width: 24px; height: 24px;"></i>
-        </a>
-        <a href="/chat" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
-            <i data-lucide="message-square" class="text-white" style="width: 24px; height: 24px;"></i>
-        </a>
-        <a href="/docs" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
-            <i data-lucide="file-text" class="text-white" style="width: 24px; height: 24px;"></i>
-        </a>
-        <a href="/links" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
-            <i data-lucide="link" class="text-white" style="width: 24px; height: 24px;"></i>
-        </a>
         <a href="/settings" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
             <i data-lucide="settings" class="text-white" style="width: 24px; height: 24px;"></i>
         </a>
-        <a href="/profile" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
-            <i data-lucide="user" class="text-white" style="width: 24px; height: 24px;"></i>
-        </a>
     </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 ml-16 p-6">
+        <h1 class="text-3xl font-bold">Welcome to the Site</h1>
+        <p class="mt-4 text-lg">The NEW susland Arcade.</p>
+    </div>
+
     <script>
         lucide.createIcons();
     </script>
 </body>
 </html>
-
 
      
 <style>
