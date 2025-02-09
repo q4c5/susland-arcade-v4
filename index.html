@@ -14,34 +14,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar UI</title>
+    <title>Centered Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-gray-900 text-white flex">
-
+<body class="bg-gray-900 flex min-h-screen">
+    
     <!-- Sidebar -->
     <div class="h-screen w-16 bg-gray-900 flex flex-col items-center py-4 space-y-6 fixed left-0 top-0">
         <div class="bg-yellow-500 p-2 rounded-full">
             <i data-lucide="gamepad-2" class="text-black" style="width: 28px; height: 28px;"></i>
         </div>
-        <a href="/home" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
+        <a href="#home" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
             <i data-lucide="home" class="text-white" style="width: 24px; height: 24px;"></i>
         </a>
-        <a href="/games" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
+        <a href="#games" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
             <i data-lucide="gamepad-2" class="text-white" style="width: 24px; height: 24px;"></i>
         </a>
-        <a href="/audio" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
+        <a href="#audio" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
             <i data-lucide="volume-2" class="text-white" style="width: 24px; height: 24px;"></i>
         </a>
-        <a href="/settings" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
-            <i data-lucide="settings" class="text-white" style="width: 24px; height: 24px;"></i>
+        <a href="#tools" class="p-2 rounded-lg hover:bg-gray-700 transition cursor-pointer">
+            <i data-lucide="wrench" class="text-white" style="width: 24px; height: 24px;"></i>
         </a>
     </div>
 
     <!-- Main Content -->
-    <div class="flex-1 ml-16 p-6">
-     
+    <div class="flex flex-grow justify-center items-center w-full" style="margin-left: 4rem;">
+        <div class="flex flex-col items-center space-y-6 text-white text-center">
+            <!-- Title -->
+            <h1 class="text-5xl font-bold">SUSLAND ARCADE 🎮</h1>
+
+            <!-- Random Text -->
+            <p class="text-3xl font-semibold">GET OU-</p>
+
+            <!-- Web Counter -->
+            <a href="https://www.hitwebcounter.com" target="_blank">
+                <img src="https://hitwebcounter.com/counter/counter.php?page=17871155&amp;style=0001&amp;nbdigits=9&amp;type=page&amp;initCount=20000" 
+                     title="Counter Widget" 
+                     alt="Visit counter For Websites" 
+                     border="0">
+            </a>
+
+            <!-- Discord Button -->
+            <a href="YOUR_DISCORD_LINK" class="bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center space-x-2">
+                <i data-lucide="discord"></i>
+                <span>Join Discord</span>
+            </a>
+
+            <!-- YouTube Button -->
+            <a href="YOUR_YOUTUBE_LINK" class="bg-red-600 text-white px-6 py-3 rounded-lg flex items-center space-x-2">
+                <i data-lucide="youtube"></i>
+                <span>Watch on YouTube</span>
+            </a>
+        </div>
     </div>
 
     <script>
@@ -49,50 +75,7 @@
     </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Layout</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-gray-900 flex justify-center items-center min-h-screen">
 
-    <div class="flex flex-col items-center space-y-6 text-white text-center">
-        <!-- Title -->
-        <h1 class="text-5xl font-bold">SUSLAND ARCADE 🎮</h1>
-
-        <!-- Random Text -->
-        <p class="text-3xl font-semibold">GET OU-</p>
-
-        <!-- Web Counter -->
-        <a href="https://www.hitwebcounter.com" target="_blank">
-            <img src="https://hitwebcounter.com/counter/counter.php?page=17871155&amp;style=0001&amp;nbdigits=9&amp;type=page&amp;initCount=20000" 
-                 title="Counter Widget" 
-                 alt="Visit counter For Websites" 
-                 border="0">
-        </a>
-
-        <!-- Discord Button -->
-        <a href="YOUR_DISCORD_LINK" class="bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center space-x-2">
-            <i data-lucide="discord"></i>
-            <span>Join Discord</span>
-        </a>
-
-        <!-- YouTube Button -->
-        <a href="YOUR_YOUTUBE_LINK" class="bg-red-600 text-white px-6 py-3 rounded-lg flex items-center space-x-2">
-            <i data-lucide="youtube"></i>
-            <span>Watch on YouTube</span>
-        </a>
-    </div>
-
-    <script>
-        lucide.createIcons();
-    </script>
-</body>
-</html>
 
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4821980595404788"
